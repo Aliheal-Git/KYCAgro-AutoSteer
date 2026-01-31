@@ -5,15 +5,19 @@
 #ifndef APP_PAGES_PAGE_HPP_
 #define APP_PAGES_PAGE_HPP_
 
+#include "IDosageController.hpp"
 #include "IPage.hpp"
+#include "IFlash.hpp"
+#include "DosageController.hpp"
+#include "ValveController.hpp"
+
+
 #include "IWindow.hpp"
 #include "WindowCommon.hpp"
 #include "SettingsCommon.hpp"
 
-
-using namespace App::Interfaces::WindowInterface;
-using namespace App::Interfaces::PageInterface;
-using namespace App::Domain::SettingsCommon;
+using namespace App::Interfaces;
+using namespace App::Domain;
 
 class WelcomePage : public IPage {
 	public:
@@ -22,19 +26,24 @@ class WelcomePage : public IPage {
 		PageFuncResult handleButtonInput(ButtonQueueEvent event) override {
 			return {PageNavRequest::NONE, 0};
 		}
-		bool task(void) override {
-			return false;
+		PageFuncResult update(void) override {
+			return {PageNavRequest::NONE, 0};
 		}
 };
 
 class MainPage : public IPage {
 	public:
-		explicit MainPage(IWindow* win, Settings& params) : IPage(win), settings(params) {}
+		explicit MainPage(IWindow* win, Settings& params, IFlash* Flash, 
+			IDosageController* DosageController, ValveController* ValveController) 
+			: IPage(win), settings(params), flash(Flash), dosageController(DosageController), valveController(ValveController) {}
 		PageFuncResult render() override;
-		PageFuncResult task(void) override;
+		PageFuncResult update() override;
 		PageFuncResult handleButtonInput(ButtonQueueEvent event) override;
 	private:
 		Settings& settings;
+		IFlash* flash;
+		IDosageController* dosageController;
+		ValveController* valveController;
 		float speed = 0;
 		float targetDosage = 0;
 		float dosage = 0;

@@ -5,6 +5,8 @@
 #ifndef APP_INTERFACES_IDOSAGECONTROLLER_HPP_
 #define APP_INTERFACES_IDOSAGECONTROLLER_HPP_
 
+#include <cstdint>
+
 namespace App::Interfaces {
     struct DosageControllerTaskResult {
         bool success;
