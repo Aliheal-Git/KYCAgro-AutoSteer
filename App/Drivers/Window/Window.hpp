@@ -33,14 +33,16 @@ class Window : public IWindow {
 		Window(I2C_HandleTypeDef* i2cHandle, uint16_t i2cAddress, uint8_t rowCount, uint8_t columnCount)
 			: i2cHandle(i2cHandle), i2cAddress(i2cAddress), rowCount(rowCount), columnCount(columnCount) {}
 		void initiliaze();
-        virtual void writeCharacter(const char character, uint8_t row, uint8_t column) override;
-        virtual void writeString(const char* str, uint8_t row, uint8_t column) override;
-        virtual void writeCustomCharacter(customCharIndex index, uint8_t row, uint8_t column) override;
-        virtual void sendCommand(DisplayCommands cmd) override;
-        virtual void clearWindow() override;
-        virtual void clearLine(uint8_t row) override;
-        virtual void hideWindow() override;
-        virtual void showWindow() override;
+        void writeCharacter(const char character, uint8_t row, uint8_t column) override;
+        void writeString(const char* str, uint8_t row, uint8_t column) override;
+        void writeCustomCharacter(customCharIndex index, uint8_t row, uint8_t column) override;
+        void sendCommand(DisplayCommands cmd) override;
+        void clearWindow() override;
+        void clearLine(uint8_t row) override;
+        void hideWindow() override;
+        void showWindow() override;
+        uint8_t getColumnCount() const override;
+        uint8_t getRowCount() const override;
 };
 
 } // namespace App::Drivers

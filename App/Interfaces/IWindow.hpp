@@ -67,6 +67,18 @@ class IWindow {
          * @brief Shows the window display.
          */
         virtual void showWindow() = 0;
+
+        /**
+         * @brief Gets the number of columns in the window display.
+         * @return The number of columns.
+         */
+        virtual uint8_t getColumnCount() const = 0;
+        /**
+         * @brief Gets the number of rows in the window display.
+         * @return The number of rows.
+         */
+        virtual uint8_t getRowCount() const = 0;
+
         virtual ~IWindow() = default;
 };
 
