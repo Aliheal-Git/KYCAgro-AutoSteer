@@ -12,6 +12,17 @@ using namespace App::Domain;
 namespace App::Interfaces {    
 
 /**
+ * @brief Interface for button classes.
+ */
+class IButton{
+public:
+    virtual ~IButton() = default;
+    /**
+     * @brief Method to be called periodically to update button state.
+     */
+    virtual void tick() = 0;
+};
+/**
  * @brief Interface for classes that listen to button events.
  */
 class IButtonEventListener {
