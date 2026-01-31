@@ -33,7 +33,7 @@ namespace App::Interfaces {
             virtual ~IPage() {}
             virtual PageFuncResult render() = 0;
             virtual PageFuncResult handleButtonInput(ButtonQueueEvent event) = 0;
-            virtual PageFuncResult task(void) { return {PageNavRequest::NONE, 0xFFFFFFFF}; };
+            virtual PageFuncResult update(void) { return {PageNavRequest::NONE, 0xFFFFFFFF}; };
         protected:
             IWindow *parentWindow;
             uint8_t renderStep = 0;
