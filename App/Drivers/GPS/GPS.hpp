@@ -23,14 +23,14 @@ class GPS : public IGPS {
             return speed;
         }
 
-        bool getValveStatus(uint8_t valveIndex) const override {
+        bool getValveState(uint8_t valveIndex) const override {
             if (valveIndex >= MAX_VALVE_COUNT) {
                 return false; // Invalid index
             }
             return valveStatus[valveIndex];
         }
 
-        void receiveGPSData();
+        void receiveGPSData() override;
 };
 } // namespace App
 
