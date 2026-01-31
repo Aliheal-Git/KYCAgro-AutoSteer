@@ -7,8 +7,8 @@
 
 #define PUSLECOUNTPERDURATION 10
 
-using namespace App::Interfaces::FlowmeterInterface;
-using namespace App::Domain::FilterCommon;
+using namespace App::Interfaces;
+using namespace App::Domain;
 
 namespace App::Drivers {
 

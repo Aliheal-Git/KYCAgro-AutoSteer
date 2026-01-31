@@ -1,6 +1,6 @@
 #include "Button.h"
 
-using namespace App::Drivers::ButtonDriver;
+using namespace App::Drivers;
 
 /**
  * @brief Constructor for Button class.

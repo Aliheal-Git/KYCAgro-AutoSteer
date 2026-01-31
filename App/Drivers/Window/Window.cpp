@@ -1,9 +1,9 @@
 #include "Window.hpp"
 #include "WindowCommon.hpp"
 
-using namespace App::Drivers::WindowDriver;
-using namespace App::Interfaces::WindowInterface;
-using namespace App::Domain::WindowCommon;
+using namespace App::Drivers;
+using namespace App::Interfaces;
+using namespace App::Domain;
 
 /**
  * @brief Initialize the LCD window

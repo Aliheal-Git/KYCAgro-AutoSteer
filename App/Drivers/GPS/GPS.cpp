@@ -1,6 +1,8 @@
 #include "GPS.hpp"
 #include "CANSPI.h"
 
+using namespace App::Drivers;
+
 GPS::GPS() {
     CANSPI_Initialize();
 }

@@ -2,8 +2,8 @@
 #include "ValveCommon.hpp"
 #include <math.h>
 
-using namespace App::Drivers::Valve;
-using namespace App::Domain::ValveCommon;
+using namespace App::Drivers;
+using namespace App::Domain;
 
 Valve::Valve(GPIO_TypeDef* OpenPort, uint16_t OpenPin, GPIO_TypeDef* ClosePort, uint16_t ClosePin)
     : openPort(OpenPort), openPin(OpenPin), closePort(ClosePort), closePin(ClosePin),

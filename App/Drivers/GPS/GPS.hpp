@@ -7,10 +7,11 @@
 
 #include "IGPS.hpp"
 
-using namespace App::Interfaces::GPSInterface;
+using namespace App::Interfaces;
 
 #define MAX_VALVE_COUNT 8
 
+namespace App::Drivers {
 class GPS : public IGPS {
     private: 
         float speed = 0.0f;
@@ -31,5 +32,6 @@ class GPS : public IGPS {
 
         void receiveGPSData();
 };
+} // namespace App
 
 #endif // APP_DRIVERS_GPS_GPS_HPP_

@@ -3,7 +3,7 @@
 #include "stm32g0xx_hal_flash.h"
 #include <cstdint>
 
-using namespace App::Drivers::FlashDriver;
+using namespace App::Drivers;
 
 Flash::Flash() {
     // Constructor implementation (if needed)

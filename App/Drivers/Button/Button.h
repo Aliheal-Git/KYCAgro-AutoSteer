@@ -20,9 +20,9 @@ extern "C" {
 
 #include "IButton.hpp"
 
-using namespace App::Interfaces::ButtonInterface;
+using namespace App::Interfaces;
 
-namespace App::Drivers::ButtonDriver {
+namespace App::Drivers {
 
 /**
  * @brief Button driver class.

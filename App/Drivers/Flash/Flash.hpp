@@ -8,9 +8,9 @@
 #include "IFlash.hpp"
 #include <cstdint>
 
-using namespace App::Interfaces::FlashInterface;
+using namespace App::Interfaces;
 
-namespace App::Drivers::FlashDriver {
+namespace App::Drivers {
 
 /**
  * @brief Flash memory driver class implementing IFlash interface.
@@ -27,7 +27,7 @@ class Flash : public IFlash {
         void enableWriteProtection() override;
 };
 
-} // namespace App::Drivers::FlashDriver
+} // namespace App::Drivers
 
 
 #endif // APP_DRIVERS_FLASH_FLASH_HPP_

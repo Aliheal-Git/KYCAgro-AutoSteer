@@ -7,9 +7,9 @@
 
 #include "IValve.hpp"
 
-using namespace App::Interfaces::ValveInterface;
+using namespace App::Interfaces;
 
-namespace App::Drivers::Valve {
+namespace App::Drivers {
 class Valve : public IValve {
 public:
     Valve(GPIO_TypeDef* OpenPort, uint16_t OpenPin, GPIO_TypeDef* ClosePort, uint16_t ClosePin);
@@ -54,6 +54,6 @@ class ProportionalValve : public IValve {
         float dutyCycle = 0.0f; // -1.0 to 1.0
         float limit;
     };
-} // namespace App::Drivers::Valve
+} // namespace App
 
 #endif // VALVE_HPP

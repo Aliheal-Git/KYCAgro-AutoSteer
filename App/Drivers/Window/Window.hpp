@@ -8,9 +8,9 @@
 #include "IWindow.hpp"
 #include "i2c.h"
 
-using namespace App::Interfaces::WindowInterface;
+using namespace App::Interfaces;
 
-namespace App::Drivers::WindowDriver {
+namespace App::Drivers {
 
 class Window : public IWindow {
 	private:
@@ -43,5 +43,5 @@ class Window : public IWindow {
         virtual void showWindow() override;
 };
 
-} // namespace App::Drivers::WindowDriver
+} // namespace App::Drivers
 #endif // APP_DRIVERS_WINDOW_WINDOW_HPP_
