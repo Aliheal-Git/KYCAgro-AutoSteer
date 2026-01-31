@@ -1,0 +1,242 @@
+\doxysection{Valve Class Reference}
+\hypertarget{class_valve}{}\label{class_valve}\index{Valve@{Valve}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Mode} \{ \newline
+{\bfseries AUTO}
+, \newline
+{\bfseries MANUAL}
+ \}
+\item 
+enum {\bfseries Status} :\+ bool \{ \newline
+{\bfseries OPEN} = true
+, \newline
+{\bfseries CLOSED} = false
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_valve_a71adb3e5d30f1ff9f8ef2a954c7fcd32}{Valve}} (GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}Open\+Port, uint16\+\_\+t Open\+Pin, GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}Close\+Port, uint16\+\_\+t Close\+Pin)
+\item 
+void \doxymbox{\hyperlink{class_valve_aec605f1cdf109b4a018ee44b25110953}{set\+Mode}} (Mode mode)
+\item 
+Mode \doxymbox{\hyperlink{class_valve_afb6bb8b2ba8393113b6d1ca4e03ff5c6}{get\+Mode}} () const
+\item 
+void \doxymbox{\hyperlink{class_valve_a489cfa43e8ba66a9499a0eb53431684b}{open}} (Valve::\+\+Mode mode)
+\item 
+void \doxymbox{\hyperlink{class_valve_a9291f02a93311e830876b5426c481acc}{close}} (Valve::\+\+Mode mode)
+\item 
+Status \doxymbox{\hyperlink{class_valve_ad04360f7b5ec7d190a49b3e532cf43fe}{get\+Status}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_valve_aac913019f1a693726f1eee54379ea2f3}{open\+Port}}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{class_valve_a0300df2cd03c252536960569bf7641fe}{open\+Pin}}
+\item 
+GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_valve_a8d0114023f836086951ff584e64f778c}{close\+Port}}
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{class_valve_a4501384a6202d50a1397d3851f522061}{close\+Pin}}
+\item 
+Status \doxymbox{\hyperlink{class_valve_a54fb982984fdca5c22f04371c126b907}{auto\+Status}}
+\item 
+Status \doxymbox{\hyperlink{class_valve_a54665c5fa979c079e37d33d590082b76}{manual\+Status}}
+\item 
+Mode \doxymbox{\hyperlink{class_valve_aa4c905104198033d3a11e3673429fb18}{valve\+Mode}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00007}{7}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_valve_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_valve_a7e78d03e74cf08ea0a0022f78c8c8fd6}\index{Valve@{Valve}!Mode@{Mode}}
+\index{Mode@{Mode}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{Mode}{Mode}}
+{\footnotesize\ttfamily \label{class_valve_a7e78d03e74cf08ea0a0022f78c8c8fd6} 
+enum Valve::\+\+Mode}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00009}{9}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+\Hypertarget{class_valve_aba5ba1e17dcf98f3857ed6ac2da260f3}\index{Valve@{Valve}!Status@{Status}}
+\index{Status@{Status}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{class_valve_aba5ba1e17dcf98f3857ed6ac2da260f3} 
+enum Valve::\+\+Status :\+ bool}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00013}{13}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_valve_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_valve_a71adb3e5d30f1ff9f8ef2a954c7fcd32}\index{Valve@{Valve}!Valve@{Valve}}
+\index{Valve@{Valve}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{Valve()}{Valve()}}
+{\footnotesize\ttfamily \label{class_valve_a71adb3e5d30f1ff9f8ef2a954c7fcd32} 
+Valve::\+\+Valve (\begin{DoxyParamCaption}\item[{GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}}]{Open\+Port}{, }\item[{uint16\+\_\+t}]{Open\+Pin}{, }\item[{GPIO\+\_\+\+Type\+Def \texorpdfstring{$\ast$}{*}}]{Close\+Port}{, }\item[{uint16\+\_\+t}]{Close\+Pin}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8cpp_source_l00006}{6}} of file \doxymbox{\hyperlink{_valve_8cpp_source}{Valve.\+cpp}}.
+
+\Hypertarget{class_valve_ac59a5787dce2cf623fe3b6a42b7add15}\index{Valve@{Valve}!````~Valve@{\texorpdfstring{$\sim$}{\string~}Valve}}
+\index{````~Valve@{\texorpdfstring{$\sim$}{\string~}Valve}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Valve()}{\string~Valve()}}
+{\footnotesize\ttfamily \label{class_valve_ac59a5787dce2cf623fe3b6a42b7add15} 
+Valve::\+\texorpdfstring{$\sim$}{\string~}\+Valve (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8cpp_source_l00014}{14}} of file \doxymbox{\hyperlink{_valve_8cpp_source}{Valve.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_valve_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_valve_a9291f02a93311e830876b5426c481acc}\index{Valve@{Valve}!close@{close}}
+\index{close@{close}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{class_valve_a9291f02a93311e830876b5426c481acc} 
+void Valve::\+close (\begin{DoxyParamCaption}\item[{Valve::\+\+Mode}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8cpp_source_l00028}{28}} of file \doxymbox{\hyperlink{_valve_8cpp_source}{Valve.\+cpp}}.
+
+\Hypertarget{class_valve_afb6bb8b2ba8393113b6d1ca4e03ff5c6}\index{Valve@{Valve}!getMode@{getMode}}
+\index{getMode@{getMode}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{getMode()}{getMode()}}
+{\footnotesize\ttfamily \label{class_valve_afb6bb8b2ba8393113b6d1ca4e03ff5c6} 
+Valve::\+\+Mode Valve::\+get\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8cpp_source_l00053}{53}} of file \doxymbox{\hyperlink{_valve_8cpp_source}{Valve.\+cpp}}.
+
+\Hypertarget{class_valve_ad04360f7b5ec7d190a49b3e532cf43fe}\index{Valve@{Valve}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily \label{class_valve_ad04360f7b5ec7d190a49b3e532cf43fe} 
+Valve::\+\+Status Valve::\+get\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8cpp_source_l00057}{57}} of file \doxymbox{\hyperlink{_valve_8cpp_source}{Valve.\+cpp}}.
+
+\Hypertarget{class_valve_a489cfa43e8ba66a9499a0eb53431684b}\index{Valve@{Valve}!open@{open}}
+\index{open@{open}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \label{class_valve_a489cfa43e8ba66a9499a0eb53431684b} 
+void Valve::\+open (\begin{DoxyParamCaption}\item[{Valve::\+\+Mode}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8cpp_source_l00020}{20}} of file \doxymbox{\hyperlink{_valve_8cpp_source}{Valve.\+cpp}}.
+
+\Hypertarget{class_valve_aec605f1cdf109b4a018ee44b25110953}\index{Valve@{Valve}!setMode@{setMode}}
+\index{setMode@{setMode}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{setMode()}{setMode()}}
+{\footnotesize\ttfamily \label{class_valve_aec605f1cdf109b4a018ee44b25110953} 
+void Valve::\+set\+Mode (\begin{DoxyParamCaption}\item[{Mode}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8cpp_source_l00036}{36}} of file \doxymbox{\hyperlink{_valve_8cpp_source}{Valve.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_valve_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_valve_a54fb982984fdca5c22f04371c126b907}\index{Valve@{Valve}!autoStatus@{autoStatus}}
+\index{autoStatus@{autoStatus}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{autoStatus}{autoStatus}}
+{\footnotesize\ttfamily \label{class_valve_a54fb982984fdca5c22f04371c126b907} 
+Status Valve::\+auto\+Status\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00034}{34}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+\Hypertarget{class_valve_a4501384a6202d50a1397d3851f522061}\index{Valve@{Valve}!closePin@{closePin}}
+\index{closePin@{closePin}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{closePin}{closePin}}
+{\footnotesize\ttfamily \label{class_valve_a4501384a6202d50a1397d3851f522061} 
+uint16\+\_\+t Valve::\+close\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00032}{32}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+\Hypertarget{class_valve_a8d0114023f836086951ff584e64f778c}\index{Valve@{Valve}!closePort@{closePort}}
+\index{closePort@{closePort}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{closePort}{closePort}}
+{\footnotesize\ttfamily \label{class_valve_a8d0114023f836086951ff584e64f778c} 
+GPIO\+\_\+\+Type\+Def\texorpdfstring{$\ast$}{*} Valve::\+close\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00031}{31}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+\Hypertarget{class_valve_a54665c5fa979c079e37d33d590082b76}\index{Valve@{Valve}!manualStatus@{manualStatus}}
+\index{manualStatus@{manualStatus}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{manualStatus}{manualStatus}}
+{\footnotesize\ttfamily \label{class_valve_a54665c5fa979c079e37d33d590082b76} 
+Status Valve::\+manual\+Status\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00035}{35}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+\Hypertarget{class_valve_a0300df2cd03c252536960569bf7641fe}\index{Valve@{Valve}!openPin@{openPin}}
+\index{openPin@{openPin}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{openPin}{openPin}}
+{\footnotesize\ttfamily \label{class_valve_a0300df2cd03c252536960569bf7641fe} 
+uint16\+\_\+t Valve::\+open\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00029}{29}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+\Hypertarget{class_valve_aac913019f1a693726f1eee54379ea2f3}\index{Valve@{Valve}!openPort@{openPort}}
+\index{openPort@{openPort}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{openPort}{openPort}}
+{\footnotesize\ttfamily \label{class_valve_aac913019f1a693726f1eee54379ea2f3} 
+GPIO\+\_\+\+Type\+Def\texorpdfstring{$\ast$}{*} Valve::\+open\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00028}{28}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+\Hypertarget{class_valve_aa4c905104198033d3a11e3673429fb18}\index{Valve@{Valve}!valveMode@{valveMode}}
+\index{valveMode@{valveMode}!Valve@{Valve}}
+\doxysubsubsection{\texorpdfstring{valveMode}{valveMode}}
+{\footnotesize\ttfamily \label{class_valve_aa4c905104198033d3a11e3673429fb18} 
+Mode Valve::\+valve\+Mode\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_valve_8hpp_source_l00036}{36}} of file \doxymbox{\hyperlink{_valve_8hpp_source}{Valve.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+app/\+\+Drivers/\+\+Valve/\+Valve.\+hpp\item 
+app/\+\+Drivers/\+\+Valve/\+Valve.\+cpp\end{DoxyCompactItemize}

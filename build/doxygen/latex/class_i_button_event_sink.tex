@@ -1,0 +1,52 @@
+\doxysection{IButton\+Event\+Sink Class Reference}
+\hypertarget{class_i_button_event_sink}{}\label{class_i_button_event_sink}\index{IButtonEventSink@{IButtonEventSink}}
+
+
+Interface for classes that can receive button events.  
+
+
+
+
+{\ttfamily \+\#include $<$IButton\+Event\+Sink.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \doxymbox{\hyperlink{class_i_button_event_sink_a8e72556a392391b4bbe1fc6dd9faa71b}{post\+Button\+Event}} (const \doxymbox{\hyperlink{struct_button_queue_event}{Button\+Queue\+Event}} \&queue\+Event)=0
+\begin{DoxyCompactList}\small\item\em Posts a button event to the event sink. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for classes that can receive button events. 
+
+Definition at line \doxymbox{\hyperlink{_i_button_event_sink_8hpp_source_l00013}{13}} of file \doxymbox{\hyperlink{_i_button_event_sink_8hpp_source}{IButton\+Event\+Sink.\+hpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_button_event_sink_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_i_button_event_sink_a8e72556a392391b4bbe1fc6dd9faa71b}\index{IButtonEventSink@{IButtonEventSink}!postButtonEvent@{postButtonEvent}}
+\index{postButtonEvent@{postButtonEvent}!IButtonEventSink@{IButtonEventSink}}
+\doxysubsubsection{\texorpdfstring{postButtonEvent()}{postButtonEvent()}}
+{\footnotesize\ttfamily \label{class_i_button_event_sink_a8e72556a392391b4bbe1fc6dd9faa71b} 
+virtual void IButton\+Event\+Sink::\+post\+Button\+Event (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_button_queue_event}{Button\+Queue\+Event}} \&}]{queue\+Event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Posts a button event to the event sink. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue\+Event} & The button event to post. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \doxymbox{\hyperlink{class_app_1_1_services_1_1_button_service_af094213ff5ed71f7dd62493110f6981f}{App::\+\+Services::\+\+Button\+Service}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+app/\+\+Interfaces/\+IButton\+Event\+Sink.\+hpp\end{DoxyCompactItemize}

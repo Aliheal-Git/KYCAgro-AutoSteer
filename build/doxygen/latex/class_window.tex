@@ -1,0 +1,230 @@
+\doxysection{Window Class Reference}
+\hypertarget{class_window}{}\label{class_window}\index{Window@{Window}}
+
+
+Collaboration diagram for Window:\+
+% FIG 0
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_window_a9879306689e580627499a320a25d0f4c}{initiliaze}} ()
+\item 
+\Hypertarget{class_window_ab55cc4225c9459bb9b2a40d65ac24120}\label{class_window_ab55cc4225c9459bb9b2a40d65ac24120} 
+void {\bfseries add\+Page} (std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_page}{Page}} $>$ page)
+\item 
+\Hypertarget{class_window_a670f52caba91434ee2b6805da7cfdf27}\label{class_window_a670f52caba91434ee2b6805da7cfdf27} 
+void {\bfseries show\+Page} (uint8\+\_\+t index)
+\item 
+\Hypertarget{class_window_a8ec561246bbbb84c1b3b37e93c54d9f0}\label{class_window_a8ec561246bbbb84c1b3b37e93c54d9f0} 
+void {\bfseries next\+Page} ()
+\item 
+\Hypertarget{class_window_a7378887bc97dd732668b31cdc89ffcde}\label{class_window_a7378887bc97dd732668b31cdc89ffcde} 
+void {\bfseries prev\+Page} ()
+\item 
+void \doxymbox{\hyperlink{class_window_ac1089a8c52668ffe550f963a1b2d0bcf}{write}} (const char \texorpdfstring{$\ast$}{*}str, uint8\+\_\+t row, uint8\+\_\+t column)
+\item 
+void \doxymbox{\hyperlink{class_window_a45d930e615aa4a07be8b066dec3495f5}{write\+Special}} (custom\+Char\+Index index, uint8\+\_\+t row, uint8\+\_\+t column)
+\item 
+void \doxymbox{\hyperlink{class_window_ae74303aca387ed9e321b9bf37ed7213c}{clear\+Window}} ()
+\item 
+void \doxymbox{\hyperlink{class_window_a9e318e876181cd924b635c7952b690eb}{hide\+Window}} ()
+\item 
+void \doxymbox{\hyperlink{class_window_a6a5b79c1b628050a9b01745a85caeb26}{show\+Window}} ()
+\item 
+Task\+Handle\+\_\+t \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_window_a7dc8fa0ea29ee6a549ae50913e67327b}{get\+Task\+Handle}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{class_window_a8cbcde583c932337a61d33445b2a2e5d}{max\+Row}} = 4
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{class_window_ae161c3784c37c328d9cee8c774456beb}{max\+Column}} = 20
+\item 
+const uint8\+\_\+t \doxymbox{\hyperlink{class_window_a2bb6ac0cd6372f79c2c13a28fe54437f}{max\+Valve}} = MAX\+\_\+\+VALVE\+\_\+\+COUNT
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_window_a959a978c516f0816e0186a35028172ae}\label{class_window_a959a978c516f0816e0186a35028172ae} 
+void {\bfseries task} ()
+\item 
+\Hypertarget{class_window_a95f0dbf0fbd13e7d40762edf9f16bff6}\label{class_window_a95f0dbf0fbd13e7d40762edf9f16bff6} 
+void {\bfseries handle\+Button\+Event} (\doxymbox{\hyperlink{struct_button_queue_event}{Button\+Queue\+Event}} event)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \doxymbox{\hyperlink{class_window_a5a7c414e8ff7667ea81c3a60c45d7dfe}{task\+Entry\+Point}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_page}{Page}} $>$ $>$ \doxymbox{\hyperlink{class_window_ab66349acf6a562b455dcae6bea9e9426}{pages}}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_window_a9b688a5849bef9363e9a9ddfd0a478b8}{current\+Page}} = 0
+\item 
+Task\+Handle\+\_\+t \doxymbox{\hyperlink{class_window_a47064cf4859571d6e4d8f199857c8754}{task\+Handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00024}{24}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_window_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_window_ae74303aca387ed9e321b9bf37ed7213c}\index{Window@{Window}!clearWindow@{clearWindow}}
+\index{clearWindow@{clearWindow}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{clearWindow()}{clearWindow()}}
+{\footnotesize\ttfamily \label{class_window_ae74303aca387ed9e321b9bf37ed7213c} 
+void Window::\+clear\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8cpp_source_l00034}{34}} of file \doxymbox{\hyperlink{_window_8cpp_source}{Window.\+cpp}}.
+
+\Hypertarget{class_window_a7dc8fa0ea29ee6a549ae50913e67327b}\index{Window@{Window}!getTaskHandle@{getTaskHandle}}
+\index{getTaskHandle@{getTaskHandle}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{getTaskHandle()}{getTaskHandle()}}
+{\footnotesize\ttfamily \label{class_window_a7dc8fa0ea29ee6a549ae50913e67327b} 
+Task\+Handle\+\_\+t \texorpdfstring{$\ast$}{*} Window::\+get\+Task\+Handle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00058}{58}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+\Hypertarget{class_window_a9e318e876181cd924b635c7952b690eb}\index{Window@{Window}!hideWindow@{hideWindow}}
+\index{hideWindow@{hideWindow}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{hideWindow()}{hideWindow()}}
+{\footnotesize\ttfamily \label{class_window_a9e318e876181cd924b635c7952b690eb} 
+void Window::\+hide\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8cpp_source_l00038}{38}} of file \doxymbox{\hyperlink{_window_8cpp_source}{Window.\+cpp}}.
+
+\Hypertarget{class_window_a9879306689e580627499a320a25d0f4c}\index{Window@{Window}!initiliaze@{initiliaze}}
+\index{initiliaze@{initiliaze}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{initiliaze()}{initiliaze()}}
+{\footnotesize\ttfamily \label{class_window_a9879306689e580627499a320a25d0f4c} 
+void Window::\+initiliaze (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8cpp_source_l00021}{21}} of file \doxymbox{\hyperlink{_window_8cpp_source}{Window.\+cpp}}.
+
+\Hypertarget{class_window_a6a5b79c1b628050a9b01745a85caeb26}\index{Window@{Window}!showWindow@{showWindow}}
+\index{showWindow@{showWindow}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{showWindow()}{showWindow()}}
+{\footnotesize\ttfamily \label{class_window_a6a5b79c1b628050a9b01745a85caeb26} 
+void Window::\+show\+Window (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8cpp_source_l00043}{43}} of file \doxymbox{\hyperlink{_window_8cpp_source}{Window.\+cpp}}.
+
+\Hypertarget{class_window_a5a7c414e8ff7667ea81c3a60c45d7dfe}\index{Window@{Window}!taskEntryPoint@{taskEntryPoint}}
+\index{taskEntryPoint@{taskEntryPoint}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{taskEntryPoint()}{taskEntryPoint()}}
+{\footnotesize\ttfamily \label{class_window_a5a7c414e8ff7667ea81c3a60c45d7dfe} 
+void Window::\+task\+Entry\+Point (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00032}{32}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+\Hypertarget{class_window_ac1089a8c52668ffe550f963a1b2d0bcf}\index{Window@{Window}!write@{write}}
+\index{write@{write}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{class_window_ac1089a8c52668ffe550f963a1b2d0bcf} 
+void Window::\+write (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{, }\item[{uint8\+\_\+t}]{row}{, }\item[{uint8\+\_\+t}]{column}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8cpp_source_l00025}{25}} of file \doxymbox{\hyperlink{_window_8cpp_source}{Window.\+cpp}}.
+
+\Hypertarget{class_window_a45d930e615aa4a07be8b066dec3495f5}\index{Window@{Window}!writeSpecial@{writeSpecial}}
+\index{writeSpecial@{writeSpecial}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{writeSpecial()}{writeSpecial()}}
+{\footnotesize\ttfamily \label{class_window_a45d930e615aa4a07be8b066dec3495f5} 
+void Window::\+write\+Special (\begin{DoxyParamCaption}\item[{custom\+Char\+Index}]{index}{, }\item[{uint8\+\_\+t}]{row}{, }\item[{uint8\+\_\+t}]{column}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8cpp_source_l00030}{30}} of file \doxymbox{\hyperlink{_window_8cpp_source}{Window.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_window_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_window_a9b688a5849bef9363e9a9ddfd0a478b8}\index{Window@{Window}!currentPage@{currentPage}}
+\index{currentPage@{currentPage}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{currentPage}{currentPage}}
+{\footnotesize\ttfamily \label{class_window_a9b688a5849bef9363e9a9ddfd0a478b8} 
+uint8\+\_\+t Window::\+current\+Page = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00027}{27}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+\Hypertarget{class_window_ae161c3784c37c328d9cee8c774456beb}\index{Window@{Window}!maxColumn@{maxColumn}}
+\index{maxColumn@{maxColumn}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{maxColumn}{maxColumn}}
+{\footnotesize\ttfamily \label{class_window_ae161c3784c37c328d9cee8c774456beb} 
+const uint8\+\_\+t Window::\+max\+Column = 20}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00044}{44}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+\Hypertarget{class_window_a8cbcde583c932337a61d33445b2a2e5d}\index{Window@{Window}!maxRow@{maxRow}}
+\index{maxRow@{maxRow}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{maxRow}{maxRow}}
+{\footnotesize\ttfamily \label{class_window_a8cbcde583c932337a61d33445b2a2e5d} 
+const uint8\+\_\+t Window::\+max\+Row = 4}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00043}{43}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+\Hypertarget{class_window_a2bb6ac0cd6372f79c2c13a28fe54437f}\index{Window@{Window}!maxValve@{maxValve}}
+\index{maxValve@{maxValve}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{maxValve}{maxValve}}
+{\footnotesize\ttfamily \label{class_window_a2bb6ac0cd6372f79c2c13a28fe54437f} 
+const uint8\+\_\+t Window::\+max\+Valve = MAX\+\_\+\+VALVE\+\_\+\+COUNT}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00045}{45}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+\Hypertarget{class_window_ab66349acf6a562b455dcae6bea9e9426}\index{Window@{Window}!pages@{pages}}
+\index{pages@{pages}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{pages}{pages}}
+{\footnotesize\ttfamily \label{class_window_ab66349acf6a562b455dcae6bea9e9426} 
+std::\+vector$<$std::\+unique\+\_\+ptr$<$\doxymbox{\hyperlink{class_page}{Page}}$>$ $>$ Window::\+pages\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00026}{26}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+\Hypertarget{class_window_a47064cf4859571d6e4d8f199857c8754}\index{Window@{Window}!taskHandle@{taskHandle}}
+\index{taskHandle@{taskHandle}!Window@{Window}}
+\doxysubsubsection{\texorpdfstring{taskHandle}{taskHandle}}
+{\footnotesize\ttfamily \label{class_window_a47064cf4859571d6e4d8f199857c8754} 
+Task\+Handle\+\_\+t Window::\+task\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8hpp_source_l00029}{29}} of file \doxymbox{\hyperlink{_window_8hpp_source}{Window.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+app/\+\+Drivers/\+\+Window/\+Window.\+hpp\item 
+app/\+\+Drivers/\+\+Window/\+Window.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,104 @@
+\doxysection{Settings.\+hpp}
+\hypertarget{_settings_8hpp_source}{}\label{_settings_8hpp_source}\index{app/Controller/Settings.hpp@{app/Controller/Settings.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00002}00002\ \textcolor{comment}{\ *\ Settings.hpp}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00003}00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00004}00004\ \textcolor{comment}{\ *\ \ Created\ on:\ Sep\ 18,\ 2025}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00005}00005\ \textcolor{comment}{\ *\ \ \ \ \ \ Author:\ alica}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00006}00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00008}00008\ \textcolor{preprocessor}{\#ifndef\ CONTROLLER\_SETTINGS\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00009}00009\ \textcolor{preprocessor}{\#define\ CONTROLLER\_SETTINGS\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00014}\doxymbox{\hyperlink{class_settings}{00014}}\ \textcolor{keyword}{class\ }Settings\ \{}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00015}00015\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{enum}\ SPEED\_SOURCE\ :\ \textcolor{keywordtype}{bool}\ \{}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00017}00017\ \ \ \ \ \ \ \ \ GPS\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00018}00018\ \ \ \ \ \ \ \ \ SIMULATION\ =\ 1}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00019}00019\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00021}00021\ \ \ \ \ \textcolor{keyword}{enum}\ NOZZLE\_TYPE\ :\ uint8\_t\ \{}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00022}00022\ \ \ \ \ \ \ \ \ ISO01\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00023}00023\ \ \ \ \ \ \ \ \ ISO015\ =\ 1,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00024}00024\ \ \ \ \ \ \ \ \ ISO02\ =\ 2,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00025}00025\ \ \ \ \ \ \ \ \ ISO025\ =\ 3,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00026}00026\ \ \ \ \ \ \ \ \ ISO03\ =\ 4,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00027}00027\ \ \ \ \ \ \ \ \ ISO04\ =\ 5,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00028}00028\ \ \ \ \ \ \ \ \ ISO05\ =\ 6,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00029}00029\ \ \ \ \ \ \ \ \ ISO06\ =\ 7,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00030}00030\ \ \ \ \ \ \ \ \ BRASS01\ =\ 8,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00031}00031\ \ \ \ \ \ \ \ \ BRASS012\ =\ 9,}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00032}00032\ \ \ \ \ \ \ \ \ BRASS015\ =\ 10\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00033}00033\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00035}00035\ \ \ \ \ Settings()\ \{\ std::memset(\&u,\ 0,\ \textcolor{keyword}{sizeof}(u));\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Getters\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00038}00038\ \ \ \ \ uint8\_t\ \ getNozzleCount()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.nozzleCount;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ getNozzleDistance()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.nozzleDistance;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00040}00040\ \ \ \ \ uint16\_t\ getFlowMeterCoefficient()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.flowMeterCoefficient;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ getMinDosage()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.minDosage;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ getMaxDosage()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.maxDosage;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ getMaxDosageVariationPercent()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.maxDosageVariationPercent;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ getTankCapacity()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.tankCapacity;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00045}00045\ \ \ \ \ SPEED\_SOURCE\ \ \ \ \ getSpeedSource()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.speedSource;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ getSimulationSpeed()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.simulationSpeed;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00047}00047\ \ \ \ \ uint8\_t\ \ getSelectedProgram()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.selectedProgram;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00048}00048\ \ \ \ \ NOZZLE\_TYPE\ \ getSelectedNozzleType(uint8\_t\ index)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.selectedNozzleType[index];\}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ getDosageValue(uint8\_t\ index)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.data.dosageValue[index];\}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Setters\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{void}\ setNozzleCount(int16\_t\ val)\ \{\ (val>=0)\ ?\ (u.data.nozzleCount\ =\ val)\ :\ (u.data.nozzleCount\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordtype}{void}\ setNozzleDistance(\textcolor{keywordtype}{float}\ val)\ \{\ (val>=0)\ ?\ (u.data.nozzleDistance\ =\ val)\ :\ (u.data.nozzleDistance\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordtype}{void}\ setFlowMeterCoefficient(int16\_t\ val)\ \{\ (val>=0)\ ?\ (u.data.flowMeterCoefficient\ =\ val)\ :\ (u.data.flowMeterCoefficient\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordtype}{void}\ setMinDosage(\textcolor{keywordtype}{float}\ val)\ \{\ (val>=0)\ ?\ (u.data.minDosage\ =\ val)\ :\ (u.data.minDosage\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaxDosage(\textcolor{keywordtype}{float}\ val)\ \{\ (val>=0)\ ?\ (u.data.maxDosage\ =\ val)\ :\ (u.data.maxDosage\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaxDosageVariationPercent(\textcolor{keywordtype}{float}\ val)\ \{\ (val>=0)\ ?\ (u.data.maxDosageVariationPercent\ =\ val)\ :\ (u.data.maxDosageVariationPercent\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{void}\ setTankCapacity(\textcolor{keywordtype}{float}\ val)\ \{\ (val>=0)\ ?\ (u.data.tankCapacity\ =\ val)\ :\ (u.data.tankCapacity\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{void}\ setSpeedSource(SPEED\_SOURCE\ val)\ \{\ u.data.speedSource\ =\ val;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{void}\ setSimulationSpeed(\textcolor{keywordtype}{float}\ val)\ \{\ (val>=0)\ ?\ (u.data.simulationSpeed\ =\ val)\ :\ (u.data.simulationSpeed\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{void}\ setSelectedProgram(int16\_t\ val)\ \{\ (val>=0)\ ?\ (u.data.selectedProgram\ =\ val)\ :\ (u.data.selectedProgram\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00062}00062\ \ \ \ \ \textcolor{keywordtype}{void}\ setSelectedNozzleType(uint8\_t\ val,\ uint8\_t\ index)\ \{\ (val>=0\ \&\&\ val\ <\ 11)\ ?\ (u.data.selectedNozzleType[index]\ =\ (NOZZLE\_TYPE)val)\ :\ (u.data.selectedNozzleType[index]\ =\ (NOZZLE\_TYPE)0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordtype}{void}\ setDosageValue(\textcolor{keywordtype}{float}\ val,\ uint8\_t\ index)\ \{\ (val>=0)\ ?\ (u.data.dosageValue[index]\ =\ val)\ :\ (u.data.dosageValue[index]\ =\ 0);\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordtype}{void}\ setTargetDosage(\textcolor{keywordtype}{float}\ val)\ \{\ u.data.targetDosage\ =\ 0;\}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Raw\ access\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00066}00066\ \ \ \ \ \textcolor{keyword}{const}\ uint64\_t*\ getRaw()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ u.raw;\ \}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00068}00068\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Flash\ Operations\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{void}\ writePageFlash();}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{void}\ readSettingsFlash();}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{void}\ erasePageFlash();}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_settings_a6950a6df2c7d16b47038aeb25981fb53}{disableWPFlash}}();}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00074}00074\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00075}\doxymbox{\hyperlink{struct_settings_1_1_data}{00075}}\ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_settings_1_1_data}{Data}}\ \{}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00076}00076\ \ \ \ \ \ \ \ \ uint8\_t\ \ nozzleCount;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ nozzleDistance;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00078}00078\ \ \ \ \ \ \ \ \ uint16\_t\ flowMeterCoefficient;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ minDosage;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ maxDosage;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ maxDosageVariationPercent;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ tankCapacity;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00083}00083\ \ \ \ \ \ \ \ \ SPEED\_SOURCE\ \ \ \ speedSource;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ simulationSpeed;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ targetDosage;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00086}00086\ \ \ \ \ \ \ \ \ uint8\_t\ \ selectedProgram;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00087}00087\ \ \ \ \ \ \ \ \ NOZZLE\_TYPE\ \ selectedNozzleType[4];}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ dosageValue[4];\ \ \ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00089}00089\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00090}00090\ \ \ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{struct_settings_1_1_data}{Data}}\ data;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00092}00092\ \ \ \ \ \ \ \ \ uint64\_t\ raw[\textcolor{keyword}{sizeof}(\doxymbox{\hyperlink{struct_settings_1_1_data}{Data}})/\textcolor{keyword}{sizeof}(uint64\_t)];}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00093}00093\ \ \ \ \ \}\ u;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00094}00094\ \};}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00096}00096\ \textcolor{keyword}{extern}\ \doxymbox{\hyperlink{class_settings}{Settings}}\ settings;}
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_settings_8hpp_source_l00098}00098\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CONTROLLER\_SETTINGS\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,179 @@
+\doxysection{Controller.\+cpp}
+\hypertarget{_controller_8cpp_source}{}\label{_controller_8cpp_source}\index{app/Controller/Controller.cpp@{app/Controller/Controller.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ Controller.cpp}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00003}00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00004}00004\ \textcolor{comment}{\ *\ \ Created\ on:\ Sep\ 2,\ 2025}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ \ \ \ \ \ Author:\ alica}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00006}00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}Controller.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}Flowmeter.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_one_button_c_8h}{OneButtonC.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}Settings.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}PID.h"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}Valve.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}MCP2515.h"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}CANSPI.h"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}ButtonsGlobal.h"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}Controller.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}Math.h"{}}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00023}00023\ uint32\_t\ clasttime\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00024}00024\ uint32\_t\ cinterval\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00026}00026\ Controller::Controller()\ :\ pidController(0.5,\ 0.008,\ 15,}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ []()\ \{\ \textcolor{keywordflow}{return}\ controller.getDosage();\ \},}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ [](\textcolor{keywordtype}{float}\ output)\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ propValve.setDutyCycle(output);\ \})\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00030}00030\ \ \ \ \ \_currentDosage\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00031}00031\ \ \ \ \ \_targetDosage\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00033}00033\ \ \ \ \ taskHandle\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00036}00036\ \textcolor{keywordtype}{void}\ Controller::init()\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ task\ with\ 'this'\ as\ the\ parameter}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00038}00038\ \ \ \ \ xTaskCreate(taskEntryPoint,\ \textcolor{stringliteral}{"{}Controller\ Task"{}},\ 128*5,\ \textcolor{keyword}{this},\ osPriority::osPriorityRealtime-\/1,\ \&taskHandle);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00039}00039\ \ \ \ \ xTaskCreate(pidTaskEntryPoint,\ \textcolor{stringliteral}{"{}PID\ Task"{}},\ 128*5,\ \textcolor{keyword}{this},\ osPriority::osPriorityRealtime,\ \&taskHandle);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00042}00042\ \ \ \ \ pidController.setEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00043}00043\ \ \ \ \ pidController.setOutputBounds(-\/1.0f,\ 1.0f);\ \textcolor{comment}{//\ Assuming\ duty\ cycle\ is\ between\ 0\%\ and\ 100\%}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00044}00044\ \ \ \ \ pidController.registerTimeFunction(HAL\_GetTick);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00045}00045\ \ \ \ \ pidController.setMaxIntegralCumulation(50);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00046}00046\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00048}00048\ \textcolor{keywordtype}{void}\ Controller::task()\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00049}00049\ \ \ \ \ CANSPI\_Initialize();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{for}(;;)\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(CANSPI\_Receive(\&rxMessage))\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (rxMessage.frame.id)\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (VALVE\_ID):}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rxMessage.frame.dlc\ ==\ 0x08)}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ valve\_temp\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valve\_temp\ =\ (uint16\_t)rxMessage.frame.data6<<8;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valve\_temp\ |=\ rxMessage.frame.data7;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ openValveCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ \ i\ <\ maxValve;\ i++)}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (valve\_temp\&(1<<i))\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Valves[(maxValve\ -\/\ 1)\ -\/\ i].open(Valve::AUTO);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ openValveCount++;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Valves[(maxValve\ -\/\ 1)\ -\/\ i].close(Valve::AUTO);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (openValveCount\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mainValve.close(Valve::AUTO);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mainValve.open(Valve::AUTO);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (SPEED\_ID):}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (settings.getSpeedSource()\ ==\ Settings::GPS)\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ temp\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ =\ (uint16\_t)rxMessage.frame.data0<<8;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ |=\ rxMessage.frame.data1;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ -\/=\ (++temp)\%10;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_speed\ =\ temp\ /\ 100.0f;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (settings.getSpeedSource()\ ==\ Settings::SIMULATION)}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \_speed\ =\ settings.getSimulationSpeed();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mainValve.getStatus()\ ==\ Valve::Status::OPEN\ \&\&\ settings.getMinDosage()\ !=\ 0\ \&\&\ settings.getMaxDosage()\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flowmeter.getFlowRate()\ <\ settings.getMinDosage()\ ||\ flowmeter.getFlowRate()\ >\ settings.getMinDosage())}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HAL\_GPIO\_WritePin(BUZZER\_GPIO\_Port,\ BUZZER\_Pin,\ GPIO\_PIN\_RESET);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HAL\_GPIO\_WritePin(BUZZER\_GPIO\_Port,\ BUZZER\_Pin,\ GPIO\_PIN\_RESET);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ HAL\_GPIO\_WritePin(BUZZER\_GPIO\_Port,\ BUZZER\_Pin,\ GPIO\_PIN\_RESET);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ osDelay(100);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00100}00100\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00102}00102\ \textcolor{keywordtype}{void}\ Controller::pidTask()\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00103}00103\ \ \ \ \ osDelay(5000);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00104}00104\ \ \ \ \ propValve.setDutyCycle(-\/1);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00105}00105\ \ \ \ \ controller.setTargetDosage(settings.getDosageValue(settings.getSelectedProgram()));}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{for}(;;)\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ calculateDosage();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (flowmeter.checkNoFlow()\ \&\&\ (mainValve.getStatus()\ ==\ Valve::OPEN))\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ pidController.tick();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (controller.\_mode\ ==\ Controller::Mode::AUTO\ \&\&\ mainValve.getStatus()\ ==\ Valve::OPEN)\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ propValve.setDutyCycle(-\/1);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (controller.\_mode\ ==\ Controller::Mode::AUTO)\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ propValve.setDutyCycle(0);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!flowmeter.checkNoFlow())\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \_currentDosage\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ clasttime\ =\ xTaskGetTickCount();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ osDelay(10);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ cinterval\ =\ xTaskGetTickCount()\ -\/\ clasttime;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ UNUSED(cinterval);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00125}00125\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00126}00126\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00128}00128\ \textcolor{keywordtype}{void}\ Controller::enablePIDController()\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00129}00129\ \ \ \ \ pidController.setEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00130}00130\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00132}00132\ \textcolor{keywordtype}{void}\ Controller::disablePIDController()\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00133}00133\ \ \ \ \ pidController.setEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00134}00134\ \ \ \ \ propValve.setDutyCycle(0.0f);\ \textcolor{comment}{//\ Ensure\ valve\ is\ closed\ when\ PID\ is\ disabled}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00135}00135\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00137}00137\ \textcolor{keywordtype}{void}\ Controller::setTargetDosage(\textcolor{keywordtype}{float}\ dosage)\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (dosage\ >\ (settings.getDosageValue(settings.getSelectedProgram())\ +\ settings.getMaxDosageVariationPercent()/100.0f*settings.getDosageValue(settings.getSelectedProgram())))}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \_targetDosage\ =\ settings.getDosageValue(settings.getSelectedProgram())\ +\ settings.getMaxDosageVariationPercent()/100.0f*settings.getDosageValue(settings.getSelectedProgram());}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (dosage\ <\ (settings.getDosageValue(settings.getSelectedProgram())\ -\/\ settings.getMaxDosageVariationPercent()/100.0f*settings.getDosageValue(settings.getSelectedProgram())))}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \_targetDosage\ =\ settings.getDosageValue(settings.getSelectedProgram())\ -\/\ settings.getMaxDosageVariationPercent()/100.0f*settings.getDosageValue(settings.getSelectedProgram());}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \_targetDosage\ =\ dosage;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00145}00145\ \ \ \ \ pidController.setTarget(dosage);}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00146}00146\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00148}00148\ \textcolor{keywordtype}{void}\ Controller::calculateDosage()\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00149}00149\ \ \ \ \ \textcolor{keywordtype}{double}\ temp\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (settings.getNozzleCount()\ >\ 0\ \&\&\ settings.getNozzleDistance()\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ temp\ =\ 60*flowmeter.getFlowRate()/settings.getNozzleCount()/settings.getNozzleDistance()*100.0f;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (settings.getSpeedSource()\ ==\ Settings::SIMULATION)}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \_currentDosage\ =\ temp\ /\ settings.getSimulationSpeed();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \_currentDosage\ =\ temp\ /\ controller.getSpeed();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00156}00156\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00158}00158\ \textcolor{keywordtype}{void}\ Controller::setSpeed(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ speed)\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00159}00159\ \ \ \ \ \_speed\ =\ speed;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00160}00160\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00162}00162\ \textcolor{keywordtype}{void}\ Controller::setMode(Mode\ m)\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00163}00163\ \ \ \ \ \_mode\ =\ m;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00164}00164\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\ ==\ MANUAL)\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ disablePIDController();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00166}00166\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ enablePIDController();}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00168}00168\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00169}00169\ \}}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00171}00171\ Controller::Mode\ Controller::getMode()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{return}\ \_mode;}
+\DoxyCodeLine{\Hypertarget{_controller_8cpp_source_l00173}00173\ \}}
+
+\end{DoxyCode}

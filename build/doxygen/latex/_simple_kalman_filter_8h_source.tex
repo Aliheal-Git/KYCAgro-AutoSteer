@@ -1,0 +1,37 @@
+\doxysection{Simple\+Kalman\+Filter.\+h}
+\hypertarget{_simple_kalman_filter_8h_source}{}\label{_simple_kalman_filter_8h_source}\index{app/Drivers/Flowmeter/SimpleKalmanFilter.h@{app/Drivers/Flowmeter/SimpleKalmanFilter.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00002}00002\ \textcolor{comment}{\ *\ SimpleKalmanFilter\ -\/\ a\ Kalman\ Filter\ implementation\ for\ single\ variable\ models.}}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00003}00003\ \textcolor{comment}{\ *\ Created\ by\ Denys\ Sene,\ January,\ 1,\ 2017.}}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00004}00004\ \textcolor{comment}{\ *\ Released\ under\ MIT\ License\ -\/\ see\ LICENSE\ file\ for\ details.}}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00005}00005\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ SimpleKalmanFilter\_h}}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00008}00008\ \textcolor{preprocessor}{\#define\ SimpleKalmanFilter\_h}}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00010}\doxymbox{\hyperlink{class_simple_kalman_filter}{00010}}\ \textcolor{keyword}{class\ }SimpleKalmanFilter}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00013}00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00014}00014\ \ \ SimpleKalmanFilter(\textcolor{keywordtype}{float}\ mea\_e,\ \textcolor{keywordtype}{float}\ est\_e,\ \textcolor{keywordtype}{float}\ q);}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00015}00015\ \ \ \textcolor{keywordtype}{float}\ updateEstimate(\textcolor{keywordtype}{float}\ mea);}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00016}00016\ \ \ \textcolor{keywordtype}{void}\ setMeasurementError(\textcolor{keywordtype}{float}\ mea\_e);}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00017}00017\ \ \ \textcolor{keywordtype}{void}\ setEstimateError(\textcolor{keywordtype}{float}\ est\_e);}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00018}00018\ \ \ \textcolor{keywordtype}{void}\ setProcessNoise(\textcolor{keywordtype}{float}\ q);}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00019}00019\ \ \ \textcolor{keywordtype}{float}\ getKalmanGain();}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00020}00020\ \ \ \textcolor{keywordtype}{float}\ getEstimateError();}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00022}00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00023}00023\ \ \ \textcolor{keywordtype}{float}\ \_err\_measure;}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00024}00024\ \ \ \textcolor{keywordtype}{float}\ \_err\_estimate;}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00025}00025\ \ \ \textcolor{keywordtype}{float}\ \_q;}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00026}00026\ \ \ \textcolor{keywordtype}{float}\ \_current\_estimate\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00027}00027\ \ \ \textcolor{keywordtype}{float}\ \_last\_estimate\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00028}00028\ \ \ \textcolor{keywordtype}{float}\ \_kalman\_gain\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00029}00029\ \};}
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_simple_kalman_filter_8h_source_l00031}00031\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

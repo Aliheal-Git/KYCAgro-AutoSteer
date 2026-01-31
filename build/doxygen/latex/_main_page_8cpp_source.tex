@@ -1,0 +1,348 @@
+\doxysection{Main\+Page.\+cpp}
+\hypertarget{_main_page_8cpp_source}{}\label{_main_page_8cpp_source}\index{app/Page/MainPage.cpp@{app/Page/MainPage.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ MainPage.cpp}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00003}00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00004}00004\ \textcolor{comment}{\ *\ \ Created\ on:\ Aug\ 27,\ 2025}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ \ \ \ \ \ Author:\ alica}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00006}00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}ButtonsGlobal.h"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_one_button_c_8h}{OneButtonC.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}Page.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}Valve.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}Window.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}Controller.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}Flowmeter.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}Settings.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}cmsis\_os.h"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}stdio.h"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}stm32g0xx\_hal\_gpio.h"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}string.h"{}}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00024}00024\ \textcolor{comment}{/*\ =====\ Main\ Page\ =====\ */}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00026}00026\ \textcolor{keywordtype}{bool}\ \ MainPage::task()\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00027}00027\ \ \ \ \ osDelay(100);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_speed\ !=\ controller.getSpeed())}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ setSpeed(controller.getSpeed());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{if}\ (taskCounter\ <\ 20)\ \{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ taskCounter++;}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ dosageSum\ +=\ controller.getDosage();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ taskCounter\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ setDosage(dosageSum/20.0f);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ dosageSum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getMode()\ ==\ Valve::AUTO)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::OPEN)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setValveOn(i);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setValveOff(i);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00049}00049\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00054}00054\ \textcolor{keywordtype}{void}\ MainPage::handleButtonInput(\doxymbox{\hyperlink{struct_button_queue_event}{ButtonQueueEvent}}\ event)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{switch}\ (event.buttonType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::MAIN):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::GPS):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setGPSAuto();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setGPSManual();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::DOSAGEMODE):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setDosageModeAuto();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setDosageModeManual();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::MENU):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>nextPage();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_PROGRAM.\_button.state\ ==\ OCS\_DOWN\ ||\ buttons.BUTTON\_PROGRAM.\_button.state\ ==\ OCS\_PRESS)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>showPage(4);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::PROGRAM):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>showPage(3);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_MENU.\_button.state\ ==\ OCS\_DOWN\ ||\ buttons.BUTTON\_MENU.\_button.state\ ==\ OCS\_PRESS)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>showPage(4);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::PLUS):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::Mode::AUTO)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setTargetDosage(controller.getTargetDosage()\ +\ settings.getDosageValue(settings.getSelectedProgram())*0.1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ propValve.setDutyCycle(1.0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::Mode::MANUAL)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ propValve.setDutyCycle(0.0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};\ \ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::Mode::AUTO)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setTargetDosage(controller.getTargetDosage()\ +\ settings.getDosageValue(settings.getSelectedProgram())*0.1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::MINUS):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::Mode::AUTO)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setTargetDosage(controller.getTargetDosage()\ -\/\ settings.getDosageValue(settings.getSelectedProgram())*0.1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ propValve.setDutyCycle(-\/1.0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::Mode::MANUAL)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ propValve.setDutyCycle(0.0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::Mode::AUTO)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setTargetDosage(controller.getTargetDosage()\ -\/\ settings.getDosageValue(settings.getSelectedProgram())*0.1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::VALVE1):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOn(0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOff(0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::VALVE2):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOn(1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOff(1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::VALVE3):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOn(2);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOff(2);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::VALVE4):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOn(3);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOff(3);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonType::VALVE5):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(event.eventType)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::PRESSED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOn(4);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::RELEASED):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOff(4);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (ButtonEventType::HELD):}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00220}00220\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00221}00221\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00223}00223\ \textcolor{keywordtype}{void}\ MainPage::render()\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00224}00224\ \ \ \ \ this-\/>parentWindow-\/>hideWindow();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00225}00225\ \ \ \ \ osDelay(10);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00226}00226\ \ \ \ \ this-\/>parentWindow-\/>clearWindow();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00227}00227\ \ \ \ \ osDelay(10);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00228}00228\ \ \ \ \ setSelectedProgram();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00230}00230\ \ \ \ \ \textcolor{keywordflow}{if}\ (settings.getSpeedSource()\ ==\ Settings::SPEED\_SOURCE::GPS)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}GPS"{}},\ 0,\ 5);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00232}00232\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}SIM"{}},\ 0,\ 5);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00234}00234\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}Km/h"{}},\ 0,\ 15);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00235}00235\ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::AUTO)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ this-\/>setDosageModeAuto();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00237}00237\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ this-\/>setDosageModeManual();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00239}00239\ \ \ \ \ this-\/>setGPSManual();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00240}00240\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}L/Dnm"{}},\ 1,\ 15);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00241}00241\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}1"{}},\ 2,\ 5);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00242}00242\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}2"{}},\ 2,\ 7);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00243}00243\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}3"{}},\ 2,\ 9);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00244}00244\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}4"{}},\ 2,\ 11);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00245}00245\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}5"{}},\ 2,\ 13);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00246}00246\ \ \ \ \ setSpeed(controller.getSpeed());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00247}00247\ \ \ \ \ setDosage(controller.getDosage());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00248}00248\ \ \ \ \ setTargetDosage(controller.getTargetDosage());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00249}00249\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00251}00251\ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_GPS.\_button.state\ ==\ OCS\_INIT)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ Valves[i].setMode(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ mainValve.setMode(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ setGPSManual();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00256}00256\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00258}00258\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00259}00259\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00262}00262\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00263}00263\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ mainValve.close(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00266}00266\ \ \ \ \ this-\/>parentWindow-\/>showWindow();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00267}00267\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00269}00269\ \textcolor{keywordtype}{void}\ MainPage::setGPSAuto()\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00270}00270\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}A"{}},\ 3,\ 2);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00271}00271\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ this-\/>parentWindow-\/>maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::OPEN)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOn(i);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOff(i);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00276}00276\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00277}00277\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00278}00278\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00279}00279\ \textcolor{keywordtype}{void}\ MainPage::setGPSManual()\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00280}00280\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}M"{}},\ 3,\ 2);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00281}00281\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ this-\/>parentWindow-\/>maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus())}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOn(i);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>setValveOff(i);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00286}00286\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00287}00287\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00289}00289\ \textcolor{keywordtype}{void}\ MainPage::setDosageModeAuto()\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00290}00290\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}SET()"{}},\ 1,\ 0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00291}00291\ \ \ \ \ this-\/>setTargetDosage(controller.getTargetDosage());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00292}00292\ \ \ \ \ controller.enablePIDController();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00293}00293\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00295}00295\ \textcolor{keywordtype}{void}\ MainPage::setDosageModeManual()\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00296}00296\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ "{}},\ 1,\ 0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00297}00297\ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}Manuel"{}},\ 1,\ 0);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00298}00298\ \ \ \ \ controller.disablePIDController();}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00299}00299\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00301}00301\ \textcolor{keywordtype}{void}\ MainPage::setDosage(\textcolor{keywordtype}{float}\ dosage)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00302}00302\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[5];}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00303}00303\ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%4.1f"{}},\ dosage);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00304}00304\ \ \ \ \ this-\/>parentWindow-\/>write(buf,\ 1,\ 10);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00305}00305\ \ \ \ \ this-\/>\_dosage\ =\ dosage;}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00306}00306\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00308}00308\ \textcolor{keywordtype}{void}\ MainPage::setSpeed(\textcolor{keywordtype}{float}\ speed)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00309}00309\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[5];}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00310}00310\ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%4.1f"{}},\ speed);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00311}00311\ \ \ \ \ this-\/>parentWindow-\/>write(buf,\ 0,\ 10);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00312}00312\ \ \ \ \ this-\/>\_speed\ =\ speed;}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00313}00313\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00315}00315\ \textcolor{keywordtype}{void}\ MainPage::setTargetDosage(\textcolor{keywordtype}{float}\ target\_dosage)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00316}00316\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[8];}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00317}00317\ \ \ \ \ controller.setTargetDosage(target\_dosage);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00318}00318\ \ \ \ \ \textcolor{keywordflow}{if}\ (settings.getDosageValue(settings.getSelectedProgram())\ >\ (controller.getTargetDosage()\ +\ 0.01f))}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00319}00319\ \ \ \ \ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%3.1f)-\/"{}},\ controller.getTargetDosage());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00320}00320\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (settings.getDosageValue(settings.getSelectedProgram())\ <\ (controller.getTargetDosage()\ -\/\ 0.01f))}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%3.1f)+"{}},\ controller.getTargetDosage());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00322}00322\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00323}00323\ \ \ \ \ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}\%3.1f)\ "{}},\ controller.getTargetDosage());}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00324}00324\ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::AUTO)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00325}00325\ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>write(buf,\ 1,\ 4);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00326}00326\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00328}00328\ \textcolor{keywordtype}{void}\ MainPage::setValveOn(uint8\_t\ valveIndex)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00329}00329\ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[valveIndex].getStatus()\ ==\ Valve::OPEN)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00330}00330\ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>writeSpecial(rainDropIndex,\ 3,\ 5+2*valveIndex);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00331}00331\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00333}00333\ \textcolor{keywordtype}{void}\ MainPage::setValveOff(uint8\_t\ valveIndex)\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00334}00334\ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[valveIndex].getStatus()\ ==\ Valve::CLOSED)}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00335}00335\ \ \ \ \ \ \ \ \ this-\/>parentWindow-\/>write(\textcolor{stringliteral}{"{}\ "{}},\ 3,\ 5+2*valveIndex);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00336}00336\ \}}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00338}00338\ \textcolor{keywordtype}{void}\ MainPage::setSelectedProgram()\{}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00339}00339\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[4];}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00340}00340\ \ \ \ \ snprintf(buf,\ \textcolor{keyword}{sizeof}(buf),\ \textcolor{stringliteral}{"{}P\%d"{}},\ settings.getSelectedProgram()+1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00341}00341\ \ \ \ \ this-\/>parentWindow-\/>write(buf,\ 0,\ 1);}
+\DoxyCodeLine{\Hypertarget{_main_page_8cpp_source_l00342}00342\ \}}
+
+\end{DoxyCode}

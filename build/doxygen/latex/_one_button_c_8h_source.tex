@@ -1,0 +1,143 @@
+\doxysection{One\+Button\+C.\+h}
+\hypertarget{_one_button_c_8h_source}{}\label{_one_button_c_8h_source}\index{app/Drivers/Button/OneButtonC.h@{app/Drivers/Button/OneButtonC.h}}
+\doxymbox{\hyperlink{_one_button_c_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00002}00002\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00003}00003\ \textcolor{comment}{//\ Original\ code\ License\ and\ information\ given\ below.\ This\ code\ is\ released\ under}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00004}00004\ \textcolor{comment}{//\ the\ same\ license.:}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00005}00005\ \textcolor{comment}{//\ OneButton.h\ -\/\ Library\ for\ detecting\ button\ clicks,\ doubleclicks\ and\ long}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00006}00006\ \textcolor{comment}{//\ press\ pattern\ on\ a\ single\ button.\ This\ class\ is\ implemented\ for\ use\ with\ the}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00007}00007\ \textcolor{comment}{//\ Arduino\ environment.\ Copyright\ (c)\ by\ Matthias\ Hertel,}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00008}00008\ \textcolor{comment}{//\ http://www.mathertel.de\ This\ work\ is\ licensed\ under\ a\ BSD\ style\ license.\ See}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00009}00009\ \textcolor{comment}{//\ http://www.mathertel.de/License.aspx\ More\ information\ on:}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00010}00010\ \textcolor{comment}{//\ http://www.mathertel.de/Arduino}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00011}00011\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00012}00012\ \textcolor{comment}{//\ Feb\ 20\ 2025\ :\ V0.1\ Port\ from\ C++\ Arduino\ library\ to\ C\ with\ most\ functionality\ tested.}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00013}00013\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00015}00015\ \textcolor{preprocessor}{\#ifndef\ ONEBUTTONC\_H}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00016}00016\ \textcolor{preprocessor}{\#define\ ONEBUTTONC\_H}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}stm32g0xx\_hal.h"{}}\ \textcolor{comment}{//\ Include\ the\ HAL\ library\ appropriate\ for\ your\ MCU}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00022}00022\ \textcolor{comment}{//\ Define\ the\ invalid\ pin}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ INVALID\_PIN\ UINT16\_MAX}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00025}00025\ \textcolor{comment}{//Define\ default\ values\ for\ INIT\ function}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00026}00026\ \textcolor{preprocessor}{\#define\ DEFAULT\_DEBOUNCE\_MS\ \ \ \ \ \ \ \ \ \ \ \ 50}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00027}00027\ \textcolor{preprocessor}{\#define\ DEFAULT\_CLICK\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 400}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00028}00028\ \textcolor{preprocessor}{\#define\ DEFAULT\_PRESS\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 800}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00029}00029\ \textcolor{preprocessor}{\#define\ DEFAULT\_IDLE\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1000}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00030}00030\ \textcolor{preprocessor}{\#define\ DEFAULT\_LONG\_PRESS\_INTERVAL\_MS\ 0}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00031}00031\ \textcolor{preprocessor}{\#define\ DEFAULT\_MAX\_CLICKS\_MULTI\ \ \ \ \ \ \ 100}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00033}00033\ \textcolor{comment}{//\ Callback\ type}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00034}00034\ \textcolor{keyword}{typedef}\ void\ (*OneButtonCallback)(\textcolor{keywordtype}{void}*\ usrData);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00036}00036\ \textcolor{comment}{//\ Finite\ states}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00037}00037\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00038}00038\ \ \ OCS\_INIT,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00039}00039\ \ \ OCS\_DOWN,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00040}00040\ \ \ OCS\_UP,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00041}00041\ \ \ OCS\_COUNT,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00042}00042\ \ \ OCS\_PRESS,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00043}00043\ \ \ OCS\_PRESSEND}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00044}00044\ \}\ OneButtonState;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00046}00046\ \textcolor{comment}{//\ Main\ struct\ for\ OneButton}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00047}\doxymbox{\hyperlink{struct_one_button__t}{00047}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00048}00048\ \ \ GPIO\_TypeDef*\ port;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00049}00049\ \ \ uint16\_t\ pin;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00050}00050\ \ \ \textcolor{keywordtype}{void}\ *usrData;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00051}00051\ \ \ \textcolor{comment}{//Intervals}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00052}00052\ \ \ uint16\_t\ debounce\_ms;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00053}00053\ \ \ uint16\_t\ click\_ms;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00054}00054\ \ \ uint64\_t\ press\_ms;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00055}00055\ \ \ uint16\_t\ idle\_ms;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00056}00056\ \ \ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00057}00057\ \ \ \textcolor{comment}{//\ State\ machine}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00058}00058\ \ \ OneButtonState\ state;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00059}00059\ \ \ \textcolor{keywordtype}{bool}\ idleState;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00060}00060\ \ \ \textcolor{keywordtype}{bool}\ debounceEnabled;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00061}00061\ \ \ \textcolor{keywordtype}{bool}\ inTick;\ \textcolor{comment}{//\ Reentrancy\ guard}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00063}00063\ \ \ \textcolor{comment}{//Levels}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00064}00064\ \ \ uint8\_t\ buttonPressedLevel;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00065}00065\ \ \ \textcolor{keywordtype}{bool}\ debouncedLevel;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00066}00066\ \ \ \textcolor{keywordtype}{bool}\ lastDebounceLevel;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00068}00068\ \ \ \textcolor{comment}{//Timers}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00069}00069\ \ \ uint32\_t\ lastDebounceTime;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00070}00070\ \ \ uint32\_t\ startTime;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00071}00071\ \ \ uint32\_t\ now;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00073}00073\ \ \ \textcolor{comment}{//\ Click\ counter}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00074}00074\ \ \ uint16\_t\ nClicks;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00075}00075\ \ \ uint16\_t\ maxClicks;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00077}00077\ \ \ \textcolor{comment}{//\ Long\ press\ interval}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00078}00078\ \ \ uint16\_t\ longPressIntervalMs;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00079}00079\ \ \ uint32\_t\ lastDuringLongPressTime;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00081}00081\ \ \ \textcolor{comment}{//\ Event\ callbacks}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00082}00082\ \ \ OneButtonCallback\ pressFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00083}00083\ \ \ OneButtonCallback\ clickFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00084}00084\ \ \ OneButtonCallback\ doubleClickFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00085}00085\ \ \ OneButtonCallback\ multiClickFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00086}00086\ \ \ OneButtonCallback\ longPressStartFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00087}00087\ \ \ OneButtonCallback\ longPressStopFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00088}00088\ \ \ OneButtonCallback\ duringLongPressFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00089}00089\ \ \ OneButtonCallback\ idleFunc;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00090}00090\ \}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}};}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00092}00092\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00093}00093\ \ \ OB\_EV\_PRESS,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00094}00094\ \ \ OB\_EV\_CLICK,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00095}00095\ \ \ OB\_EV\_DOUBLE\_CLICK,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00096}00096\ \ \ OB\_EV\_MULTI\_CLICK,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00097}00097\ \ \ OB\_EV\_LONG\_PRESS\_START,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00098}00098\ \ \ OB\_EV\_LONG\_PRESS\_STOP,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00099}00099\ \ \ OB\_EV\_DURING\_LONG\_PRESS,}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00100}00100\ \ \ OB\_EV\_IDLE}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00101}00101\ \}\ OneButtonEvent;}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00103}00103\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/\ Function\ prototypes\ -\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00105}00105\ \textcolor{keywordtype}{void}\ OB\_Init(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00106}00106\ \textcolor{keywordtype}{void}\ OB\_Setup(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ GPIO\_TypeDef*\ port,\ uint16\_t\ pin,\ \textcolor{keywordtype}{bool}\ activeLow);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00108}00108\ \textcolor{keywordtype}{bool}\ OB\_Debounce(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ \textcolor{keywordtype}{bool}\ newLevel);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00109}00109\ \textcolor{keywordtype}{void}\ OB\_Tick(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn\ \textcolor{comment}{/*,\ bool\ rawLevel*/});}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00110}00110\ \textcolor{keywordtype}{void}\ OB\_Reset(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00111}00111\ uint16\_t\ OB\_GetNumberClicks(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00112}00112\ \textcolor{keywordtype}{bool}\ OB\_IsIdle(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00113}00113\ \textcolor{keywordtype}{bool}\ OB\_IsLongPressed(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00115}00115\ \textcolor{comment}{//\ Setter\ functions\ for\ intervals}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00116}00116\ \textcolor{keywordtype}{void}\ OB\_SetDebounceMs(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ uint16\_t\ ms);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00117}00117\ \textcolor{keywordtype}{void}\ OB\_SetDebounceEnabled(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ \textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00118}00118\ \textcolor{keywordtype}{void}\ OB\_SetClickMs(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ uint16\_t\ ms);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00119}00119\ \textcolor{keywordtype}{void}\ OB\_SetPressMs(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ uint64\_t\ ms);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00120}00120\ \textcolor{keywordtype}{void}\ OB\_SetIdleMs(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ uint16\_t\ ms);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00121}00121\ \textcolor{keywordtype}{void}\ OB\_SetLongPressIntervalMs(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ uint16\_t\ ms);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00122}00122\ \textcolor{keywordtype}{void}\ OB\_SetMaxClicks(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ uint16\_t\ maxClicks);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00124}00124\ \textcolor{comment}{//\ Replace\ all\ individual\ attach\ function\ prototypes\ with\ this\ single\ function}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00125}00125\ \textcolor{keywordtype}{bool}\ OB\_AttachCallback(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ OneButtonEvent\ event,\ OneButtonCallback\ cb);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00127}00127\ \textcolor{comment}{//\ Getter\ functions}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00128}00128\ uint32\_t\ OB\_GetPressedMs(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00129}00129\ uint16\_t\ OB\_GetPin(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00130}00130\ OneButtonState\ OB\_GetState(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00131}00131\ \textcolor{keywordtype}{bool}\ OB\_GetDebouncedValue(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00133}00133\ \textcolor{comment}{//\ Internal\ state\ machine\ functions}}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00134}00134\ \textcolor{keywordtype}{void}\ OB\_NewState(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ OneButtonState\ nextState);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00135}00135\ \textcolor{keywordtype}{void}\ OB\_FSM(\doxymbox{\hyperlink{struct_one_button__t}{OneButton\_t}}*\ btn,\ \textcolor{keywordtype}{bool}\ activeLevel);}
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_one_button_c_8h_source_l00137}00137\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ONEBUTTONC\_H}}
+
+\end{DoxyCode}

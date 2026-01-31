@@ -1,0 +1,528 @@
+\doxysection{Flowmeter Class Reference}
+\hypertarget{class_flowmeter}{}\label{class_flowmeter}\index{Flowmeter@{Flowmeter}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_flowmeter_abb5040309537b32fd2c830f76426a29a}{Flowmeter}} (uint16\+\_\+t Calibration\+Factor)
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_a534d74fab362fa9e7a3627093459781b}{get\+Flow\+Rate}} () const
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_ae28b55be235a15fa72d13ec5530381bb}{get\+Total\+Volume}} () const
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_a03c238af14ca7316ed0a22c3d2869fa8}{reset\+Total\+Volume}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_a14d0ff66a60b237ed9ad4ee200ffb783}{pulse\+Detected}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_a14288e596b2a5341900d9aaed58d325b}{update\+Flow\+Rate}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_af92323b9f09d109789848d4b379f9b37}{reset\+Pulse\+Count}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_a8eb595165938e1c28d3fb9c04925af6b}{increase\+Over\+Flow}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_a2e18606c06c34ad4d89d25d5a5eab914}{reset\+Over\+Flow}} ()
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a3a8f8031926df31d749ce82ae4132bc7}{get\+Over\+Flow}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_a5337da827f5e67571ba802415a837cc2}{set\+Last\+Capture\+Time}} (uint32\+\_\+t time)
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a355b9a642bd744cd23a130de8154651e}{get\+Last\+Capture\+Time}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_abb5c9924f17b9ee21c9f394b026063d3}{calculate\+Duration}} (uint32\+\_\+t time)
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_ab90baa6f3aaa836c7fac0e57130d3eb8}{calculate\+Frequency}} (uint32\+\_\+t time)
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_a9496bec21e4d0850eb67cae32fbe592e}{calculate\+Flow}} ()
+\item 
+void \doxymbox{\hyperlink{class_flowmeter_ac7cc7df85bcebccb8dbd7f0faf61a0d2}{set\+Total\+Volume}} (float volume)
+\item 
+bool \doxymbox{\hyperlink{class_flowmeter_a0b879bf264dd78a9872b2378ea0076a0}{check\+No\+Flow}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a2d9a9f70a921debe687ac5e286078304}{pulse\+Count}}
+\item 
+volatile uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_af7ef9cdb3d4a64bb5dad1bc07d6537d9}{over\+Flow\+Count}} = 0
+\item 
+volatile uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_ab73275daf13ba5bbdcce94902320ea01}{last\+Capture\+Time}} = 0
+\item 
+volatile float \doxymbox{\hyperlink{class_flowmeter_a72b37ca591d8922d9b9790e3d512f5c6}{raw\+Frequency}} = 0
+\item 
+volatile float \doxymbox{\hyperlink{class_flowmeter_afa6f40ae3f2e20a5e9ebbfd71a2436b6}{flow\+\_\+ma\+\_\+buffer}} \+[20]\+ = \{0\}
+\item 
+volatile uint8\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a87a32aff1a13564cd395b6b1ce9cd091}{flow\+\_\+ma\+\_\+index}} = 0
+\item 
+volatile float \doxymbox{\hyperlink{class_flowmeter_ab6f0cd5657aa6f13c507b28969b4d030}{flow\+\_\+ma\+\_\+sum}} = 0
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a30e66c0d1aafa4974e3a53ca217ae31c}{calibration\+Factor}}
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_a49f84bf4441926f85cf92375f5ee159f}{estimated\+Flow\+Rate}}
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_a6280ed46304701c9e1605bf3c25f187b}{flow\+Rate}}
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_a85de86c8410560e456d76a8d186ebec6}{total\+Volume}}
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a86734273b23ebfa008777b32265f7505}{last\+Update\+Time}} = 0
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_ab775781744848ecb2364bd5a01101f28}{duration}} = 0
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a72488a8b3068b541f4d5c5755271d158}{prev\+Duration}} = 0
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_a06c081673efef63d4790e59a2b45ad94}{average\+Duration}} = 0
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_a39010f12dc67e40885a4becb5550136c}{OAverage}} = 0
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a71c07b3d0f3ae4dd84867991d3d7f933}{Osum}} = 0
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_flowmeter_ae6afc5d60560f30ac567274f08762648}{Ocount}} = 0
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a3833caf3446989ef676be49fb1a7dd43}{Omax}} = 0
+\item 
+uint32\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a11266d0624271d7da966edc0cfd0b251}{Omin}} = 0x\+FFFFFFFF
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_aeb3e11110736d2348a028970320de7fb}{ma\+\_\+sum}} = 0
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_ae0509230aec98e1ba5fd6b120a05bd0d}{ma\+\_\+buffer}} \+[16]\+ = \{0\}
+\item 
+uint8\+\_\+t \doxymbox{\hyperlink{class_flowmeter_a846be87e9c76cefb18b93555fa55003a}{ma\+\_\+index}} = 0
+\item 
+float \doxymbox{\hyperlink{class_flowmeter_a90a548b0a294d2ad10ae989d5792eb55}{no\+Flow\+Checker}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00006}{6}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_flowmeter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_flowmeter_abb5040309537b32fd2c830f76426a29a}\index{Flowmeter@{Flowmeter}!Flowmeter@{Flowmeter}}
+\index{Flowmeter@{Flowmeter}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{Flowmeter()}{Flowmeter()}}
+{\footnotesize\ttfamily \label{class_flowmeter_abb5040309537b32fd2c830f76426a29a} 
+Flowmeter::\+\+Flowmeter (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{Calibration\+Factor}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00009}{9}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_flowmeter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_flowmeter_abb5c9924f17b9ee21c9f394b026063d3}\index{Flowmeter@{Flowmeter}!calculateDuration@{calculateDuration}}
+\index{calculateDuration@{calculateDuration}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{calculateDuration()}{calculateDuration()}}
+{\footnotesize\ttfamily \label{class_flowmeter_abb5c9924f17b9ee21c9f394b026063d3} 
+void Flowmeter::\+calculate\+Duration (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00074}{74}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a9496bec21e4d0850eb67cae32fbe592e}\index{Flowmeter@{Flowmeter}!calculateFlow@{calculateFlow}}
+\index{calculateFlow@{calculateFlow}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{calculateFlow()}{calculateFlow()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a9496bec21e4d0850eb67cae32fbe592e} 
+void Flowmeter::\+calculate\+Flow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00107}{107}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_ab90baa6f3aaa836c7fac0e57130d3eb8}\index{Flowmeter@{Flowmeter}!calculateFrequency@{calculateFrequency}}
+\index{calculateFrequency@{calculateFrequency}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{calculateFrequency()}{calculateFrequency()}}
+{\footnotesize\ttfamily \label{class_flowmeter_ab90baa6f3aaa836c7fac0e57130d3eb8} 
+void Flowmeter::\+calculate\+Frequency (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00063}{63}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a0b879bf264dd78a9872b2378ea0076a0}\index{Flowmeter@{Flowmeter}!checkNoFlow@{checkNoFlow}}
+\index{checkNoFlow@{checkNoFlow}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{checkNoFlow()}{checkNoFlow()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a0b879bf264dd78a9872b2378ea0076a0} 
+bool Flowmeter::\+check\+No\+Flow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00117}{117}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a534d74fab362fa9e7a3627093459781b}\index{Flowmeter@{Flowmeter}!getFlowRate@{getFlowRate}}
+\index{getFlowRate@{getFlowRate}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{getFlowRate()}{getFlowRate()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a534d74fab362fa9e7a3627093459781b} 
+float Flowmeter::\+get\+Flow\+Rate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00031}{31}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a355b9a642bd744cd23a130de8154651e}\index{Flowmeter@{Flowmeter}!getLastCaptureTime@{getLastCaptureTime}}
+\index{getLastCaptureTime@{getLastCaptureTime}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{getLastCaptureTime()}{getLastCaptureTime()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a355b9a642bd744cd23a130de8154651e} 
+uint32\+\_\+t Flowmeter::\+get\+Last\+Capture\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00059}{59}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a3a8f8031926df31d749ce82ae4132bc7}\index{Flowmeter@{Flowmeter}!getOverFlow@{getOverFlow}}
+\index{getOverFlow@{getOverFlow}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{getOverFlow()}{getOverFlow()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a3a8f8031926df31d749ce82ae4132bc7} 
+uint32\+\_\+t Flowmeter::\+get\+Over\+Flow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00047}{47}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_ae28b55be235a15fa72d13ec5530381bb}\index{Flowmeter@{Flowmeter}!getTotalVolume@{getTotalVolume}}
+\index{getTotalVolume@{getTotalVolume}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{getTotalVolume()}{getTotalVolume()}}
+{\footnotesize\ttfamily \label{class_flowmeter_ae28b55be235a15fa72d13ec5530381bb} 
+float Flowmeter::\+get\+Total\+Volume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00035}{35}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a8eb595165938e1c28d3fb9c04925af6b}\index{Flowmeter@{Flowmeter}!increaseOverFlow@{increaseOverFlow}}
+\index{increaseOverFlow@{increaseOverFlow}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{increaseOverFlow()}{increaseOverFlow()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a8eb595165938e1c28d3fb9c04925af6b} 
+void Flowmeter::\+increase\+Over\+Flow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00043}{43}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a14d0ff66a60b237ed9ad4ee200ffb783}\index{Flowmeter@{Flowmeter}!pulseDetected@{pulseDetected}}
+\index{pulseDetected@{pulseDetected}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{pulseDetected()}{pulseDetected()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a14d0ff66a60b237ed9ad4ee200ffb783} 
+void Flowmeter::\+pulse\+Detected (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00015}{15}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a2e18606c06c34ad4d89d25d5a5eab914}\index{Flowmeter@{Flowmeter}!resetOverFlow@{resetOverFlow}}
+\index{resetOverFlow@{resetOverFlow}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{resetOverFlow()}{resetOverFlow()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a2e18606c06c34ad4d89d25d5a5eab914} 
+void Flowmeter::\+reset\+Over\+Flow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00051}{51}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_af92323b9f09d109789848d4b379f9b37}\index{Flowmeter@{Flowmeter}!resetPulseCount@{resetPulseCount}}
+\index{resetPulseCount@{resetPulseCount}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{resetPulseCount()}{resetPulseCount()}}
+{\footnotesize\ttfamily \label{class_flowmeter_af92323b9f09d109789848d4b379f9b37} 
+void Flowmeter::\+reset\+Pulse\+Count (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00039}{39}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a03c238af14ca7316ed0a22c3d2869fa8}\index{Flowmeter@{Flowmeter}!resetTotalVolume@{resetTotalVolume}}
+\index{resetTotalVolume@{resetTotalVolume}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{resetTotalVolume()}{resetTotalVolume()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a03c238af14ca7316ed0a22c3d2869fa8} 
+void Flowmeter::\+reset\+Total\+Volume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00027}{27}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a5337da827f5e67571ba802415a837cc2}\index{Flowmeter@{Flowmeter}!setLastCaptureTime@{setLastCaptureTime}}
+\index{setLastCaptureTime@{setLastCaptureTime}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{setLastCaptureTime()}{setLastCaptureTime()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a5337da827f5e67571ba802415a837cc2} 
+void Flowmeter::\+set\+Last\+Capture\+Time (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00055}{55}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_ac7cc7df85bcebccb8dbd7f0faf61a0d2}\index{Flowmeter@{Flowmeter}!setTotalVolume@{setTotalVolume}}
+\index{setTotalVolume@{setTotalVolume}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{setTotalVolume()}{setTotalVolume()}}
+{\footnotesize\ttfamily \label{class_flowmeter_ac7cc7df85bcebccb8dbd7f0faf61a0d2} 
+void Flowmeter::\+set\+Total\+Volume (\begin{DoxyParamCaption}\item[{float}]{volume}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00113}{113}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_flowmeter_a14288e596b2a5341900d9aaed58d325b}\index{Flowmeter@{Flowmeter}!updateFlowRate@{updateFlowRate}}
+\index{updateFlowRate@{updateFlowRate}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{updateFlowRate()}{updateFlowRate()}}
+{\footnotesize\ttfamily \label{class_flowmeter_a14288e596b2a5341900d9aaed58d325b} 
+void Flowmeter::\+update\+Flow\+Rate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00020}{20}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_flowmeter_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_flowmeter_a06c081673efef63d4790e59a2b45ad94}\index{Flowmeter@{Flowmeter}!averageDuration@{averageDuration}}
+\index{averageDuration@{averageDuration}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{averageDuration}{averageDuration}}
+{\footnotesize\ttfamily \label{class_flowmeter_a06c081673efef63d4790e59a2b45ad94} 
+float Flowmeter::\+average\+Duration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00043}{43}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a30e66c0d1aafa4974e3a53ca217ae31c}\index{Flowmeter@{Flowmeter}!calibrationFactor@{calibrationFactor}}
+\index{calibrationFactor@{calibrationFactor}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{calibrationFactor}{calibrationFactor}}
+{\footnotesize\ttfamily \label{class_flowmeter_a30e66c0d1aafa4974e3a53ca217ae31c} 
+uint16\+\_\+t Flowmeter::\+calibration\+Factor\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00036}{36}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_ab775781744848ecb2364bd5a01101f28}\index{Flowmeter@{Flowmeter}!duration@{duration}}
+\index{duration@{duration}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily \label{class_flowmeter_ab775781744848ecb2364bd5a01101f28} 
+uint32\+\_\+t Flowmeter::\+duration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00041}{41}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a49f84bf4441926f85cf92375f5ee159f}\index{Flowmeter@{Flowmeter}!estimatedFlowRate@{estimatedFlowRate}}
+\index{estimatedFlowRate@{estimatedFlowRate}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{estimatedFlowRate}{estimatedFlowRate}}
+{\footnotesize\ttfamily \label{class_flowmeter_a49f84bf4441926f85cf92375f5ee159f} 
+float Flowmeter::\+estimated\+Flow\+Rate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00037}{37}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_afa6f40ae3f2e20a5e9ebbfd71a2436b6}\index{Flowmeter@{Flowmeter}!flow\_ma\_buffer@{flow\_ma\_buffer}}
+\index{flow\_ma\_buffer@{flow\_ma\_buffer}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{flow\_ma\_buffer}{flow\_ma\_buffer}}
+{\footnotesize\ttfamily \label{class_flowmeter_afa6f40ae3f2e20a5e9ebbfd71a2436b6} 
+volatile float Flowmeter::\+flow\+\_\+ma\+\_\+buffer\+[20]\+ = \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00032}{32}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a87a32aff1a13564cd395b6b1ce9cd091}\index{Flowmeter@{Flowmeter}!flow\_ma\_index@{flow\_ma\_index}}
+\index{flow\_ma\_index@{flow\_ma\_index}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{flow\_ma\_index}{flow\_ma\_index}}
+{\footnotesize\ttfamily \label{class_flowmeter_a87a32aff1a13564cd395b6b1ce9cd091} 
+volatile uint8\+\_\+t Flowmeter::\+flow\+\_\+ma\+\_\+index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00033}{33}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_ab6f0cd5657aa6f13c507b28969b4d030}\index{Flowmeter@{Flowmeter}!flow\_ma\_sum@{flow\_ma\_sum}}
+\index{flow\_ma\_sum@{flow\_ma\_sum}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{flow\_ma\_sum}{flow\_ma\_sum}}
+{\footnotesize\ttfamily \label{class_flowmeter_ab6f0cd5657aa6f13c507b28969b4d030} 
+volatile float Flowmeter::\+flow\+\_\+ma\+\_\+sum = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00034}{34}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a6280ed46304701c9e1605bf3c25f187b}\index{Flowmeter@{Flowmeter}!flowRate@{flowRate}}
+\index{flowRate@{flowRate}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{flowRate}{flowRate}}
+{\footnotesize\ttfamily \label{class_flowmeter_a6280ed46304701c9e1605bf3c25f187b} 
+float Flowmeter::\+flow\+Rate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00038}{38}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_ab73275daf13ba5bbdcce94902320ea01}\index{Flowmeter@{Flowmeter}!lastCaptureTime@{lastCaptureTime}}
+\index{lastCaptureTime@{lastCaptureTime}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{lastCaptureTime}{lastCaptureTime}}
+{\footnotesize\ttfamily \label{class_flowmeter_ab73275daf13ba5bbdcce94902320ea01} 
+volatile uint32\+\_\+t Flowmeter::\+last\+Capture\+Time = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00029}{29}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a86734273b23ebfa008777b32265f7505}\index{Flowmeter@{Flowmeter}!lastUpdateTime@{lastUpdateTime}}
+\index{lastUpdateTime@{lastUpdateTime}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{lastUpdateTime}{lastUpdateTime}}
+{\footnotesize\ttfamily \label{class_flowmeter_a86734273b23ebfa008777b32265f7505} 
+uint32\+\_\+t Flowmeter::\+last\+Update\+Time = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00040}{40}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_ae0509230aec98e1ba5fd6b120a05bd0d}\index{Flowmeter@{Flowmeter}!ma\_buffer@{ma\_buffer}}
+\index{ma\_buffer@{ma\_buffer}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{ma\_buffer}{ma\_buffer}}
+{\footnotesize\ttfamily \label{class_flowmeter_ae0509230aec98e1ba5fd6b120a05bd0d} 
+float Flowmeter::\+ma\+\_\+buffer\+[16]\+ = \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00054}{54}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a846be87e9c76cefb18b93555fa55003a}\index{Flowmeter@{Flowmeter}!ma\_index@{ma\_index}}
+\index{ma\_index@{ma\_index}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{ma\_index}{ma\_index}}
+{\footnotesize\ttfamily \label{class_flowmeter_a846be87e9c76cefb18b93555fa55003a} 
+uint8\+\_\+t Flowmeter::\+ma\+\_\+index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00055}{55}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_aeb3e11110736d2348a028970320de7fb}\index{Flowmeter@{Flowmeter}!ma\_sum@{ma\_sum}}
+\index{ma\_sum@{ma\_sum}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{ma\_sum}{ma\_sum}}
+{\footnotesize\ttfamily \label{class_flowmeter_aeb3e11110736d2348a028970320de7fb} 
+float Flowmeter::\+ma\+\_\+sum = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00053}{53}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a90a548b0a294d2ad10ae989d5792eb55}\index{Flowmeter@{Flowmeter}!noFlowChecker@{noFlowChecker}}
+\index{noFlowChecker@{noFlowChecker}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{noFlowChecker}{noFlowChecker}}
+{\footnotesize\ttfamily \label{class_flowmeter_a90a548b0a294d2ad10ae989d5792eb55} 
+float Flowmeter::\+no\+Flow\+Checker = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00057}{57}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a39010f12dc67e40885a4becb5550136c}\index{Flowmeter@{Flowmeter}!OAverage@{OAverage}}
+\index{OAverage@{OAverage}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{OAverage}{OAverage}}
+{\footnotesize\ttfamily \label{class_flowmeter_a39010f12dc67e40885a4becb5550136c} 
+float Flowmeter::\+\+OAverage = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00046}{46}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_ae6afc5d60560f30ac567274f08762648}\index{Flowmeter@{Flowmeter}!Ocount@{Ocount}}
+\index{Ocount@{Ocount}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{Ocount}{Ocount}}
+{\footnotesize\ttfamily \label{class_flowmeter_ae6afc5d60560f30ac567274f08762648} 
+uint8\+\_\+t Flowmeter::\+\+Ocount = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00048}{48}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a3833caf3446989ef676be49fb1a7dd43}\index{Flowmeter@{Flowmeter}!Omax@{Omax}}
+\index{Omax@{Omax}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{Omax}{Omax}}
+{\footnotesize\ttfamily \label{class_flowmeter_a3833caf3446989ef676be49fb1a7dd43} 
+uint32\+\_\+t Flowmeter::\+\+Omax = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00049}{49}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a11266d0624271d7da966edc0cfd0b251}\index{Flowmeter@{Flowmeter}!Omin@{Omin}}
+\index{Omin@{Omin}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{Omin}{Omin}}
+{\footnotesize\ttfamily \label{class_flowmeter_a11266d0624271d7da966edc0cfd0b251} 
+uint32\+\_\+t Flowmeter::\+\+Omin = 0x\+FFFFFFFF\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00050}{50}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a71c07b3d0f3ae4dd84867991d3d7f933}\index{Flowmeter@{Flowmeter}!Osum@{Osum}}
+\index{Osum@{Osum}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{Osum}{Osum}}
+{\footnotesize\ttfamily \label{class_flowmeter_a71c07b3d0f3ae4dd84867991d3d7f933} 
+uint32\+\_\+t Flowmeter::\+\+Osum = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00047}{47}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_af7ef9cdb3d4a64bb5dad1bc07d6537d9}\index{Flowmeter@{Flowmeter}!overFlowCount@{overFlowCount}}
+\index{overFlowCount@{overFlowCount}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{overFlowCount}{overFlowCount}}
+{\footnotesize\ttfamily \label{class_flowmeter_af7ef9cdb3d4a64bb5dad1bc07d6537d9} 
+volatile uint32\+\_\+t Flowmeter::\+over\+Flow\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00028}{28}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a72488a8b3068b541f4d5c5755271d158}\index{Flowmeter@{Flowmeter}!prevDuration@{prevDuration}}
+\index{prevDuration@{prevDuration}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{prevDuration}{prevDuration}}
+{\footnotesize\ttfamily \label{class_flowmeter_a72488a8b3068b541f4d5c5755271d158} 
+uint32\+\_\+t Flowmeter::\+prev\+Duration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00042}{42}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a2d9a9f70a921debe687ac5e286078304}\index{Flowmeter@{Flowmeter}!pulseCount@{pulseCount}}
+\index{pulseCount@{pulseCount}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{pulseCount}{pulseCount}}
+{\footnotesize\ttfamily \label{class_flowmeter_a2d9a9f70a921debe687ac5e286078304} 
+volatile uint32\+\_\+t Flowmeter::\+pulse\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00027}{27}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a72b37ca591d8922d9b9790e3d512f5c6}\index{Flowmeter@{Flowmeter}!rawFrequency@{rawFrequency}}
+\index{rawFrequency@{rawFrequency}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{rawFrequency}{rawFrequency}}
+{\footnotesize\ttfamily \label{class_flowmeter_a72b37ca591d8922d9b9790e3d512f5c6} 
+volatile float Flowmeter::\+raw\+Frequency = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00030}{30}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_flowmeter_a85de86c8410560e456d76a8d186ebec6}\index{Flowmeter@{Flowmeter}!totalVolume@{totalVolume}}
+\index{totalVolume@{totalVolume}!Flowmeter@{Flowmeter}}
+\doxysubsubsection{\texorpdfstring{totalVolume}{totalVolume}}
+{\footnotesize\ttfamily \label{class_flowmeter_a85de86c8410560e456d76a8d186ebec6} 
+float Flowmeter::\+total\+Volume\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00039}{39}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+app/\+\+Flowmeter/\+Flowmeter.\+hpp\item 
+app/\+\+Flowmeter/\+Flowmeter.\+cpp\end{DoxyCompactItemize}

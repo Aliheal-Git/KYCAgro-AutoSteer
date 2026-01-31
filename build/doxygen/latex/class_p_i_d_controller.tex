@@ -1,0 +1,1185 @@
+\doxysection{PIDController\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_p_i_d_controller}{}\label{class_p_i_d_controller}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_p_i_d_controller_a254909907a90384ada4d813ac7780f02}{PIDController}} (double p, double i, double d, std::\+function$<$ T()$>$ pid\+Source, std::\+function$<$ void(T output)$>$ pid\+Output)
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a459319929f977b1945713e2e9fa086d6}{tick}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a065051c343c9674cee89421720d372e1}{set\+Target}} (T t)
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_ab42afadce1bc87773874a2835ca5ad2f}{get\+Target}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_ae0c79959b6bb1f5e2854f1fdbfe4e587}{get\+Output}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a307a181a4ef534f61abd70bf82d0e88e}{get\+Feedback}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a3a1ddea96f091ff915a085294d15016a}{get\+Error}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a29d99552308058a05f68aa7dceaf9474}{set\+Enabled}} (bool e)
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_a8c60aac5e79511b1c732977fde518766}{is\+Enabled}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_af348e8c2ba8c3ae9858837530329bfb7}{get\+Proportional\+Component}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a2ffd60989be28d9c15f3fd84d08d3136}{get\+Integral\+Component}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a1b32c5442ce3e1d2dfb95f4e127e0222}{get\+Derivative\+Component}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a52e3be6d673415770eb97b8a6fddc6d1}{set\+Max\+Integral\+Cumulation}} (T max)
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a93cfa026a26d66e5e0f7cdd260fb413f}{get\+Max\+Integral\+Cumulation}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_aa9b28036ef5814f32b02b385245031d8}{get\+Integral\+Cumulation}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a5775a98be83704b70298fbf27dd44cf6}{set\+Input\+Bounded}} (bool bounded)
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_aeb0e47025ab457fcacba08e03e4ed05e}{is\+Input\+Bounded}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a2d965475fa065ef23eb924bf1cef0b7f}{set\+Input\+Bounds}} (T lower, T upper)
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a624605fa84d64da886dbe8b34a4b01af}{get\+Input\+Lower\+Bound}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a85256cb92b0ea7f93733f75199e97214}{get\+Input\+Upper\+Bound}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a2d9646cf0176184bb952bce0773e1161}{set\+Output\+Bounded}} (bool bounded)
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_aeb9586d6f96524f6a1569ba7b4c43aa2}{is\+Output\+Bounded}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a1199090729e7cec6e27cecbae827b647}{set\+Output\+Bounds}} (T lower, T upper)
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a9174cef788df54aef201335e651c878c}{get\+Output\+Lower\+Bound}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_aef8c483b79c48138748783a9f7b2a77c}{get\+Output\+Upper\+Bound}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_adcd7b1a7901af84fb46af0629be94fc3}{set\+Feedback\+Wrapped}} (bool wrap)
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_abd99d137997e953be2919f9773844484}{is\+Feedback\+Wrapped}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a65d81c54e784ee56dcfa52b9a3dca4fb}{set\+Feedback\+Wrap\+Bounds}} (T lower, T upper)
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a73b0462a928d256e2ec0a296ab6158f2}{get\+Feedback\+Wrap\+Lower\+Bound}} ()
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a599c3ad1b29abd0e14ceced62cb77e59}{get\+Feedback\+Wrap\+Upper\+Bound}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a2047de7fadbb999b4ee16041b7702fe1}{set\+PID}} (double p, double i, double d)
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a02cca8ab95af15186a453654d2ea64a1}{setP}} (double p)
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_ad99478124903b3f83d0e6ee509318541}{setI}} (double i)
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_ab1d1ead24235e7543fec493be30feb42}{setD}} (double d)
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_a453825895a0c81ceed97b8c1d3e56612}{getP}} ()
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_a102082458261f8372cf76490489c65e4}{getI}} ()
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_a290c166031d4bc8a35afebc063667475}{getD}} ()
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_af418b9359112c7390b29de8ad5b651ee}{set\+PIDSource}} (T(\texorpdfstring{$\ast$}{*}pid\+Source)())
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_a6fea5ba9762a0c331b7f6c8c3c9d49fd}{set\+PIDOutput}} (void(\texorpdfstring{$\ast$}{*}pid\+Output)(T output))
+\item 
+void \doxymbox{\hyperlink{class_p_i_d_controller_afe4692b38b99894e198091648cd919c2}{register\+Time\+Function}} (unsigned long(\texorpdfstring{$\ast$}{*}get\+System\+Time)())
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_ade9d0689985616341d1e139b9688271b}{\+\_\+p}}
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_ad6c2052bc917038b0e4c3e578a707362}{\+\_\+i}}
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_a90f4d176f7324f70ff0edaa6c92cc81c}{\+\_\+d}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a887a77d473d41bb4c5c7a5c2c8145186}{target}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_afeb151cb34a0308684da47ab1ada6da8}{output}}
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_ab29b67386c46e1b0b37687cc74d8f2ec}{enabled}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a3d38178537bdccb30e4cd358fb070d2c}{current\+Feedback}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a6c6e30c70809ea6a4d4d8dfc1d91cee1}{last\+Feedback}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_ae4d698df980af35525a439e43bc69a91}{error}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_ac79ceb2c8b23b51ed80ddbe017a3ef2e}{last\+Error}}
+\item 
+long \doxymbox{\hyperlink{class_p_i_d_controller_a331be08728b70ba7841e035843c9c728}{current\+Time}}
+\item 
+long \doxymbox{\hyperlink{class_p_i_d_controller_aef183ffab294684341dd18a7311e0a10}{last\+Time}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_ac7da0b354fcfc85fe87536f07f27575e}{integral\+Cumulation}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a90ce7e3bb5f84748320b9f08ebd5fa17}{max\+Cumulation}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_adf00bb8c61d6a12bda280d81a7764978}{cycle\+Derivative}}
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_aa6371ef8b8ed097d5aad89c562a09a67}{\+\_\+peffect}}
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_af81b7e0f0f63e28ade7e5dbe8c55c9ca}{\+\_\+ieffect}}
+\item 
+double \doxymbox{\hyperlink{class_p_i_d_controller_a541331eb8b1334925a00890005d47aef}{\+\_\+deffect}}
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_ac3d0fde4be0434402439580f1750e8d8}{input\+Bounded}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_aa459ee59a84e605cde213de4e3e61045}{input\+Lower\+Bound}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a6e3b68760dcb3ce3bc5a21705ef110f3}{input\+Upper\+Bound}}
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_a210e71c45ac247a3edf0f1fb141b5bcc}{output\+Bounded}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a239015bc010d208bed1bac1da648ec3d}{output\+Lower\+Bound}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a75c630a7f46658b52993826b455d3649}{output\+Upper\+Bound}}
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_a5d03584ab29340d82602760b4e5552a1}{feedback\+Wrapped}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a081ac379aa1bc53aafc3fb7d67ed4a33}{feedback\+Wrap\+Lower\+Bound}}
+\item 
+T \doxymbox{\hyperlink{class_p_i_d_controller_a6a344685fcddaf516d6fb557f0d5a33e}{feedback\+Wrap\+Upper\+Bound}}
+\item 
+bool \doxymbox{\hyperlink{class_p_i_d_controller_ac3d92fe56ab2b17fd02cf8cbc1346fb0}{time\+Function\+Registered}}
+\item 
+std::\+function$<$ T()$>$ \doxymbox{\hyperlink{class_p_i_d_controller_ae5046c93235541bc8ea01b6de3e21b18}{\+\_\+pid\+Source}}
+\item 
+std::\+function$<$ void(T output)$>$ \doxymbox{\hyperlink{class_p_i_d_controller_ae47fa8a81fc65376cc4825dc6b7660a3}{\+\_\+pid\+Output}}
+\item 
+unsigned long(\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_p_i_d_controller_a2612403afc64fd21509fda90203217fc}{\+\_\+get\+System\+Time}} )()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class PIDController$<$ T $>$}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00007}{7}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_p_i_d_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_p_i_d_controller_a254909907a90384ada4d813ac7780f02}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!PIDController@{PIDController}}
+\index{PIDController@{PIDController}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{PIDController()}{PIDController()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a254909907a90384ada4d813ac7780f02} 
+template$<$class T$>$ \\
+\doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+PIDController (\begin{DoxyParamCaption}\item[{double}]{p}{, }\item[{double}]{i}{, }\item[{double}]{d}{, }\item[{std::\+function$<$ T()$>$}]{pid\+Source}{, }\item[{std::\+function$<$ void(T output)$>$}]{pid\+Output}{}\end{DoxyParamCaption})}
+
+\begin{DoxyAuthor}{Author}
+Nick Mosher, \href{mailto:codewhisperer97@gmail.com}{\texttt{codewhisperer97@gmail.\+com}}
+\end{DoxyAuthor}
+A PID \doxylink{class_controller}{Controller} is a method of system control in which a correctional output is generated to guide the system toward a desired setpoint (aka target). The PID \doxylink{class_controller}{Controller} calculates the output based on the following factors:\+
+
+Gains (proportional, integral, and derivative) Target Feedback
+
+The gain values act as multipliers for their corresponding components of PID (more detail later). The target is the value which the system strives to reach by manipulating the output. The feedback is the system\textquotesingle{}s actual position or status in regards to the physical world. Another important term in PID is "{}error"{}, which refers to the difference between the target and the feedback.
+
+Each of the three components of PID contributes a unique behavior to the system.
+
+The Proportional component introduces a linear relationship between the error (target minus feedback) and the output. This means that as the feedback grows further away from the target, the output grows proportionally stronger. \begin{DoxyVerb}Proportional component = (P Gain) * (target - feedback)
+\end{DoxyVerb}
+
+
+The Integral component is designed to give a very precise approach of the feedback to the target. Depending on the scale of the physical system and the precision of feedback (e.\+g. sensors), the proportional component alone is likely not sufficient to provide adequate power (e.\+g. to motors) to guide the system in regards to small-\/scale corrections. The Integral component integrates the error of the system (target -\/ feedback) over time. If the system reaches a point where it is close but not exactly on top of the target, the integration will slowly build until it is powerful enough to overcome static resistances and move the system preciesly to the target. \begin{DoxyVerb}Integral component = (I Gain) * Integral of error over time
+
+  *In this implementation, Integral is calculated with a running
+  summation of the system's error, updated at each tick.
+\end{DoxyVerb}
+
+
+The Derivative component measures the rate of change of the feedback. It can reduce the strength of the output if the feedback is approaching the target too quickly or if the feedback is moving away from the target. \begin{DoxyVerb}Derivative component = (D Gain) * ((error - lastError) / time - lastTime)
+\end{DoxyVerb}
+
+
+The output generated by the PID \doxylink{class_controller}{Controller} is the sum of the three components.
+
+PID output = Proportional component + Integral component + Derivative component Constructs the \doxylink{class_p_i_d_controller}{PIDController} object with PID Gains and function pointers for retrieving feedback (pid\+Source) and delivering output (pid\+Output). All PID gains should be positive, otherwise the system will violently diverge from the target. 
+\begin{DoxyParams}{Parameters}
+{\em p} & The Proportional gain. \\
+\hline
+{\em i} & The Integral gain. \\
+\hline
+{\em d} & The Derivative gain. \\
+\hline
+{\em (\texorpdfstring{$\ast$}{*}pid\+Source)} & The function pointer for retrieving system feedback. \\
+\hline
+{\em (\texorpdfstring{$\ast$}{*}pid\+Output)} & The function pointer for delivering system output. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00072}{72}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_p_i_d_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_p_i_d_controller_a290c166031d4bc8a35afebc063667475}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getD@{getD}}
+\index{getD@{getD}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getD()}{getD()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a290c166031d4bc8a35afebc063667475} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+getD (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the derivative gain. \begin{DoxyReturn}{Returns}
+The derivative gain. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00660}{660}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a1b32c5442ce3e1d2dfb95f4e127e0222}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getDerivativeComponent@{getDerivativeComponent}}
+\index{getDerivativeComponent@{getDerivativeComponent}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getDerivativeComponent()}{getDerivativeComponent()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a1b32c5442ce3e1d2dfb95f4e127e0222} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Derivative\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the value that the Derivative component is contributing to the output. \begin{DoxyReturn}{Returns}
+The value that the Derivative component is contributing to the output. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00364}{364}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a3a1ddea96f091ff915a085294d15016a}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getError@{getError}}
+\index{getError@{getError}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getError()}{getError()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a3a1ddea96f091ff915a085294d15016a} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Error (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the last calculated error of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The last calculated error of this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00307}{307}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a307a181a4ef534f61abd70bf82d0e88e}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getFeedback@{getFeedback}}
+\index{getFeedback@{getFeedback}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getFeedback()}{getFeedback()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a307a181a4ef534f61abd70bf82d0e88e} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Feedback (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the last read feedback of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00297}{297}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a73b0462a928d256e2ec0a296ab6158f2}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getFeedbackWrapLowerBound@{getFeedbackWrapLowerBound}}
+\index{getFeedbackWrapLowerBound@{getFeedbackWrapLowerBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getFeedbackWrapLowerBound()}{getFeedbackWrapLowerBound()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a73b0462a928d256e2ec0a296ab6158f2} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Feedback\+Wrap\+Lower\+Bound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the lower feedback wrap bound. \begin{DoxyReturn}{Returns}
+The lower feedback wrap bound. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00576}{576}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a599c3ad1b29abd0e14ceced62cb77e59}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getFeedbackWrapUpperBound@{getFeedbackWrapUpperBound}}
+\index{getFeedbackWrapUpperBound@{getFeedbackWrapUpperBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getFeedbackWrapUpperBound()}{getFeedbackWrapUpperBound()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a599c3ad1b29abd0e14ceced62cb77e59} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Feedback\+Wrap\+Upper\+Bound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the upper feedback wrap bound. \begin{DoxyReturn}{Returns}
+The upper feedback wrap bound. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00586}{586}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a102082458261f8372cf76490489c65e4}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getI@{getI}}
+\index{getI@{getI}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getI()}{getI()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a102082458261f8372cf76490489c65e4} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+getI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the integral gain. \begin{DoxyReturn}{Returns}
+The integral gain. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00650}{650}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a624605fa84d64da886dbe8b34a4b01af}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getInputLowerBound@{getInputLowerBound}}
+\index{getInputLowerBound@{getInputLowerBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getInputLowerBound()}{getInputLowerBound()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a624605fa84d64da886dbe8b34a4b01af} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Input\+Lower\+Bound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the lower input bound of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The lower input bound of this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00454}{454}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a85256cb92b0ea7f93733f75199e97214}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getInputUpperBound@{getInputUpperBound}}
+\index{getInputUpperBound@{getInputUpperBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getInputUpperBound()}{getInputUpperBound()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a85256cb92b0ea7f93733f75199e97214} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Input\+Upper\+Bound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the upper input bound of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The upper input bound of this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00464}{464}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a2ffd60989be28d9c15f3fd84d08d3136}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getIntegralComponent@{getIntegralComponent}}
+\index{getIntegralComponent@{getIntegralComponent}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getIntegralComponent()}{getIntegralComponent()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a2ffd60989be28d9c15f3fd84d08d3136} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Integral\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the value that the Integral component is contributing to the output. \begin{DoxyReturn}{Returns}
+The value that the Integral component is contributing to the output. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00354}{354}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_aa9b28036ef5814f32b02b385245031d8}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getIntegralCumulation@{getIntegralCumulation}}
+\index{getIntegralCumulation@{getIntegralCumulation}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getIntegralCumulation()}{getIntegralCumulation()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_aa9b28036ef5814f32b02b385245031d8} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Integral\+Cumulation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the current cumulative integral value in this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The current cumulative integral value in this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00404}{404}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a93cfa026a26d66e5e0f7cdd260fb413f}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getMaxIntegralCumulation@{getMaxIntegralCumulation}}
+\index{getMaxIntegralCumulation@{getMaxIntegralCumulation}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getMaxIntegralCumulation()}{getMaxIntegralCumulation()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a93cfa026a26d66e5e0f7cdd260fb413f} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Max\+Integral\+Cumulation (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the maximum value that the integral value can cumulate to. \begin{DoxyReturn}{Returns}
+The maximum value that the integral value can cumulate to. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00394}{394}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_ae0c79959b6bb1f5e2854f1fdbfe4e587}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getOutput@{getOutput}}
+\index{getOutput@{getOutput}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getOutput()}{getOutput()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ae0c79959b6bb1f5e2854f1fdbfe4e587} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Output (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the latest output generated by this \doxylink{class_p_i_d_controller}{PIDController}. This value is also delivered to the parent systems via the PIDOutput function pointer provided in the constructor of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The latest output generated by this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00287}{287}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a9174cef788df54aef201335e651c878c}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getOutputLowerBound@{getOutputLowerBound}}
+\index{getOutputLowerBound@{getOutputLowerBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getOutputLowerBound()}{getOutputLowerBound()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a9174cef788df54aef201335e651c878c} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Output\+Lower\+Bound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the lower output bound of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The lower output bound of this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00513}{513}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_aef8c483b79c48138748783a9f7b2a77c}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getOutputUpperBound@{getOutputUpperBound}}
+\index{getOutputUpperBound@{getOutputUpperBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getOutputUpperBound()}{getOutputUpperBound()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_aef8c483b79c48138748783a9f7b2a77c} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Output\+Upper\+Bound (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the upper output bound of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The upper output bound of this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00523}{523}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a453825895a0c81ceed97b8c1d3e56612}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getP@{getP}}
+\index{getP@{getP}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getP()}{getP()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a453825895a0c81ceed97b8c1d3e56612} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+getP (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the proportional gain. \begin{DoxyReturn}{Returns}
+The proportional gain. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00640}{640}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_af348e8c2ba8c3ae9858837530329bfb7}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getProportionalComponent@{getProportionalComponent}}
+\index{getProportionalComponent@{getProportionalComponent}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getProportionalComponent()}{getProportionalComponent()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_af348e8c2ba8c3ae9858837530329bfb7} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Proportional\+Component (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the value that the Proportional component is contributing to the output. \begin{DoxyReturn}{Returns}
+The value that the Proportional component is contributing to the output. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00344}{344}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_ab42afadce1bc87773874a2835ca5ad2f}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!getTarget@{getTarget}}
+\index{getTarget@{getTarget}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getTarget()}{getTarget()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ab42afadce1bc87773874a2835ca5ad2f} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+get\+Target (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the current target of this \doxylink{class_p_i_d_controller}{PIDController}. \begin{DoxyReturn}{Returns}
+The current target of this \doxylink{class_p_i_d_controller}{PIDController}. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00275}{275}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a8c60aac5e79511b1c732977fde518766}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isEnabled()}{isEnabled()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a8c60aac5e79511b1c732977fde518766} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+is\+Enabled (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Tells whether this \doxylink{class_p_i_d_controller}{PIDController} is enabled. \begin{DoxyReturn}{Returns}
+True for enabled, false for disabled. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00334}{334}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_abd99d137997e953be2919f9773844484}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!isFeedbackWrapped@{isFeedbackWrapped}}
+\index{isFeedbackWrapped@{isFeedbackWrapped}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isFeedbackWrapped()}{isFeedbackWrapped()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_abd99d137997e953be2919f9773844484} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+is\+Feedback\+Wrapped (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns whether this \doxylink{class_p_i_d_controller}{PIDController} has feedback wrap. \begin{DoxyReturn}{Returns}
+Whether this \doxylink{class_p_i_d_controller}{PIDController} has feedback wrap. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00548}{548}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_aeb0e47025ab457fcacba08e03e4ed05e}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!isInputBounded@{isInputBounded}}
+\index{isInputBounded@{isInputBounded}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isInputBounded()}{isInputBounded()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_aeb0e47025ab457fcacba08e03e4ed05e} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+is\+Input\+Bounded (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns whether the input of this \doxylink{class_p_i_d_controller}{PIDController} is being bounded. \begin{DoxyReturn}{Returns}
+True if the input of this \doxylink{class_p_i_d_controller}{PIDController} is being bounded. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00426}{426}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_aeb9586d6f96524f6a1569ba7b4c43aa2}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!isOutputBounded@{isOutputBounded}}
+\index{isOutputBounded@{isOutputBounded}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{isOutputBounded()}{isOutputBounded()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_aeb9586d6f96524f6a1569ba7b4c43aa2} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+is\+Output\+Bounded (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns whether the output of this \doxylink{class_p_i_d_controller}{PIDController} is being bounded. \begin{DoxyReturn}{Returns}
+True if the output of this \doxylink{class_p_i_d_controller}{PIDController} is being bounded. 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00485}{485}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_afe4692b38b99894e198091648cd919c2}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!registerTimeFunction@{registerTimeFunction}}
+\index{registerTimeFunction@{registerTimeFunction}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{registerTimeFunction()}{registerTimeFunction()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_afe4692b38b99894e198091648cd919c2} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+register\+Time\+Function (\begin{DoxyParamCaption}\item[{unsigned long(\texorpdfstring{$\ast$}{*}}]{get\+System\+Time~}{)()}\end{DoxyParamCaption})}
+
+Use this to add a hook into the PID \doxylink{class_controller}{Controller} that allows it to read the system time no matter what platform this library is run on. Though developed for an arduino project, there is no code tying this library to the arduino project. To use the arduino clock, however, register the time-\/getting function (millis()) like this:\+
+
+my\+PIDController.\+register\+Time\+Input(millis); \texorpdfstring{$\ast$}{*}\+Note that in this example, millis has no parentheses.
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\texorpdfstring{$\ast$}{*}get\+System\+Time)} & Pointer to a function that returns system time. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00723}{723}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_ab1d1ead24235e7543fec493be30feb42}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setD@{setD}}
+\index{setD@{setD}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setD()}{setD()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ab1d1ead24235e7543fec493be30feb42} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+setD (\begin{DoxyParamCaption}\item[{double}]{d}{}\end{DoxyParamCaption})}
+
+Sets a new value for the derivative gain. 
+\begin{DoxyParams}{Parameters}
+{\em d} & The new derivative gain. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00630}{630}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a29d99552308058a05f68aa7dceaf9474}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setEnabled@{setEnabled}}
+\index{setEnabled@{setEnabled}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setEnabled()}{setEnabled()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a29d99552308058a05f68aa7dceaf9474} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{e}{}\end{DoxyParamCaption})}
+
+Enables or disables this \doxylink{class_p_i_d_controller}{PIDController}. a disabled controller will still call the sensor callback. 
+\begin{DoxyParams}{Parameters}
+{\em True} & to enable, False to disable. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00318}{318}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a65d81c54e784ee56dcfa52b9a3dca4fb}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setFeedbackWrapBounds@{setFeedbackWrapBounds}}
+\index{setFeedbackWrapBounds@{setFeedbackWrapBounds}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setFeedbackWrapBounds()}{setFeedbackWrapBounds()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a65d81c54e784ee56dcfa52b9a3dca4fb} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Feedback\+Wrap\+Bounds (\begin{DoxyParamCaption}\item[{T}]{lower}{, }\item[{T}]{upper}{}\end{DoxyParamCaption})}
+
+Sets the bounds which the feedback wraps around. This also enables Input Bounds at the same coordinates to prevent extraneous domain errors. 
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower wrap bound. \\
+\hline
+{\em upper} & The upper wrap bound. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00561}{561}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_adcd7b1a7901af84fb46af0629be94fc3}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setFeedbackWrapped@{setFeedbackWrapped}}
+\index{setFeedbackWrapped@{setFeedbackWrapped}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setFeedbackWrapped()}{setFeedbackWrapped()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_adcd7b1a7901af84fb46af0629be94fc3} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Feedback\+Wrapped (\begin{DoxyParamCaption}\item[{bool}]{wrapped}{}\end{DoxyParamCaption})}
+
+Enables or disables feedback wrapping. Feedback wrapping causes the upper and lower bounds to appear adjacent to one another when calculating system error. This can be useful for rotating systems which use degrees as units. For example, wrapping the bounds \+[0, 360]\+ will cause a target of 5 and a feedback of 355 to produce an error of -\/10 rather than 350. 
+\begin{DoxyParams}{Parameters}
+{\em wrapped} & True to enable feedback wrapping, False to disable. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00538}{538}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_ad99478124903b3f83d0e6ee509318541}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setI@{setI}}
+\index{setI@{setI}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setI()}{setI()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ad99478124903b3f83d0e6ee509318541} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+setI (\begin{DoxyParamCaption}\item[{double}]{i}{}\end{DoxyParamCaption})}
+
+Sets a new value for the integral gain. 
+\begin{DoxyParams}{Parameters}
+{\em i} & The new integral gain. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00620}{620}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a5775a98be83704b70298fbf27dd44cf6}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setInputBounded@{setInputBounded}}
+\index{setInputBounded@{setInputBounded}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setInputBounded()}{setInputBounded()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a5775a98be83704b70298fbf27dd44cf6} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Input\+Bounded (\begin{DoxyParamCaption}\item[{bool}]{bounded}{}\end{DoxyParamCaption})}
+
+Enables or disables bounds on the input. Bounds limit the upper and lower values that this \doxylink{class_p_i_d_controller}{PIDController} will ever accept as input. Outlying values will be trimmed to the upper or lower bound as necessary. 
+\begin{DoxyParams}{Parameters}
+{\em bounded} & True to enable input bounds, False to disable. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00416}{416}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a2d965475fa065ef23eb924bf1cef0b7f}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setInputBounds@{setInputBounds}}
+\index{setInputBounds@{setInputBounds}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setInputBounds()}{setInputBounds()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a2d965475fa065ef23eb924bf1cef0b7f} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Input\+Bounds (\begin{DoxyParamCaption}\item[{T}]{lower}{, }\item[{T}]{upper}{}\end{DoxyParamCaption})}
+
+Sets bounds which limit the lower and upper extremes that this \doxylink{class_p_i_d_controller}{PIDController} accepts as inputs. Outliers are trimmed to the lower and upper bounds. Setting input bounds automatically enables input bounds. 
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower input bound. \\
+\hline
+{\em upper} & The upper input bound. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00439}{439}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a52e3be6d673415770eb97b8a6fddc6d1}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setMaxIntegralCumulation@{setMaxIntegralCumulation}}
+\index{setMaxIntegralCumulation@{setMaxIntegralCumulation}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setMaxIntegralCumulation()}{setMaxIntegralCumulation()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a52e3be6d673415770eb97b8a6fddc6d1} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Max\+Integral\+Cumulation (\begin{DoxyParamCaption}\item[{T}]{max}{}\end{DoxyParamCaption})}
+
+Sets the maximum value that the integral cumulation can reach. 
+\begin{DoxyParams}{Parameters}
+{\em max} & The maximum value of the integral cumulation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00374}{374}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a2d9646cf0176184bb952bce0773e1161}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setOutputBounded@{setOutputBounded}}
+\index{setOutputBounded@{setOutputBounded}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setOutputBounded()}{setOutputBounded()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a2d9646cf0176184bb952bce0773e1161} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Output\+Bounded (\begin{DoxyParamCaption}\item[{bool}]{bounded}{}\end{DoxyParamCaption})}
+
+Enables or disables bounds on the output. Bounds limit the upper and lower values that this \doxylink{class_p_i_d_controller}{PIDController} will ever generate as output. 
+\begin{DoxyParams}{Parameters}
+{\em bounded} & True to enable output bounds, False to disable. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00475}{475}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a1199090729e7cec6e27cecbae827b647}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setOutputBounds@{setOutputBounds}}
+\index{setOutputBounds@{setOutputBounds}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setOutputBounds()}{setOutputBounds()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a1199090729e7cec6e27cecbae827b647} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Output\+Bounds (\begin{DoxyParamCaption}\item[{T}]{lower}{, }\item[{T}]{upper}{}\end{DoxyParamCaption})}
+
+Sets bounds which limit the lower and upper extremes that this \doxylink{class_p_i_d_controller}{PIDController} will ever generate as output. Setting output bounds automatically enables output bounds. 
+\begin{DoxyParams}{Parameters}
+{\em lower} & The lower output bound. \\
+\hline
+{\em upper} & The upper output bound. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00498}{498}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a02cca8ab95af15186a453654d2ea64a1}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setP@{setP}}
+\index{setP@{setP}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setP()}{setP()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a02cca8ab95af15186a453654d2ea64a1} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+setP (\begin{DoxyParamCaption}\item[{double}]{p}{}\end{DoxyParamCaption})}
+
+Sets a new value for the proportional gain. 
+\begin{DoxyParams}{Parameters}
+{\em p} & The new proportional gain. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00610}{610}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a2047de7fadbb999b4ee16041b7702fe1}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setPID@{setPID}}
+\index{setPID@{setPID}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setPID()}{setPID()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a2047de7fadbb999b4ee16041b7702fe1} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+PID (\begin{DoxyParamCaption}\item[{double}]{p}{, }\item[{double}]{i}{, }\item[{double}]{d}{}\end{DoxyParamCaption})}
+
+Sets new values for all PID Gains. 
+\begin{DoxyParams}{Parameters}
+{\em p} & The new proportional gain. \\
+\hline
+{\em i} & The new integral gain. \\
+\hline
+{\em d} & The new derivative gain. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00598}{598}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a6fea5ba9762a0c331b7f6c8c3c9d49fd}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setPIDOutput@{setPIDOutput}}
+\index{setPIDOutput@{setPIDOutput}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setPIDOutput()}{setPIDOutput()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a6fea5ba9762a0c331b7f6c8c3c9d49fd} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+PIDOutput (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{pid\+Output~}{)(T output)}\end{DoxyParamCaption})}
+
+Sets the function pointer to the PID Output. A PID Output is a function which delivers a value to the parent system in order to guide the system based on the PID loop\textquotesingle{}s result. This value can be delivered directly to motors, to a variable that directs steering, or other means of influencing the system. Below is an example of using a PIDOutput:\+
+
+void pid\+Output(int output) \{ my\+Motor.\+write(output); \} my\+PIDController.\+set\+PIDOutput(pid\+Output);
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\texorpdfstring{$\ast$}{*}on\+Update)} & A function pointer that delivers system output. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00704}{704}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_af418b9359112c7390b29de8ad5b651ee}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setPIDSource@{setPIDSource}}
+\index{setPIDSource@{setPIDSource}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setPIDSource()}{setPIDSource()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_af418b9359112c7390b29de8ad5b651ee} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+PIDSource (\begin{DoxyParamCaption}\item[{T(\texorpdfstring{$\ast$}{*}}]{pid\+Source~}{)()}\end{DoxyParamCaption})}
+
+Sets the function pointer to the PID Source. A PID Source is a function which returns a value to be used as the \doxylink{class_p_i_d_controller}{PIDController}\textquotesingle{}s control feedback. This value can be a reading from a sensor or other data source that contains information regarding the system\textquotesingle{}s actual state. Below is an example of using a PIDSource:\+
+
+int pid\+Source() \{ return my\+Sensor.\+get\+Value(); \} my\+PIDController.\+set\+PIDSource(pid\+Source);
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\texorpdfstring{$\ast$}{*}get\+Feedback)} & A function pointer that retrieves system feedback. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00682}{682}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a065051c343c9674cee89421720d372e1}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!setTarget@{setTarget}}
+\index{setTarget@{setTarget}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{setTarget()}{setTarget()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a065051c343c9674cee89421720d372e1} 
+template$<$class T$>$ \\
+void \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+set\+Target (\begin{DoxyParamCaption}\item[{T}]{t}{}\end{DoxyParamCaption})}
+
+Sets the target of this \doxylink{class_p_i_d_controller}{PIDController}. This system will generate correction outputs indended to guide the feedback variable (such as position, velocity, etc.) toward the established target. 
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00265}{265}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+\Hypertarget{class_p_i_d_controller_a459319929f977b1945713e2e9fa086d6}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!tick@{tick}}
+\index{tick@{tick}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{tick()}{tick()}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a459319929f977b1945713e2e9fa086d6} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+tick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+This method uses the established function pointers to retrieve system feedback, calculate the PID output, and deliver the correction value to the parent of this \doxylink{class_p_i_d_controller}{PIDController}. This method should be run as fast as the source of the feedback in order to provide the highest resolution of control (for example, to be placed in the loop() method).
+
+If this \doxylink{class_p_i_d_controller}{PIDController} is disabled, calling {\ttfamily \doxylink{class_p_i_d_controller_a459319929f977b1945713e2e9fa086d6}{tick}} will essentially call and return the value of {\ttfamily pid\+Source}, without applying any calculations to the internal state of the controller. This allows for convenient patterns like this:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\doxymbox{\hyperlink{class_p_i_d_controller_a254909907a90384ada4d813ac7780f02}{PIDController}}\ boardTempLimiter\ =\ ...}
+\DoxyCodeLine{if\ (boardTempLimiter-\/>\doxymbox{\hyperlink{class_p_i_d_controller_a459319929f977b1945713e2e9fa086d6}{tick}}()\ <\ MIN\_VALUE)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(boardTempLimiter-\/>\doxymbox{\hyperlink{class_p_i_d_controller_a8c60aac5e79511b1c732977fde518766}{isEnabled}}())}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ boardTempLimiter-\/>\doxymbox{\hyperlink{class_p_i_d_controller_a29d99552308058a05f68aa7dceaf9474}{setEnabled}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ boardTempLimiter-\/>\doxymbox{\hyperlink{class_p_i_d_controller_a29d99552308058a05f68aa7dceaf9474}{setEnabled}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8cpp_source_l00135}{135}} of file \doxymbox{\hyperlink{_p_i_d_8cpp_source}{PID.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_p_i_d_controller_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_p_i_d_controller_a90f4d176f7324f70ff0edaa6c92cc81c}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_d@{\_d}}
+\index{\_d@{\_d}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_d}{\_d}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a90f4d176f7324f70ff0edaa6c92cc81c} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+d\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00055}{55}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a541331eb8b1334925a00890005d47aef}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_deffect@{\_deffect}}
+\index{\_deffect@{\_deffect}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_deffect}{\_deffect}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a541331eb8b1334925a00890005d47aef} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+deffect\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00070}{70}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a2612403afc64fd21509fda90203217fc}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_getSystemTime@{\_getSystemTime}}
+\index{\_getSystemTime@{\_getSystemTime}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_getSystemTime}{\_getSystemTime}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a2612403afc64fd21509fda90203217fc} 
+template$<$class T$>$ \\
+unsigned long(\texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+get\+System\+Time) ()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00085}{85}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ad6c2052bc917038b0e4c3e578a707362}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_i@{\_i}}
+\index{\_i@{\_i}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_i}{\_i}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ad6c2052bc917038b0e4c3e578a707362} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+i\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00054}{54}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_af81b7e0f0f63e28ade7e5dbe8c55c9ca}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_ieffect@{\_ieffect}}
+\index{\_ieffect@{\_ieffect}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_ieffect}{\_ieffect}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_af81b7e0f0f63e28ade7e5dbe8c55c9ca} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+ieffect\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00069}{69}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ade9d0689985616341d1e139b9688271b}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_p@{\_p}}
+\index{\_p@{\_p}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_p}{\_p}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ade9d0689985616341d1e139b9688271b} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+p\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00053}{53}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_aa6371ef8b8ed097d5aad89c562a09a67}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_peffect@{\_peffect}}
+\index{\_peffect@{\_peffect}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_peffect}{\_peffect}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_aa6371ef8b8ed097d5aad89c562a09a67} 
+template$<$class T$>$ \\
+double \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+peffect\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00068}{68}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ae47fa8a81fc65376cc4825dc6b7660a3}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_pidOutput@{\_pidOutput}}
+\index{\_pidOutput@{\_pidOutput}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_pidOutput}{\_pidOutput}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ae47fa8a81fc65376cc4825dc6b7660a3} 
+template$<$class T$>$ \\
+std::\+function$<$void(T output)$>$ \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+pid\+Output\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00084}{84}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ae5046c93235541bc8ea01b6de3e21b18}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!\_pidSource@{\_pidSource}}
+\index{\_pidSource@{\_pidSource}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{\_pidSource}{\_pidSource}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ae5046c93235541bc8ea01b6de3e21b18} 
+template$<$class T$>$ \\
+std::\+function$<$T()$>$ \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+\+\_\+pid\+Source\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00083}{83}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a3d38178537bdccb30e4cd358fb070d2c}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!currentFeedback@{currentFeedback}}
+\index{currentFeedback@{currentFeedback}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{currentFeedback}{currentFeedback}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a3d38178537bdccb30e4cd358fb070d2c} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+current\+Feedback\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00059}{59}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a331be08728b70ba7841e035843c9c728}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!currentTime@{currentTime}}
+\index{currentTime@{currentTime}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{currentTime}{currentTime}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a331be08728b70ba7841e035843c9c728} 
+template$<$class T$>$ \\
+long \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+current\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00063}{63}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_adf00bb8c61d6a12bda280d81a7764978}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!cycleDerivative@{cycleDerivative}}
+\index{cycleDerivative@{cycleDerivative}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{cycleDerivative}{cycleDerivative}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_adf00bb8c61d6a12bda280d81a7764978} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+cycle\+Derivative\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00067}{67}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ab29b67386c46e1b0b37687cc74d8f2ec}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!enabled@{enabled}}
+\index{enabled@{enabled}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{enabled}{enabled}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ab29b67386c46e1b0b37687cc74d8f2ec} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+enabled\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00058}{58}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ae4d698df980af35525a439e43bc69a91}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!error@{error}}
+\index{error@{error}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ae4d698df980af35525a439e43bc69a91} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+error\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00061}{61}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a081ac379aa1bc53aafc3fb7d67ed4a33}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!feedbackWrapLowerBound@{feedbackWrapLowerBound}}
+\index{feedbackWrapLowerBound@{feedbackWrapLowerBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{feedbackWrapLowerBound}{feedbackWrapLowerBound}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a081ac379aa1bc53aafc3fb7d67ed4a33} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+feedback\+Wrap\+Lower\+Bound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00079}{79}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a5d03584ab29340d82602760b4e5552a1}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!feedbackWrapped@{feedbackWrapped}}
+\index{feedbackWrapped@{feedbackWrapped}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{feedbackWrapped}{feedbackWrapped}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a5d03584ab29340d82602760b4e5552a1} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+feedback\+Wrapped\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00078}{78}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a6a344685fcddaf516d6fb557f0d5a33e}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!feedbackWrapUpperBound@{feedbackWrapUpperBound}}
+\index{feedbackWrapUpperBound@{feedbackWrapUpperBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{feedbackWrapUpperBound}{feedbackWrapUpperBound}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a6a344685fcddaf516d6fb557f0d5a33e} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+feedback\+Wrap\+Upper\+Bound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00080}{80}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ac3d0fde4be0434402439580f1750e8d8}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!inputBounded@{inputBounded}}
+\index{inputBounded@{inputBounded}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{inputBounded}{inputBounded}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ac3d0fde4be0434402439580f1750e8d8} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+input\+Bounded\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00072}{72}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_aa459ee59a84e605cde213de4e3e61045}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!inputLowerBound@{inputLowerBound}}
+\index{inputLowerBound@{inputLowerBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{inputLowerBound}{inputLowerBound}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_aa459ee59a84e605cde213de4e3e61045} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+input\+Lower\+Bound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00073}{73}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a6e3b68760dcb3ce3bc5a21705ef110f3}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!inputUpperBound@{inputUpperBound}}
+\index{inputUpperBound@{inputUpperBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{inputUpperBound}{inputUpperBound}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a6e3b68760dcb3ce3bc5a21705ef110f3} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+input\+Upper\+Bound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00074}{74}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ac7da0b354fcfc85fe87536f07f27575e}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!integralCumulation@{integralCumulation}}
+\index{integralCumulation@{integralCumulation}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{integralCumulation}{integralCumulation}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ac7da0b354fcfc85fe87536f07f27575e} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+integral\+Cumulation\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00065}{65}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ac79ceb2c8b23b51ed80ddbe017a3ef2e}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!lastError@{lastError}}
+\index{lastError@{lastError}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{lastError}{lastError}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ac79ceb2c8b23b51ed80ddbe017a3ef2e} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+last\+Error\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00062}{62}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a6c6e30c70809ea6a4d4d8dfc1d91cee1}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!lastFeedback@{lastFeedback}}
+\index{lastFeedback@{lastFeedback}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{lastFeedback}{lastFeedback}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a6c6e30c70809ea6a4d4d8dfc1d91cee1} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+last\+Feedback\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00060}{60}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_aef183ffab294684341dd18a7311e0a10}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!lastTime@{lastTime}}
+\index{lastTime@{lastTime}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{lastTime}{lastTime}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_aef183ffab294684341dd18a7311e0a10} 
+template$<$class T$>$ \\
+long \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+last\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00064}{64}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a90ce7e3bb5f84748320b9f08ebd5fa17}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!maxCumulation@{maxCumulation}}
+\index{maxCumulation@{maxCumulation}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{maxCumulation}{maxCumulation}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a90ce7e3bb5f84748320b9f08ebd5fa17} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+max\+Cumulation\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00066}{66}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_afeb151cb34a0308684da47ab1ada6da8}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!output@{output}}
+\index{output@{output}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{output}{output}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_afeb151cb34a0308684da47ab1ada6da8} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+output\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00057}{57}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a210e71c45ac247a3edf0f1fb141b5bcc}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!outputBounded@{outputBounded}}
+\index{outputBounded@{outputBounded}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{outputBounded}{outputBounded}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a210e71c45ac247a3edf0f1fb141b5bcc} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+output\+Bounded\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00075}{75}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a239015bc010d208bed1bac1da648ec3d}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!outputLowerBound@{outputLowerBound}}
+\index{outputLowerBound@{outputLowerBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{outputLowerBound}{outputLowerBound}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a239015bc010d208bed1bac1da648ec3d} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+output\+Lower\+Bound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00076}{76}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a75c630a7f46658b52993826b455d3649}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!outputUpperBound@{outputUpperBound}}
+\index{outputUpperBound@{outputUpperBound}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{outputUpperBound}{outputUpperBound}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a75c630a7f46658b52993826b455d3649} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+output\+Upper\+Bound\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00077}{77}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_a887a77d473d41bb4c5c7a5c2c8145186}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!target@{target}}
+\index{target@{target}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_a887a77d473d41bb4c5c7a5c2c8145186} 
+template$<$class T$>$ \\
+T \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+target\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00056}{56}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+\Hypertarget{class_p_i_d_controller_ac3d92fe56ab2b17fd02cf8cbc1346fb0}\index{PIDController$<$ T $>$@{PIDController$<$ T $>$}!timeFunctionRegistered@{timeFunctionRegistered}}
+\index{timeFunctionRegistered@{timeFunctionRegistered}!PIDController$<$ T $>$@{PIDController$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{timeFunctionRegistered}{timeFunctionRegistered}}
+{\footnotesize\ttfamily \label{class_p_i_d_controller_ac3d92fe56ab2b17fd02cf8cbc1346fb0} 
+template$<$class T$>$ \\
+bool \doxymbox{\hyperlink{class_p_i_d_controller}{PIDController}}$<$ T $>$::\+time\+Function\+Registered\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_p_i_d_8h_source_l00082}{82}} of file \doxymbox{\hyperlink{_p_i_d_8h_source}{PID.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+app/\+\+Controller/\+PID.\+h\item 
+app/\+\+Controller/\+PID.\+cpp\end{DoxyCompactItemize}

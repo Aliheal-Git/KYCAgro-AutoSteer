@@ -1,0 +1,303 @@
+\doxysection{App::\+Drivers::\+Flowmeter Class Reference}
+\hypertarget{class_app_1_1_drivers_1_1_flowmeter}{}\label{class_app_1_1_drivers_1_1_flowmeter}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+
+
+Collaboration diagram for App::\+Drivers::\+Flowmeter:\+
+% FIG 0
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_app_1_1_drivers_1_1_flowmeter_1_1_olympic_average_filter}{Olympic\+Average\+Filter}}
+\item 
+struct \doxymbox{\hyperlink{struct_app_1_1_drivers_1_1_flowmeter_1_1_moving_average_filter}{Moving\+Average\+Filter}}
+\item 
+struct \doxymbox{\hyperlink{struct_app_1_1_drivers_1_1_flowmeter_1_1_outlier_filter}{Outlier\+Filter}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a0052074f6d57373be9c8884ab8bf440c}{Flowmeter}} (uint16\+\_\+t flowmeter\+Factor, float tank\+Capacity)
+\item 
+float \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_ad50d63a4c90db07236a9619e84a423f2}{get\+Flow\+Rate}} () const override
+\begin{DoxyCompactList}\small\item\em Returns flow rate in liters per minute. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a8f0e301f70c6bc5d2b3661098a23d1eb}{get\+Volume}} () const override
+\begin{DoxyCompactList}\small\item\em Returns total volume in liters. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_ae2e62d05edabe23f9880204b2c29acc6}{on\+Timer\+Overflow}} () override
+\begin{DoxyCompactList}\small\item\em Handle timer overflow event. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a26d246dfb3c5b8e14f6846bbe7db90c4}{on\+Pulse}} (uint32\+\_\+t time) override
+\begin{DoxyCompactList}\small\item\em Capture the time when a pulse is detected. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_abb5c9924f17b9ee21c9f394b026063d3}{calculate\+Duration}} (uint32\+\_\+t time)
+\begin{DoxyCompactList}\small\item\em Calculate duration between pulses with outlier, moving average, and Olympic average filtering. \end{DoxyCompactList}\item 
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a1583567f11127861e6bae000704dde77}\label{class_app_1_1_drivers_1_1_flowmeter_a1583567f11127861e6bae000704dde77} 
+void {\bfseries calculate\+Frequency} (uint32\+\_\+t time)
+\item 
+void \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a9496bec21e4d0850eb67cae32fbe592e}{calculate\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Calculate flow rate based on pulse width and flowmeter constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint32\+\_\+t \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a13a7c514a9f441b9fa427aa6b770838a}{pulse\+Width}} = 0
+\item 
+volatile uint16\+\_\+t \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_adcc8eac799bd71ef732744f431761915}{overflow\+Count}} = 0
+\item 
+volatile uint32\+\_\+t \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a76fe7e4b99174818e3d177d9be83ffed}{last\+Capture\+Time}} = 0
+\item 
+volatile float \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a12a7342fb3e66133ff15fc7985d3137d}{raw\+Flowrate}} = 0.\+0f
+\item 
+volatile float \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_af08578b467c3207486d5f957eb7d1bb3}{flowrate}} = 0.\+0f
+\item 
+volatile float \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a60fca0d60279430aa511c5fa1634cf9f}{volume}} = 0.\+0f
+\item 
+uint16\+\_\+t \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_a8a77c53128562a0cacec5c7434b72fc2}{flowmeterK}}
+\item 
+float \doxymbox{\hyperlink{class_app_1_1_drivers_1_1_flowmeter_aa02411080245a1541ba218c4f3c1d620}{tank\+Capacity}}
+\item 
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a0febf1db7555a71b4b5243e0d919620a}\label{class_app_1_1_drivers_1_1_flowmeter_a0febf1db7555a71b4b5243e0d919620a} 
+struct \doxymbox{\hyperlink{struct_app_1_1_drivers_1_1_flowmeter_1_1_olympic_average_filter}{App::\+\+Drivers::\+\+Flowmeter::\+\+Olympic\+Average\+Filter}} {\bfseries oa\+Filter}
+\item 
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a17b06bbbbc46baebf02e4c731b4f5573}\label{class_app_1_1_drivers_1_1_flowmeter_a17b06bbbbc46baebf02e4c731b4f5573} 
+struct \doxymbox{\hyperlink{struct_app_1_1_drivers_1_1_flowmeter_1_1_moving_average_filter}{App::\+\+Drivers::\+\+Flowmeter::\+\+Moving\+Average\+Filter}} {\bfseries ma\+Filter}
+\item 
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_ad69d43a8edea88815a38d02a70a770aa}\label{class_app_1_1_drivers_1_1_flowmeter_ad69d43a8edea88815a38d02a70a770aa} 
+struct \doxymbox{\hyperlink{struct_app_1_1_drivers_1_1_flowmeter_1_1_outlier_filter}{App::\+\+Drivers::\+\+Flowmeter::\+\+Outlier\+Filter}} {\bfseries outlier\+Filter}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00013}{13}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a0052074f6d57373be9c8884ab8bf440c}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!Flowmeter@{Flowmeter}}
+\index{Flowmeter@{Flowmeter}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{Flowmeter()}{Flowmeter()}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a0052074f6d57373be9c8884ab8bf440c} 
+Flowmeter::\+\+Flowmeter (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{flowmeter\+Factor}{, }\item[{float}]{tank\+Capacity}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00015}{15}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_abb5c9924f17b9ee21c9f394b026063d3}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!calculateDuration@{calculateDuration}}
+\index{calculateDuration@{calculateDuration}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{calculateDuration()}{calculateDuration()}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_abb5c9924f17b9ee21c9f394b026063d3} 
+void Flowmeter::\+calculate\+Duration (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Calculate duration between pulses with outlier, moving average, and Olympic average filtering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The current captured time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Updates pulse\+Width with the filtered duration 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00044}{44}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a9496bec21e4d0850eb67cae32fbe592e}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!calculateFlow@{calculateFlow}}
+\index{calculateFlow@{calculateFlow}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{calculateFlow()}{calculateFlow()}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a9496bec21e4d0850eb67cae32fbe592e} 
+void Flowmeter::\+calculate\+Flow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Calculate flow rate based on pulse width and flowmeter constant. 
+
+\begin{DoxyReturn}{Returns}
+Updates flowrate and volume 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00057}{57}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_ad50d63a4c90db07236a9619e84a423f2}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!getFlowRate@{getFlowRate}}
+\index{getFlowRate@{getFlowRate}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{getFlowRate()}{getFlowRate()}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_ad50d63a4c90db07236a9619e84a423f2} 
+float Flowmeter::\+get\+Flow\+Rate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns flow rate in liters per minute. 
+
+
+
+Implements \doxymbox{\hyperlink{class_app_1_1_interfaces_1_1_i_flowmeter_a7ab1fc2785f90ff782d25ab0744f4edc}{App::\+\+Interfaces::\+\+IFlowmeter}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00019}{19}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a8f0e301f70c6bc5d2b3661098a23d1eb}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!getVolume@{getVolume}}
+\index{getVolume@{getVolume}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{getVolume()}{getVolume()}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a8f0e301f70c6bc5d2b3661098a23d1eb} 
+float Flowmeter::\+get\+Volume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns total volume in liters. 
+
+
+
+Implements \doxymbox{\hyperlink{class_app_1_1_interfaces_1_1_i_flowmeter_acb2c783af6c2a466402ec040149ca95b}{App::\+\+Interfaces::\+\+IFlowmeter}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00023}{23}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a26d246dfb3c5b8e14f6846bbe7db90c4}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!onPulse@{onPulse}}
+\index{onPulse@{onPulse}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{onPulse()}{onPulse()}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a26d246dfb3c5b8e14f6846bbe7db90c4} 
+void Flowmeter::\+on\+Pulse (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Capture the time when a pulse is detected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & The current captured time \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Updates pulse width and calculates flow 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_app_1_1_interfaces_1_1_i_flowmeter_a6753e9c2a6df70bab5fb8a1597c36f3f}{App::\+\+Interfaces::\+\+IFlowmeter}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00034}{34}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_ae2e62d05edabe23f9880204b2c29acc6}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!onTimerOverflow@{onTimerOverflow}}
+\index{onTimerOverflow@{onTimerOverflow}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{onTimerOverflow()}{onTimerOverflow()}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_ae2e62d05edabe23f9880204b2c29acc6} 
+void Flowmeter::\+on\+Timer\+Overflow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Handle timer overflow event. 
+
+\begin{DoxyReturn}{Returns}
+Increments overflow counter 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_app_1_1_interfaces_1_1_i_flowmeter_ab9058ded1cacfb7235af210a9fc12ec9}{App::\+\+Interfaces::\+\+IFlowmeter}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8cpp_source_l00027}{27}} of file \doxymbox{\hyperlink{_flowmeter_8cpp_source}{Flowmeter.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a8a77c53128562a0cacec5c7434b72fc2}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!flowmeterK@{flowmeterK}}
+\index{flowmeterK@{flowmeterK}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{flowmeterK}{flowmeterK}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a8a77c53128562a0cacec5c7434b72fc2} 
+uint16\+\_\+t App::\+\+Drivers::\+\+Flowmeter::\+flowmeterK\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00033}{33}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_af08578b467c3207486d5f957eb7d1bb3}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!flowrate@{flowrate}}
+\index{flowrate@{flowrate}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{flowrate}{flowrate}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_af08578b467c3207486d5f957eb7d1bb3} 
+volatile float App::\+\+Drivers::\+\+Flowmeter::\+flowrate = 0.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00030}{30}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a76fe7e4b99174818e3d177d9be83ffed}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!lastCaptureTime@{lastCaptureTime}}
+\index{lastCaptureTime@{lastCaptureTime}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{lastCaptureTime}{lastCaptureTime}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a76fe7e4b99174818e3d177d9be83ffed} 
+volatile uint32\+\_\+t App::\+\+Drivers::\+\+Flowmeter::\+last\+Capture\+Time = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00028}{28}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_adcc8eac799bd71ef732744f431761915}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!overflowCount@{overflowCount}}
+\index{overflowCount@{overflowCount}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{overflowCount}{overflowCount}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_adcc8eac799bd71ef732744f431761915} 
+volatile uint16\+\_\+t App::\+\+Drivers::\+\+Flowmeter::\+overflow\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00027}{27}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a13a7c514a9f441b9fa427aa6b770838a}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!pulseWidth@{pulseWidth}}
+\index{pulseWidth@{pulseWidth}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{pulseWidth}{pulseWidth}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a13a7c514a9f441b9fa427aa6b770838a} 
+volatile uint32\+\_\+t App::\+\+Drivers::\+\+Flowmeter::\+pulse\+Width = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00026}{26}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a12a7342fb3e66133ff15fc7985d3137d}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!rawFlowrate@{rawFlowrate}}
+\index{rawFlowrate@{rawFlowrate}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{rawFlowrate}{rawFlowrate}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a12a7342fb3e66133ff15fc7985d3137d} 
+volatile float App::\+\+Drivers::\+\+Flowmeter::\+raw\+Flowrate = 0.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00029}{29}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_aa02411080245a1541ba218c4f3c1d620}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!tankCapacity@{tankCapacity}}
+\index{tankCapacity@{tankCapacity}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{tankCapacity}{tankCapacity}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_aa02411080245a1541ba218c4f3c1d620} 
+float App::\+\+Drivers::\+\+Flowmeter::\+tank\+Capacity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00034}{34}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+\Hypertarget{class_app_1_1_drivers_1_1_flowmeter_a60fca0d60279430aa511c5fa1634cf9f}\index{App::Drivers::Flowmeter@{App::Drivers::Flowmeter}!volume@{volume}}
+\index{volume@{volume}!App::Drivers::Flowmeter@{App::Drivers::Flowmeter}}
+\doxysubsubsection{\texorpdfstring{volume}{volume}}
+{\footnotesize\ttfamily \label{class_app_1_1_drivers_1_1_flowmeter_a60fca0d60279430aa511c5fa1634cf9f} 
+volatile float App::\+\+Drivers::\+\+Flowmeter::\+volume = 0.\+0f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_flowmeter_8hpp_source_l00031}{31}} of file \doxymbox{\hyperlink{_flowmeter_8hpp_source}{Flowmeter.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+app/\+\+Drivers/\+\+Flowmeter/\+Flowmeter.\+hpp\item 
+app/\+\+Drivers/\+\+Flowmeter/\+Flowmeter.\+cpp\end{DoxyCompactItemize}

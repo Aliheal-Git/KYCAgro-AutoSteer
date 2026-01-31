@@ -1,0 +1,410 @@
+\doxysection{Buttons\+Global.\+cpp}
+\hypertarget{_buttons_global_8cpp_source}{}\label{_buttons_global_8cpp_source}\index{app/Button/ButtonsGlobal.cpp@{app/Button/ButtonsGlobal.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ ButtonsGlobal.c}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00003}00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00004}00004\ \textcolor{comment}{\ *\ \ Created\ on:\ Aug\ 24,\ 2025}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ \ \ \ \ \ Author:\ alica}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00006}00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}ButtonsGlobal.h"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_one_button_c_8h}{OneButtonC.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}Valve.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}task.h"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}cmsis\_os.h"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}stdio.h"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}Controller.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00019}00019\ \textcolor{comment}{//\ Queue\ storage}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#define\ QUEUE\_LENGTH\ 16}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#define\ ITEM\_SIZE\ sizeof(ButtonQueueEvent)}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00023}00023\ \doxymbox{\hyperlink{struct_buttons__t}{Buttons\_t}}\ buttons;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00024}00024\ TaskHandle\_t\ buttonTaskHandle\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00026}00026\ \doxymbox{\hyperlink{struct_button_m_a_i_n}{ButtonMAIN}}*\ ButtonMAIN::instance\ =\ \&buttons.BUTTON\_MAIN;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00027}00027\ \doxymbox{\hyperlink{struct_button_dosage_mode}{ButtonDosageMode}}*\ ButtonDosageMode::instance\ =\ \&buttons.BUTTON\_DOSAGEMODE;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00028}00028\ \doxymbox{\hyperlink{struct_button_g_p_s}{ButtonGPS}}*\ ButtonGPS::instance\ =\ \&buttons.BUTTON\_GPS;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00029}00029\ \doxymbox{\hyperlink{struct_button_p_l_u_s}{ButtonPLUS}}*\ ButtonPLUS::instance\ =\ \&buttons.BUTTON\_PLUS;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00030}00030\ \doxymbox{\hyperlink{struct_button_m_i_n_u_s}{ButtonMINUS}}*\ ButtonMINUS::instance\ =\ \&buttons.BUTTON\_MINUS;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00031}00031\ \doxymbox{\hyperlink{struct_button_m_e_n_u}{ButtonMENU}}*\ ButtonMENU::instance\ =\ \&buttons.BUTTON\_MENU;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00032}00032\ \doxymbox{\hyperlink{struct_button_p_r_o_g_r_a_m}{ButtonPROGRAM}}*\ ButtonPROGRAM::instance\ =\ \&buttons.BUTTON\_PROGRAM;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00033}00033\ \doxymbox{\hyperlink{struct_button_valve1}{ButtonValve1}}*\ ButtonValve1::instance\ =\ \&buttons.BUTTON\_1;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00034}00034\ \doxymbox{\hyperlink{struct_button_valve2}{ButtonValve2}}*\ ButtonValve2::instance\ =\ \&buttons.BUTTON\_2;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00035}00035\ \doxymbox{\hyperlink{struct_button_valve3}{ButtonValve3}}*\ ButtonValve3::instance\ =\ \&buttons.BUTTON\_3;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00036}00036\ \doxymbox{\hyperlink{struct_button_valve4}{ButtonValve4}}*\ ButtonValve4::instance\ =\ \&buttons.BUTTON\_4;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00037}00037\ \doxymbox{\hyperlink{struct_button_valve5}{ButtonValve5}}*\ ButtonValve5::instance\ =\ \&buttons.BUTTON\_5;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00039}00039\ QueueHandle\_t\ buttonQueueHandle;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00041}00041\ uint32\_t\ counter\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00043}00043\ \textcolor{keywordtype}{void}\ buttonTask(\textcolor{keywordtype}{void}\ *pvParameters)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ osDelay(1);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ buttons.BUTTON\_MAIN.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ buttons.BUTTON\_GPS.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ buttons.BUTTON\_DOSAGEMODE.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ buttons.BUTTON\_PLUS.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ buttons.BUTTON\_MINUS.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ buttons.BUTTON\_MENU.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ buttons.BUTTON\_PROGRAM.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ buttons.BUTTON\_1.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ buttons.BUTTON\_2.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ buttons.BUTTON\_3.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ buttons.BUTTON\_4.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ buttons.BUTTON\_5.tick();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00063}00063\ \textcolor{keywordtype}{void}\ InitiliazeButtons()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ Create\ queue}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00065}00065\ \ \ \ \ buttonQueueHandle\ =\ xQueueCreate(QUEUE\_LENGTH,\ ITEM\_SIZE);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Create\ Task}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00068}00068\ \ \ \ \ xTaskCreate(}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ buttonTask,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Task\ function}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}BUTTON\_Task"{}},\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Task\ name\ (debug\ purposes)}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ 128*5,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stack\ size\ (words,\ not\ bytes!)}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ NULL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Task\ parameters}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ osPriorityRealtime-\/2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Task\ priority}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \&buttonTaskHandle\ \ \ \ \ \ \textcolor{comment}{//\ Task\ handle}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00075}00075\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00078}00078\ \textcolor{keywordtype}{void}\ ButtonMAIN::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MAIN,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00084}00084\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ !=\ 0)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ mainValve.open(mainValve.getMode());}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (controller.getMode()\ ==\ Controller::AUTO)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ controller.enablePIDController();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00094}00094\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00096}00096\ \textcolor{keywordtype}{void}\ ButtonMAIN::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MAIN,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00101}00101\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00102}00102\ \ \ \ \ mainValve.close(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00103}00103\ \ \ \ \ mainValve.close(Valve::AUTO);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00104}00104\ \ \ \ \ controller.disablePIDController();}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00105}00105\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00107}00107\ \textcolor{keywordtype}{void}\ ButtonGPS::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::GPS,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ Valves[i].setMode(Valve::Mode::AUTO);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00115}00115\ \ \ \ \ mainValve.setMode(Valve::Mode::AUTO);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00116}00116\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00120}00120\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ !=\ 0\ \&\&\ buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ mainValve.open(mainValve.getMode());}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ mainValve.close(mainValve.getMode());}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00127}00127\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00129}00129\ \textcolor{keywordtype}{void}\ ButtonGPS::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::GPS,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00131}00131\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00134}00134\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00135}00135\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ Valves[i].setMode(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00137}00137\ \ \ \ \ mainValve.setMode(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00138}00138\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00139}00139\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00142}00142\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ !=\ 0\ \&\&\ buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ mainValve.open(mainValve.getMode());}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00145}00145\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ mainValve.close(mainValve.getMode());}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00148}00148\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00149}00149\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00151}00151\ \textcolor{keywordtype}{void}\ ButtonDosageMode::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::DOSAGEMODE,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00153}00153\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00156}00156\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00157}00157\ \ \ \ \ controller.setMode(Controller::AUTO);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00158}00158\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00160}00160\ \textcolor{keywordtype}{void}\ ButtonDosageMode::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00161}00161\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::DOSAGEMODE,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00163}00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00166}00166\ \ \ \ \ controller.setMode(Controller::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00167}00167\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00169}00169\ \textcolor{keywordtype}{void}\ ButtonPLUS::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00170}00170\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::PLUS,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00174}00174\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00175}00175\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00177}00177\ \textcolor{keywordtype}{void}\ ButtonPLUS::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::PLUS,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00179}00179\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00180}00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00182}00182\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00183}00183\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00185}00185\ \textcolor{keywordtype}{void}\ ButtonPLUS::onHold()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ (this-\/>\_button.longPressIntervalMs\ -\/\ (this-\/>holdCounter++)/1)\ >\ 100)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ OB\_SetLongPressIntervalMs(\&\_button,\ this-\/>\_button.longPressIntervalMs\ -\/\ (this-\/>holdCounter)/1);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::PLUS,\ ButtonEventType::HELD\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00190}00190\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00191}00191\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00193}00193\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00194}00194\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00196}00196\ \textcolor{keywordtype}{void}\ ButtonMINUS::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00197}00197\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MINUS,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00198}00198\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00199}00199\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00201}00201\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00202}00202\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00204}00204\ \textcolor{keywordtype}{void}\ ButtonMINUS::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00205}00205\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MINUS,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00206}00206\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00207}00207\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00209}00209\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00210}00210\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00212}00212\ \textcolor{keywordtype}{void}\ ButtonMINUS::onHold()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00213}00213\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ (this-\/>\_button.longPressIntervalMs\ -\/\ (this-\/>holdCounter++)/1)\ >\ 100)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ OB\_SetLongPressIntervalMs(\&\_button,\ this-\/>\_button.longPressIntervalMs\ -\/\ (this-\/>holdCounter)/1);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00216}00216\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MINUS,\ ButtonEventType::HELD\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00217}00217\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00218}00218\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00220}00220\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00221}00221\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00223}00223\ \textcolor{keywordtype}{void}\ ButtonMENU::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00224}00224\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MENU,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00225}00225\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00226}00226\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00228}00228\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00229}00229\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00231}00231\ \textcolor{keywordtype}{void}\ ButtonMENU::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00232}00232\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MENU,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00233}00233\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00234}00234\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00236}00236\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00237}00237\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00239}00239\ \textcolor{keywordtype}{void}\ ButtonMENU::onHold()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00240}00240\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::MENU,\ ButtonEventType::HELD\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00241}00241\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00242}00242\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00244}00244\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00245}00245\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00247}00247\ \textcolor{keywordtype}{void}\ ButtonPROGRAM::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00248}00248\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::PROGRAM,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00249}00249\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00250}00250\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00252}00252\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00253}00253\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00255}00255\ \textcolor{keywordtype}{void}\ ButtonPROGRAM::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00256}00256\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::PROGRAM,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00257}00257\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00258}00258\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00260}00260\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00261}00261\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00263}00263\ \textcolor{keywordtype}{void}\ ButtonPROGRAM::onHold()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00264}00264\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::PROGRAM,\ ButtonEventType::HELD\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00265}00265\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00266}00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00268}00268\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00269}00269\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00271}00271\ \textcolor{keywordtype}{void}\ ButtonValve1::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00272}00272\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE1,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00273}00273\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00274}00274\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00276}00276\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00277}00277\ \ \ \ \ Valves[0].open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00278}00278\ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ mainValve.open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00280}00280\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00282}00282\ \textcolor{keywordtype}{void}\ ButtonValve1::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00283}00283\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE1,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00284}00284\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00285}00285\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00287}00287\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00288}00288\ \ \ \ \ Valves[0].close(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00289}00289\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00290}00290\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00293}00293\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00294}00294\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ mainValve.close(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00296}00296\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00298}00298\ \textcolor{keywordtype}{void}\ ButtonValve2::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00299}00299\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE2,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00300}00300\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00301}00301\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00303}00303\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00304}00304\ \ \ \ \ Valves[1].open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00305}00305\ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00306}00306\ \ \ \ \ \ \ \ \ mainValve.open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00307}00307\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00309}00309\ \textcolor{keywordtype}{void}\ ButtonValve2::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00310}00310\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE2,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00311}00311\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00312}00312\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00314}00314\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00315}00315\ \ \ \ \ Valves[1].close(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00316}00316\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00317}00317\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00320}00320\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00321}00321\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ mainValve.close(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00323}00323\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00325}00325\ \textcolor{keywordtype}{void}\ ButtonValve3::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00326}00326\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE3,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00327}00327\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00328}00328\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00330}00330\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00331}00331\ \ \ \ \ Valves[2].open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00332}00332\ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00333}00333\ \ \ \ \ \ \ \ \ mainValve.open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00334}00334\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00335}00335\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00336}00336\ \textcolor{keywordtype}{void}\ ButtonValve3::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00337}00337\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE3,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00338}00338\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00339}00339\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00340}00340\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00341}00341\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00342}00342\ \ \ \ \ Valves[2].close(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00343}00343\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00344}00344\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00345}00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00347}00347\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00348}00348\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00349}00349\ \ \ \ \ \ \ \ \ mainValve.close(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00350}00350\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00352}00352\ \textcolor{keywordtype}{void}\ ButtonValve4::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00353}00353\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE4,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00354}00354\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00355}00355\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00357}00357\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00358}00358\ \ \ \ \ Valves[3].open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00359}00359\ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00360}00360\ \ \ \ \ \ \ \ \ mainValve.open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00361}00361\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00362}00362\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00363}00363\ \textcolor{keywordtype}{void}\ ButtonValve4::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00364}00364\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE4,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00365}00365\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00366}00366\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00367}00367\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00368}00368\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00369}00369\ \ \ \ \ Valves[3].close(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00370}00370\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00371}00371\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00372}00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00374}00374\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00375}00375\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00376}00376\ \ \ \ \ \ \ \ \ mainValve.close(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00377}00377\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00379}00379\ \textcolor{keywordtype}{void}\ ButtonValve5::onPressed()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00380}00380\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE5,\ ButtonEventType::PRESSED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00381}00381\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00382}00382\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00384}00384\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00385}00385\ \ \ \ \ Valves[4].open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00386}00386\ \ \ \ \ \textcolor{keywordflow}{if}\ (buttons.BUTTON\_MAIN.\_button.state\ ==\ OCS\_DOWN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ mainValve.open(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00388}00388\ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00390}00390\ \textcolor{keywordtype}{void}\ ButtonValve5::onRelease()\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00391}00391\ \ \ \ \ \textcolor{keyword}{const}\ ButtonQueueEvent\ \textcolor{keyword}{event}\ =\ \{\ ButtonType::VALVE5,\ ButtonEventType::RELEASED\ \};}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00392}00392\ \ \ \ \ \textcolor{comment}{//\ Send\ to\ queue\ from\ a\ buttonevent}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00393}00393\ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(buttonQueueHandle,\ \&event,\ 0)\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Queue\ full,\ handle\ error}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00395}00395\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00396}00396\ \ \ \ \ Valves[4].close(Valve::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00397}00397\ \ \ \ \ uint8\_t\ sum\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00398}00398\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ controller.maxValve;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Valves[i].getStatus()\ ==\ Valve::Status::OPEN)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ sum++;}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00401}00401\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00402}00402\ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ mainValve.close(Valve::Mode::MANUAL);}
+\DoxyCodeLine{\Hypertarget{_buttons_global_8cpp_source_l00404}00404\ \}}
+
+\end{DoxyCode}
