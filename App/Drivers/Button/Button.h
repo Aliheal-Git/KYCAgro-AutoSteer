@@ -27,13 +27,13 @@ namespace App::Drivers {
 /**
  * @brief Button driver class.
  */
-class Button
+class Button : public IButton
 {
     public:
         Button(ButtonType type, uint64_t pressDurationMs, uint16_t longPressIntervalMs, bool polarity,  
                     GPIO_TypeDef* gpioPort, uint16_t gpioPin, IButtonEventSink& eventSink);
         ~Button();
-        void tick() { OB_Tick(&button); }
+        void tick() override { OB_Tick(&button); }
     private:
 	    OneButton_t button;
         ButtonType type;
