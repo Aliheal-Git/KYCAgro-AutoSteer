@@ -19,7 +19,8 @@ namespace App::Interfaces {
         NEXT = 2,
         PREVIOUS = 3,
         SETTINGS = 4,
-        MAIN = 5
+        MAIN = 5,
+        PROGRAMS = 6
     };
 
     struct PageFuncResult {
