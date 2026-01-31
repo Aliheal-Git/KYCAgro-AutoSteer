@@ -116,3 +116,15 @@ void ButtonService::postButtonEvent(const ButtonQueueEvent& event)
         }
     }
 }
+
+void ButtonService::registerButton(IButton* button)
+{
+    for (int i = 0; i < MAX_BUTTON; ++i)
+    {
+        if (buttons[i] == nullptr)
+        {
+            buttons[i] = button;
+            return;
+        }
+    }
+}

@@ -31,13 +31,14 @@ public:
 
     void startButtonService();
     bool registerEventListener(IButtonEventListener* listener);
+    void registerButton(IButton* button);
 
 protected:
     void buttonEventHandlerTask();
 private:
     QueueHandle_t buttonQueueHandle;
     TaskHandle_t buttonTaskHandle = NULL;
-    Button* buttons[MAX_BUTTON]{};
+    IButton* buttons[MAX_BUTTON]{};
 
     IButtonEventListener* eventListener[LISTENER_COUNT] = {nullptr, nullptr};
 
