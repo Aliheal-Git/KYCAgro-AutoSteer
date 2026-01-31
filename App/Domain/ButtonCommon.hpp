@@ -25,7 +25,7 @@ namespace App::Domain {
  * VALVE7: Valve 7 Control Switch
  * VALVE8: Valve 8 Control Switch
  */
-typedef enum {
+ enum class ButtonType {
     MAIN,
     GPS,
     DOSAGE,
@@ -41,7 +41,7 @@ typedef enum {
     VALVE6,
     VALVE7,
     VALVE8
-} ButtonType;  
+} ;  
 
 /**
  * @brief Enumeration of button event types.
@@ -50,12 +50,12 @@ typedef enum {
  * HELD: Button Held Down Event
  * HELD_RELEASED: Button Held and then Released Event
  */
-typedef enum {
+ enum class ButtonEventType {
     PRESSED,
     RELEASED,
     HELD,
     HELD_RELEASED,
-} ButtonEventType;
+};
 
 /**
  * @brief Queue event structure for button events.
