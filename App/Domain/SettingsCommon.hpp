@@ -8,7 +8,7 @@
 #include "string.h"
 #include <cstdint>
 
-namespace App::Domain::SettingsCommon {
+namespace App::Domain {
 
     /**
      * @brief Enumeration for speed source options.
@@ -223,6 +223,6 @@ namespace App::Domain::SettingsCommon {
             void setDosageValue(float val, uint8_t index) { parameters.dosageValue[index] = val; }
     };
 
-} // namespace App::Domain::SettingsCommon
+} // namespace App::Domain
 
 #endif // APP_DOMAIN_SETTINGSCOMMON_HPP_

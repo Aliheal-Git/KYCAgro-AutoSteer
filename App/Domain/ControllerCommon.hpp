@@ -7,7 +7,7 @@
 
 #include <cstdint>
 
-namespace App::Domain::ControllerCommon {
+namespace App::Domain {
 
     /**
      * @brief Enumeration for controller modes.
@@ -29,6 +29,6 @@ namespace App::Domain::ControllerCommon {
         GPS = 1
     };
 
-} // namespace App::Domain::ControllerCommon
+} // namespace App::Domain
 
 #endif // APP_DOMAIN_CONTROLLERCOMMON_HPP_

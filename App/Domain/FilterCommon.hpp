@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-namespace App::Domain::FilterCommon {
+namespace App::Domain {
 
     /**
      * @brief Structure for Olympic Average Filter.
@@ -98,6 +98,6 @@ namespace App::Domain::FilterCommon {
         
     };
 
-} // namespace App::Domain::FilterCommon
+} // namespace App::Domain
 
 #endif // APP_DOMAIN_FILTERCOMMON_HPP_

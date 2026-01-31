@@ -9,7 +9,7 @@
 #include <sys/types.h>
 #define CUSTOM_CHAR_COUNT 8
 #define CUSTOM_CHAR_SIZE 8
-namespace App::Domain::WindowCommon {
+namespace App::Domain {
 
 const uint8_t MAX_ROWS = 4;
 const uint8_t MAX_COLUMNS = 20;
@@ -259,6 +259,6 @@ enum class DisplayControlBits : uint8_t {
     DATA = 0x01
 };
 
-} // namespace App::Domain::WindowCommon
+} // namespace App::Domain
 
 #endif // APP_DOMAIN_WINDOWCOMMON_HPP_

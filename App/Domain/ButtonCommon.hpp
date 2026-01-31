@@ -5,7 +5,7 @@
 #ifndef APP_DOMAIN_BUTTONCOMMON_HPP_
 #define APP_DOMAIN_BUTTONCOMMON_HPP_
 
-namespace App::Domain::ButtonCommon {
+namespace App::Domain {
 
     /**
  * @brief Enumeration of button types.
@@ -65,7 +65,7 @@ struct ButtonQueueEvent {
     ButtonEventType eventType;       // event type
 };
 
-} // namespace App::Domain::ButtonCommon
+} // namespace App::Domain
 
 #endif // APP_DOMAIN_BUTTONCOMMON_HPP_
 

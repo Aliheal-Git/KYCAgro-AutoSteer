@@ -5,7 +5,7 @@
 #ifndef APP_DOMAIN_VALVECOMMON_HPP_
 #define APP_DOMAIN_VALVECOMMON_HPP_
 
-namespace App::Domain::ValveCommon {
+namespace App::Domain {
     enum class ValveMode : bool {
         AUTO,
         MANUAL
@@ -14,6 +14,6 @@ namespace App::Domain::ValveCommon {
         OPEN = true,
         CLOSED = false
     };
-}
+} // namespace App::Domain
 
 #endif // APP_DOMAIN_VALVECOMMON_HPP_
