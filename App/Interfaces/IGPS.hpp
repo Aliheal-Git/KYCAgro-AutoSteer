@@ -13,7 +13,8 @@ class IGPS {
     public:
         virtual ~IGPS() = default;
         virtual float getSpeed() const = 0;
-        virtual bool getValveStatus(uint8_t valveIndex) const = 0;
+        virtual bool getValveState(uint8_t valveIndex) const = 0;
+        virtual void receiveGPSData() = 0;
 };
 
 } // namespace App::Interfaces
