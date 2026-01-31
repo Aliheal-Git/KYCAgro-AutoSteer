@@ -1,50 +1,40 @@
 
+#include "ControllerCommon.hpp"
 #include "Page.hpp"
+#include "ValveCommon.hpp"
 #include "WindowCommon.hpp"
 #include "SettingsCommon.hpp"
 
 #include <cstdint>
+#include <cstdio>
 
-using namespace App::Domain::WindowCommon;
-using namespace App::Domain::SettingsCommon;
+using namespace App::Domain;
 
-PageFuncResult MainPage::task(){
-	// if (_speed != controller.getSpeed())
-	// 	setSpeed(controller.getSpeed());
-
-	dosageSum += controller.getDosage();
-	if (taskStep >= 20){
+PageFuncResult MainPage::update(){
+	setUISpeed(gpsDevice->getSpeed());
+	if (dosageController->getMode() == DosageControllerMode::AUTO)
+		setTargetDosage(dosageController->getTargetDosage());
+	dosageSum += dosageController->getDosage();
+	if (taskStep >= dosageSampleCount){
 		taskStep = 0;
-		setDosage(dosageSum/20.0f);
+		setUIDosage(dosageSum/dosageSampleCount);
 		dosageSum = 0;
 	}
 
-
-	for (uint8_t i = 0; i < controller.maxValve; i++){
-		if (Valves[i].getMode() == Valve::AUTO){
-			if (Valves[i].getStatus() == Valve::OPEN)
-				setValveOn(i);
-			else
-			 	setValveOff(i);
-		}
+	for (uint8_t i = 0; i < settings.getNozzleValveCount(); i++){
+		bool valveState = valveController->getValveState(i) == ValveState::OPEN;
+		if (valveState)
+			setUIValveOn(i);
+		else
+			setUIValveOff(i);
 	}
 	
 	taskStep++;
-	return {PageNavRequest::NONE, 200};
+	return {PageNavRequest::NONE, 100};
 }
 
-void MainPage::handleButtonInput(ButtonQueueEvent event){
+PageFuncResult MainPage::handleButtonInput(ButtonQueueEvent event){
 	switch (event.buttonType){
-		case (ButtonType::MAIN):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					break;
-				case (ButtonEventType::RELEASED):
-					break;
-				case (ButtonEventType::HELD):
-					break;
-			}
-			break;
 		case (ButtonType::GPS):
 			switch(event.eventType){
 				case (ButtonEventType::PRESSED):
@@ -57,7 +47,7 @@ void MainPage::handleButtonInput(ButtonQueueEvent event){
 					break;
 			}
 			break;
-		case (ButtonType::DOSAGEMODE):
+		case (ButtonType::DOSAGE):
 			switch(event.eventType){
 				case (ButtonEventType::PRESSED):
 					this->setDosageModeAuto();
@@ -74,11 +64,11 @@ void MainPage::handleButtonInput(ButtonQueueEvent event){
 				case (ButtonEventType::PRESSED):
 					break;
 				case (ButtonEventType::RELEASED):
-					this->parentWindow->nextPage();
+					return {PageNavRequest::NEXT, 0};
 					break;
 				case (ButtonEventType::HELD):
-					if (buttons.BUTTON_PROGRAM._button.state == OCS_DOWN || buttons.BUTTON_PROGRAM._button.state == OCS_PRESS)
-						this->parentWindow->showPage(4);
+					// if (buttons.BUTTON_PROGRAM._button.state == OCS_DOWN || buttons.BUTTON_PROGRAM._button.state == OCS_PRESS)
+					// 	this->parentWindow->showPage(4);
 					break;
 			}
 			break;
@@ -87,118 +77,14 @@ void MainPage::handleButtonInput(ButtonQueueEvent event){
 				case (ButtonEventType::PRESSED):
 					break;
 				case (ButtonEventType::RELEASED):
-					this->parentWindow->showPage(3);
+					return {PageNavRequest::PROGRAMS, 0};
 					break;
 				case (ButtonEventType::HELD):
-					if (buttons.BUTTON_MENU._button.state == OCS_DOWN || buttons.BUTTON_MENU._button.state == OCS_PRESS)
-						this->parentWindow->showPage(4);
+					// if (buttons.BUTTON_MENU._button.state == OCS_DOWN || buttons.BUTTON_MENU._button.state == OCS_PRESS)
+					// 	this->parentWindow->showPage(4);
 					break;
 			}
 			break;
-		case (ButtonType::PLUS):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					if (controller.getMode() == Controller::Mode::AUTO)
-						this->setTargetDosage(controller.getTargetDosage() + settings.getDosageValue(settings.getSelectedProgram())*0.1);
-					else
-					{
-					 	propValve.setDutyCycle(1.0);
-					}
-					break;
-				case (ButtonEventType::RELEASED):
-					if (controller.getMode() == Controller::Mode::MANUAL)
-					{
-						propValve.setDutyCycle(0.0);
-					}
-					break;	
-				case (ButtonEventType::HELD):
-					if (controller.getMode() == Controller::Mode::AUTO)
-						this->setTargetDosage(controller.getTargetDosage() + settings.getDosageValue(settings.getSelectedProgram())*0.1);
-					break;
-			}
-			break;
-		case (ButtonType::MINUS):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					if (controller.getMode() == Controller::Mode::AUTO)
-						this->setTargetDosage(controller.getTargetDosage() - settings.getDosageValue(settings.getSelectedProgram())*0.1);
-					else
-					{
-					 	propValve.setDutyCycle(-1.0);
-					}
-					break;
-				case (ButtonEventType::RELEASED):
-					if (controller.getMode() == Controller::Mode::MANUAL)
-					{
-						propValve.setDutyCycle(0.0);
-					}
-					break;
-				case (ButtonEventType::HELD):
-					if (controller.getMode() == Controller::Mode::AUTO)
-						this->setTargetDosage(controller.getTargetDosage() - settings.getDosageValue(settings.getSelectedProgram())*0.1);
-					break;
-			}
-			break;
-		case (ButtonType::VALVE1):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					this->setValveOn(0);
-					break;
-				case (ButtonEventType::RELEASED):
-				    this->setValveOff(0);
-					break;
-				case (ButtonEventType::HELD):
-					break;
-			}
-			break;
-		case (ButtonType::VALVE2):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					this->setValveOn(1);
-					break;
-				case (ButtonEventType::RELEASED):
-					this->setValveOff(1);
-					break;
-				case (ButtonEventType::HELD):
-					break;
-			}
-				break;
-		case (ButtonType::VALVE3):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					this->setValveOn(2);
-					break;
-				case (ButtonEventType::RELEASED):
-					this->setValveOff(2);
-					break;
-				case (ButtonEventType::HELD):
-					break;
-			}
-				break;
-		case (ButtonType::VALVE4):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					this->setValveOn(3);
-					break;
-				case (ButtonEventType::RELEASED):
-					this->setValveOff(3);
-					break;
-				case (ButtonEventType::HELD):
-					break;
-			}
-				break;
-		case (ButtonType::VALVE5):
-			switch(event.eventType){
-				case (ButtonEventType::PRESSED):
-					this->setValveOn(4);
-					break;
-				case (ButtonEventType::RELEASED):
-					this->setValveOff(4);
-					break;
-				case (ButtonEventType::HELD):
-					break;
-			}
-				break;
 	}
 }
 
@@ -208,123 +94,128 @@ PageFuncResult MainPage::render(){
 		this->parentWindow->clearWindow();
 		renderStep++;
 		return {PageNavRequest::NONE, 10};
-	} else 
-	if (renderStep < 2){
+	} else if (renderStep < 2){
 		if (settings.getSpeedSource() == SPEED_SOURCE::GPS)
 			this->parentWindow->writeString("GPS", 0, 5);
 		else
 			this->parentWindow->writeString("SIM", 0, 5);
 	}
 
-	setSelectedProgram();
+	this->setSelectedProgram();
 
 
-	this->parentWindow->write("Km/h", 0, 15);
-	if (controller.getMode() == Controller::AUTO)
+	this->parentWindow->writeString("Km/h", 0, 15);
+	if (dosageController->getMode() == DosageControllerMode::AUTO)
 		this->setDosageModeAuto();
 	else
 		this->setDosageModeManual();
 	this->setGPSManual();
-	this->parentWindow->write("L/Dnm", 1, 15);
-	this->parentWindow->write("1", 2, 5);
-	this->parentWindow->write("2", 2, 7);
-	this->parentWindow->write("3", 2, 9);
-	this->parentWindow->write("4", 2, 11);
-	this->parentWindow->write("5", 2, 13);
-	setSpeed(controller.getSpeed());
-	setDosage(controller.getDosage());
-	setTargetDosage(controller.getTargetDosage());
-	uint8_t sum = 0;
+	this->parentWindow->writeString("L/Dnm", 1, 15);
 
-	if (buttons.BUTTON_GPS._button.state == OCS_INIT){
-		for (uint8_t i = 0; i < controller.maxValve; i++)
-			Valves[i].setMode(Valve::Mode::MANUAL);
-		mainValve.setMode(Valve::Mode::MANUAL);
+	for (uint8_t i = 0; i < settings.getNozzleValveCount(); i++){
+		char buf[4];   // enough for 0–255 + null
+		snprintf(buf, sizeof(buf), "%u", i);
+		this->parentWindow->writeString(buf, 2, 5);
+		uiValveStates[i] = 0;
+		if (valveController->getValveState(i) == ValveState::OPEN){
+			this->setUIValveOn(i);
+		} 
+		else {
+			this->setUIValveOff(i);
+		}
+	}
+
+	setUISpeed(gpsDevice->getSpeed());
+	setUIDosage(dosageController->getDosage());
+	setTargetDosage(dosageController->getTargetDosage());
+
+	if (valveController->getMode() == ValveControllerMode::MANUAL)
 		setGPSManual();
-	}
-
-
-	for (uint8_t i = 0; i < controller.maxValve; i++){
-		if (Valves[i].getStatus() == Valve::Status::OPEN)
-			sum++;
-	}
-	if (sum == 0)
-		mainValve.close(Valve::Mode::MANUAL);
+	else
+		setGPSAuto();
 
 	this->parentWindow->showWindow();
+	return {PageNavRequest::NONE, 100};
 }
 
 void MainPage::setGPSAuto(){
-	this->parentWindow->write("A", 3, 2);
-	for (uint8_t i = 0; i < this->parentWindow->maxValve; i++){
-		if (Valves[i].getStatus() == Valve::OPEN)
-			this->setValveOn(i);
+	this->parentWindow->writeString("A", 3, 2);
+	for (uint8_t i = 0; i < settings.getNozzleValveCount(); i++){
+		if (valveController->getValveState(i) == ValveState::OPEN)
+			this->setUIValveOn(i);
 		else
-			this->setValveOff(i);
+			this->setUIValveOff(i);
 	}
 }
 
 void MainPage::setGPSManual(){
-	this->parentWindow->write("M", 3, 2);
-	for (uint8_t i = 0; i < this->parentWindow->maxValve; i++){
-		if (Valves[i].getStatus())
-			this->setValveOn(i);
+	this->parentWindow->writeString("M", 3, 2);
+	for (uint8_t i = 0; i < settings.getNozzleValveCount(); i++){
+		if (valveController->getValveState(i) == ValveState::OPEN)
+			this->setUIValveOn(i);
 		else
-			this->setValveOff(i);
+			this->setUIValveOff(i);
 	}
 }
 
 void MainPage::setDosageModeAuto(){
-	this->parentWindow->write("SET()", 1, 0);
-	this->setTargetDosage(controller.getTargetDosage());
-	controller.enablePIDController();
+	this->parentWindow->writeString("SET()", 1, 0);
+	this->setTargetDosage(dosageController->getTargetDosage());
 }
 
 void MainPage::setDosageModeManual(){
-	this->parentWindow->write("         ", 1, 0);
-	this->parentWindow->write("Manuel", 1, 0);
-	controller.disablePIDController();
+	this->parentWindow->writeString("         ", 1, 0);
+	this->parentWindow->writeString("Manuel", 1, 0);
 }
 
-void MainPage::setDosage(float dosage){
+void MainPage::setUIDosage(float dosage){
+	if (dosage == uiDosage)
+		return;
 	char buf[5];
 	snprintf(buf, sizeof(buf), "%4.1f", dosage);
-	this->parentWindow->write(buf, 1, 10);
-	this->_dosage = dosage;
+	this->parentWindow->writeString(buf, 1, 10);
+	this->uiDosage = dosage;
 }
 
-void MainPage::setSpeed(float speed){
+void MainPage::setUISpeed(float speed){
+	if (speed == uiSpeed)
+		return;
 	char buf[5];
 	snprintf(buf, sizeof(buf), "%4.1f", speed);
-	this->parentWindow->write(buf, 0, 10);
-	this->_speed = speed;
+	this->parentWindow->writeString(buf, 0, 10);
+	this->uiSpeed = speed;
 }
 
 void MainPage::setTargetDosage(float target_dosage){
+	if (target_dosage == uiTargetDosage)
+		return;
 	char buf[8];
-	controller.setTargetDosage(target_dosage);
-	if (settings.getDosageValue(settings.getSelectedProgram()) > (controller.getTargetDosage() + 0.01f))
-		snprintf(buf, sizeof(buf), "%3.1f)-", controller.getTargetDosage());
-	else if (settings.getDosageValue(settings.getSelectedProgram()) < (controller.getTargetDosage() - 0.01f))
-		snprintf(buf, sizeof(buf), "%3.1f)+", controller.getTargetDosage());
+	if (settings.getDosageValue(settings.getSelectedProgram()) > (target_dosage + 0.01f))
+		snprintf(buf, sizeof(buf), "%3.1f)-", target_dosage);
+	else if (settings.getDosageValue(settings.getSelectedProgram()) < (target_dosage - 0.01f))
+		snprintf(buf, sizeof(buf), "%3.1f)+", target_dosage);
 	else
-		snprintf(buf, sizeof(buf), "%3.1f) ", controller.getTargetDosage());
-	if (controller.getMode() == Controller::AUTO)
-		this->parentWindow->write(buf, 1, 4);
+		snprintf(buf, sizeof(buf), "%3.1f) ", target_dosage);
+	if (dosageController->getMode() == DosageControllerMode::AUTO)
+		this->parentWindow->writeString(buf, 1, 4);
 }
 
-void MainPage::setValveOn(uint8_t valveIndex){
-	if (Valves[valveIndex].getStatus() == Valve::OPEN)
-		this->parentWindow->writeSpecial(rainDropIndex, 3, 5+2*valveIndex);
+void MainPage::setUIValveOn(uint8_t valveIndex){
+	if (!uiValveStates[valveIndex]){
+		this->parentWindow->writeCustomCharacter(customCharIndex::rainDropIndex, 3, 5+2*valveIndex);
+		uiValveStates[valveIndex] = true;
+	}
 }
 
-void MainPage::setValveOff(uint8_t valveIndex){
-	if (Valves[valveIndex].getStatus() == Valve::CLOSED)
-		this->parentWindow->write(" ", 3, 5+2*valveIndex);
+void MainPage::setUIValveOff(uint8_t valveIndex){
+	if (uiValveStates[valveIndex]){
+		this->parentWindow->writeString(" ", 3, 5+2*valveIndex);
+		uiValveStates[valveIndex] = false;
+	}
 }
 
 void MainPage::setSelectedProgram(){
 	char buf[4];
 	snprintf(buf, sizeof(buf), "P%d", settings.getSelectedProgram()+1);
-	this->parentWindow->write(buf, 0, 1);
+	this->parentWindow->writeString(buf, 0, 1);
 }

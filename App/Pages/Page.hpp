@@ -9,6 +9,7 @@
 #include "IPage.hpp"
 #include "IFlash.hpp"
 #include "DosageController.hpp"
+#include "IValveController.hpp"
 #include "ValveController.hpp"
 
 
@@ -34,7 +35,7 @@ class WelcomePage : public IPage {
 class MainPage : public IPage {
 	public:
 		explicit MainPage(IWindow* win, Settings& params, IFlash* Flash, 
-			IDosageController* DosageController, ValveController* ValveController) 
+			IDosageController* DosageController, IValveController* ValveController) 
 			: IPage(win), settings(params), flash(Flash), dosageController(DosageController), valveController(ValveController) {}
 		PageFuncResult render() override;
 		PageFuncResult update() override;
@@ -43,18 +44,21 @@ class MainPage : public IPage {
 		Settings& settings;
 		IFlash* flash;
 		IDosageController* dosageController;
-		ValveController* valveController;
-		float speed = 0;
-		float targetDosage = 0;
-		float dosage = 0;
-		float dosageSum = 0;
-		const uint8_t dosageSampleCount = 20;
+		IValveController* valveController;
+		IGPS* gpsDevice;
 
-		void setSpeed(float speed);
-		void setDosage(float dosage);
+		bool uiValveStates[8] = {false, false, false, false, false, false, false, false};
+		float uiSpeed = 0;
+		float uiDosage = 0;
+		float uiTargetDosage = 0;
+		float dosageSum = 0;
+		const uint8_t dosageSampleCount = 10;
+
+		void setUISpeed(float speed);
+		void setUIDosage(float dosage);
 		void setTargetDosage(float target_dosage);
-		void setValveOn(uint8_t valveIndex);
-		void setValveOff(uint8_t valveIndex);
+		void setUIValveOn(uint8_t valveIndex);
+		void setUIValveOff(uint8_t valveIndex);
 		void setDosageModeAuto();
 		void setDosageModeManual();
 		void setGPSAuto();
