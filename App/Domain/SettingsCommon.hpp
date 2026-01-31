@@ -78,6 +78,7 @@ namespace App::Domain {
         uint8_t  selectedProgram;
         NOZZLE_TYPE  selectedNozzleType[4];
         float    dosageValue[4];
+        float    nozzleValveCount;
     };
 
     /** 
@@ -221,6 +222,14 @@ namespace App::Domain {
              * @brief Set the dosage value for a given index.
              */
             void setDosageValue(float val, uint8_t index) { parameters.dosageValue[index] = val; }
+            /**
+             * @brief Get the nozzle valve count.
+             */
+            float getNozzleValveCount() const { return parameters.nozzleValveCount; }
+            /**
+             * @brief Set the nozzle valve count.
+             */
+            void setNozzleValveCount(float val) { parameters.nozzleValveCount = val; }
     };
 
 } // namespace App::Domain
