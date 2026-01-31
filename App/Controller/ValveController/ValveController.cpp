@@ -2,7 +2,7 @@
 #include "ButtonCommon.hpp"
 #include "ValveCommon.hpp"
 
-using namespace App::Controller::ValveController;
+using namespace App::Controller;
 
 ValveController::ValveController() {
     // Constructor implementation (if needed)
@@ -28,6 +28,10 @@ void ValveController::enable() {
 void ValveController::disable() {
     enabled = false;
     mainValve->close(ValveMode::AUTO);
+}
+
+void ValveController::setNozzleValveCount(uint8_t count) {
+    nozzleValveCount = count > MAX_NOZZLE_VALVES ? MAX_NOZZLE_VALVES : count;
 }
 
 void ValveController::setMode(ValveControllerMode newMode) {

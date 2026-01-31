@@ -5,36 +5,37 @@
 #ifndef APP_CONTROLLER_VALVECONTROLLER_VALVECONTROLLER_HPP_
 #define APP_CONTROLLER_VALVECONTROLLER_VALVECONTROLLER_HPP_
 
-#include "ButtonCommon.hpp"
-#include "ButtonService.hpp"
 #include "ControllerCommon.hpp"
 #include "IButton.hpp"
 #include "IValve.hpp"
-#include "ValveCommon.hpp"
 #include "IGPS.hpp"
+#include "IValveController.hpp"
 
 #define MAX_NOZZLE_VALVES 8
 
 using namespace App::Domain;
 using namespace App::Interfaces;
 
-namespace App::Controller::ValveController {
+namespace App::Controller {
     struct ValveControllerTaskResult {
         bool executed;
         uint32_t nextTickDelayMs;
     };
-    class ValveController : public IButtonEventListener{
+    class ValveController : public IButtonEventListener, public IValveController {
         public:
             ValveController();
             void init(IValve* mainValvePtr, IValve* nozzleValvesArray[], uint8_t nozzleValveCnt);
             void enable();
             void disable();
 
-            void setValveState(uint8_t valveIndex, ValveState state, ValveMode mode);
             void setMode(ValveControllerMode newMode);
-            ValveState getState(uint8_t valveIndex) const;
-            ValveControllerTaskResult task();
+            ValveControllerMode getMode() const override {
+                return mode;
+            }
+            ValveState getValveState(uint8_t valveIndex) const override;
+            void setNozzleValveCount(uint8_t count) override;
 
+            ValveControllerTaskResult task();
             void onButtonEvent(const ButtonQueueEvent& queueEvent) override;
 
         private:
@@ -47,6 +48,6 @@ namespace App::Controller::ValveController {
             IGPS* gps;
     };
 
-} // namespace App::Controller::ValveController
+} // namespace App::Controller
 
 #endif // APP_CONTROLLER_VALVECONTROLLER_VALVECONTROLLER_HPP_
