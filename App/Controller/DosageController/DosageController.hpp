@@ -12,13 +12,9 @@
 #include "IValve.hpp"
 #include "SettingsCommon.hpp"
 
-using namespace App::Interfaces::GPSInterface;
-using namespace App::Interfaces::FlowmeterInterface;
-using namespace App::Interfaces::ValveInterface;
-using namespace App::Domain::SettingsCommon;
-using namespace App::Interfaces::DosageControllerInterface;
-
-namespace App::Controller::DosageController {
+using namespace App::Interfaces;
+using namespace App::Domain;
+namespace App::Controller {
 
 class DosageController : public IDosageController {
 	public:
@@ -42,7 +38,7 @@ class DosageController : public IDosageController {
 	    float calculateDosage();
 };
 
-} // namespace App::Controller::DosageController
+} // namespace App::Controller
 
 #endif // APP_CONTROLLER_DOSAGECONTROLLER_HPP_
 

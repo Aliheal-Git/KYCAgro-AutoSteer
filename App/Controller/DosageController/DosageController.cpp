@@ -11,7 +11,7 @@
 #include "SettingsCommon.hpp"
 #include "stm32g0xx_hal.h"
 
-using namespace App::Controller::DosageController;
+using namespace App::Controller;
 
 uint32_t clasttime = 0;
 uint32_t cinterval = 0;

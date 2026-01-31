@@ -9,8 +9,8 @@
 #include "IValve.hpp"
 #include "ValveCommon.hpp"
 
-using namespace App::Domain::ControllerCommon;
-using namespace App::Interfaces::ValveInterface;
+using namespace App::Domain;
+using namespace App::Interfaces;
 
 namespace App::Controller::ValveController {
 
