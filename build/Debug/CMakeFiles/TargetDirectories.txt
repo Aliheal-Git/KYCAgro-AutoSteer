@@ -1,8 +1,0 @@
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/CMakeFiles/KYC.dir
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/CMakeFiles/doxygen.dir
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/CMakeFiles/edit_cache.dir
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/CMakeFiles/rebuild_cache.dir
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/cmake/stm32cubemx/CMakeFiles/STM32_Drivers.dir
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/cmake/stm32cubemx/CMakeFiles/FreeRTOS.dir
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
-C:/Users/Aliheal/Desktop/KYCAgro-AutoSteer/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir

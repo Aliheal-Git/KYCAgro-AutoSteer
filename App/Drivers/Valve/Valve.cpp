@@ -7,7 +7,7 @@ using namespace App::Domain::ValveCommon;
 
 Valve::Valve(GPIO_TypeDef* OpenPort, uint16_t OpenPin, GPIO_TypeDef* ClosePort, uint16_t ClosePin)
     : openPort(OpenPort), openPin(OpenPin), closePort(ClosePort), closePin(ClosePin),
-      autoStatus(ValveStatus::CLOSED), manualStatus(ValveStatus::CLOSED), currentMode(ValveMode::AUTO) {
+      autoStatus(ValveState::CLOSED), manualStatus(ValveState::CLOSED), currentMode(ValveMode::AUTO) {
     // Initialize GPIO pins
     HAL_GPIO_WritePin(openPort, openPin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(closePort, closePin, GPIO_PIN_RESET);
@@ -20,7 +20,7 @@ Valve::~Valve() {
 }
 
 void Valve::open(ValveMode mode) {
-    currentMode == ValveMode::AUTO ? autoStatus = ValveStatus::OPEN : manualStatus = ValveStatus::OPEN;
+    currentMode == ValveMode::AUTO ? autoStatus = ValveState::OPEN : manualStatus = ValveState::OPEN;
     if (currentMode == mode){
         HAL_GPIO_WritePin(openPort, openPin, GPIO_PIN_SET);
         HAL_GPIO_WritePin(closePort, closePin, GPIO_PIN_RESET);
@@ -28,7 +28,7 @@ void Valve::open(ValveMode mode) {
 }
 
 void Valve::close(ValveMode mode) {
-    mode == ValveMode::AUTO ? autoStatus = ValveStatus::CLOSED : manualStatus = ValveStatus::CLOSED;
+    mode == ValveMode::AUTO ? autoStatus = ValveState::CLOSED : manualStatus = ValveState::CLOSED;
     if (currentMode == mode){
         HAL_GPIO_WritePin(openPort, openPin, GPIO_PIN_RESET);
         HAL_GPIO_WritePin(closePort, closePin, GPIO_PIN_SET);
@@ -38,13 +38,13 @@ void Valve::close(ValveMode mode) {
 void Valve::setMode(ValveMode mode) {
     currentMode = mode;
     if (currentMode == ValveMode::AUTO) {
-        if (autoStatus == ValveStatus::OPEN) {
+        if (autoStatus == ValveState::OPEN) {
             open(currentMode);
         } else {
             close(currentMode);
         }
     } else {
-        if (manualStatus == ValveStatus::OPEN) {
+        if (manualStatus == ValveState::OPEN) {
             open(currentMode);
         } else {
             close(currentMode);
@@ -56,7 +56,7 @@ ValveMode Valve::getMode() const {
     return currentMode;
 }
 
-ValveStatus Valve::getStatus() const {
+ValveState Valve::getStatus() const {
     return (currentMode == ValveMode::AUTO) ? autoStatus : manualStatus;
 }
 

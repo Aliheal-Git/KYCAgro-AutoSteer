@@ -1,4 +1,5 @@
 #include "Flash.hpp"
+#include "stm32g0xx_hal.h"
 #include "stm32g0xx_hal_flash.h"
 #include <cstdint>
 

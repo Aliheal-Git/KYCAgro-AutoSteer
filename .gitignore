@@ -1,0 +1,19 @@
+# 1️⃣ Ignore EVERYTHING
+*
+
+# 2️⃣ Allow directories (needed so Git can descend)
+!App/
+!App/**
+!Docs/
+!Docs/**
+!.vscode/
+!.vscode/**
+!.settings/
+!.settings/**
+
+# 3️⃣ Allow specific files
+!KYC.ioc
+!CMakeLists.txt
+!README.md
+!.gitignore
+!.clangd

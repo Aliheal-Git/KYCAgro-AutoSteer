@@ -10,7 +10,7 @@ namespace App::Domain::ValveCommon {
         AUTO,
         MANUAL
     };
-    enum class ValveStatus : bool {
+    enum class ValveState : bool {
         OPEN = true,
         CLOSED = false
     };

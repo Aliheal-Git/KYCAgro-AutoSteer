@@ -16,6 +16,9 @@
 
 #include "cmsis_os.h"
 
+using namespace App::Drivers::ButtonDriver;
+using namespace App::Interfaces::ButtonInterface;
+
 namespace App::Services::ButtonService {
     
 /**

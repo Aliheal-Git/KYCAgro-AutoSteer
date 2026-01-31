@@ -16,7 +16,7 @@ public:
     ~Valve();
     void setMode(ValveMode mode) override;
     ValveMode getMode() const override;
-    ValveStatus getStatus() const override;
+    ValveState getStatus() const override;
     void open(ValveMode mode) override;
     void close(ValveMode mode) override;
     void setDutyCycle(float dutyCycle) override {}; // Not applicable for on/off valves
@@ -28,8 +28,8 @@ private:
     GPIO_TypeDef* closePort;
     uint16_t closePin;
 
-        ValveStatus autoStatus = ValveStatus::CLOSED;
-    ValveStatus manualStatus = ValveStatus::CLOSED;
+    ValveState autoStatus = ValveState::CLOSED;
+    ValveState manualStatus = ValveState::CLOSED;
     ValveMode currentMode = ValveMode::MANUAL;
 
 };
@@ -41,7 +41,7 @@ class ProportionalValve : public IValve {
 
         ValveMode getMode() const override { return ValveMode::AUTO; }; // Proportional valves are always in AUTO mode
         void setMode(ValveMode mode) override {};
-        ValveStatus getStatus() const override { return (dutyCycle > 0.01f) ? ValveStatus::OPEN : ValveStatus::CLOSED; };
+        ValveState getStatus() const override { return (dutyCycle > 0.01f) ? ValveState::OPEN : ValveState::CLOSED; };
         void open(ValveMode mode) override {};
         void close(ValveMode mode) override {};
         void setDutyCycle(float dutyCycle) override; // -1.0 to 1.0

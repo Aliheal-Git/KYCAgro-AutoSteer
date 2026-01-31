@@ -41,7 +41,7 @@ class IValve {
          * @brief Get the current status of the valve.
          * @return The current status.
          */
-        virtual ValveStatus getStatus() const = 0;
+        virtual ValveState getStatus() const = 0;
         /**
          * @brief Set the duty cycle for proportional valves.
          * @param dutyCycle The duty cycle to set (-1.0 to 1.0).

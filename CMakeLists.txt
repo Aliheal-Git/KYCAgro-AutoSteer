@@ -88,7 +88,8 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Drivers/Micros
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Drivers/Valve
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Drivers/Window
-    ${CMAKE_CURRENT_SOURCE_DIR}/App/Controller
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/Controller/DosageController
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/Controller/ValveController
     ${CMAKE_CURRENT_SOURCE_DIR}/App/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Page
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Services
