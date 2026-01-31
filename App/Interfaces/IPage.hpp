@@ -9,10 +9,10 @@
 #include "ButtonCommon.hpp"
 #include <sys/types.h>
 
-using namespace App::Interfaces::WindowInterface;
-using namespace App::Domain::ButtonCommon;
+using namespace App::Interfaces;
+using namespace App::Domain;
 
-namespace App::Interfaces::PageInterface {
+namespace App::Interfaces {
     enum class PageNavRequest : uint8_t {
         NONE = 0,
         HOME = 1,
@@ -39,6 +39,6 @@ namespace App::Interfaces::PageInterface {
             uint8_t renderStep = 0;
             uint8_t taskStep = 0;
     };
-}
+}   // namespace App::Interfaces
 
 #endif // APP_INTERFACES_IPAGE_HPP_

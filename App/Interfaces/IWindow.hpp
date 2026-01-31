@@ -7,9 +7,9 @@
 
 #include "WindowCommon.hpp"
 
-using namespace App::Domain::WindowCommon;
+using namespace App::Domain;
 
-namespace App::Interfaces::WindowInterface {
+namespace App::Interfaces {
 
 /**
  * @brief Interface for window display operations.
@@ -70,5 +70,5 @@ class IWindow {
         virtual ~IWindow() = default;
 };
 
-} // namespace App::Interfaces::WindowInterface
+} // namespace App::Interfaces
 #endif // APP_INTERFACES_IWINDOW_HPP_

@@ -7,7 +7,7 @@
 
 #include "IValve.hpp"
 
-namespace App::Interfaces::ValveControllerInterface {
+namespace App::Interfaces {
 
     class IValveController {
         public:
@@ -20,6 +20,6 @@ namespace App::Interfaces::ValveControllerInterface {
             virtual void setValveState(uint8_t valveIndex, ValveState state) = 0;
     };
 
-} // namespace App::Interfaces::ValveControllerInterface
+} // namespace App::Interfaces
 
 #endif // APP_INTERFACES_IVALVECONTOLLER_HPP_

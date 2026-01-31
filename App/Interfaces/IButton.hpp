@@ -7,9 +7,9 @@
 
 #include "ButtonCommon.hpp"
 
-using namespace App::Domain::ButtonCommon;
+using namespace App::Domain;
 
-namespace App::Interfaces::ButtonInterface {    
+namespace App::Interfaces {    
 
 /**
  * @brief Interface for classes that listen to button events.
@@ -37,6 +37,6 @@ public:
     virtual void postButtonEvent(const ButtonQueueEvent& queueEvent) = 0;
 };
 
-} // namespace App::Interfaces::ButtonInterface
+} // namespace App::Interfaces
 
 #endif // APP_INTERFACES_IBUTTONEVENTLISTENER_HPP_

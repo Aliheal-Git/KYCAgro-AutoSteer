@@ -7,9 +7,9 @@
 
 #include "ValveCommon.hpp"
 
-using namespace App::Domain::ValveCommon;
+using namespace App::Domain;
 
-namespace App::Interfaces::ValveInterface {
+namespace App::Interfaces {
     
 /**
     * @brief Interface for Valve operations.
@@ -49,6 +49,6 @@ class IValve {
         virtual void setDutyCycle(float dutyCycle) = 0;
 };
 
-} // namespace App::Interfaces::ValveInterface
+} // namespace App::Interfaces
 
 #endif // APP_INTERFACES_IVALVE_HPP_

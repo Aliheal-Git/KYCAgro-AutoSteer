@@ -5,7 +5,7 @@
 #ifndef APP_INTERFACES_IFLOWMETER_HPP_
 #define APP_INTERFACES_IFLOWMETER_HPP_
 
-namespace App::Interfaces::FlowmeterInterface {
+namespace App::Interfaces {
 
 /**
  * @brief Interface for flowmeter operations.

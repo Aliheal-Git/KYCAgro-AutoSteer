@@ -7,7 +7,7 @@
 
 #include <cstdint>
 
-namespace App::Interfaces::GPSInterface {
+namespace App::Interfaces {
 
 class IGPS {
     public:
@@ -16,6 +16,6 @@ class IGPS {
         virtual bool getValveStatus(uint8_t valveIndex) const = 0;
 };
 
-} // namespace App::Interfaces::GPSInterface
+} // namespace App::Interfaces
 
 #endif // APP_INTERFACES_IGPS_HPP_

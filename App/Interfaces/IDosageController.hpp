@@ -5,7 +5,7 @@
 #ifndef APP_INTERFACES_IDOSAGECONTROLLER_HPP_
 #define APP_INTERFACES_IDOSAGECONTROLLER_HPP_
 
-namespace App::Interfaces::DosageControllerInterface {
+namespace App::Interfaces {
     struct DosageControllerTaskResult {
         bool success;
         uint32_t delayMs;
@@ -21,6 +21,6 @@ namespace App::Interfaces::DosageControllerInterface {
             virtual float getTargetDosage() const = 0;
     };
 
-} // namespace App::Interfaces::DosageControllerInterface
+} // namespace App::Interfaces
 
 #endif // APP_INTERFACES_IDOSAGECONTROLLER_HPP_

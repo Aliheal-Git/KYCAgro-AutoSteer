@@ -7,7 +7,7 @@
 
 #include <cstdint>
 
-namespace App::Interfaces::FlashInterface {
+namespace App::Interfaces {
 
 /**
  * @brief Interface for flash memory operations.
@@ -48,6 +48,6 @@ public:
     virtual ~IFlash() = default;
 };
 
-} // namespace App::Interfaces::FlashInterface
+} // namespace App::Interfaces
 
 #endif // APP_INTERFACES_IFLASH_HPP_
