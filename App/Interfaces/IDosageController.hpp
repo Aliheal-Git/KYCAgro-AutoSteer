@@ -6,6 +6,9 @@
 #define APP_INTERFACES_IDOSAGECONTROLLER_HPP_
 
 #include <cstdint>
+#include "ControllerCommon.hpp"
+
+using namespace App::Domain;
 
 namespace App::Interfaces {
     struct DosageControllerTaskResult {
@@ -19,8 +22,9 @@ namespace App::Interfaces {
             virtual void enable() = 0;
             virtual void disable() = 0;
             virtual DosageControllerTaskResult tick() = 0;
-            virtual void setTargetDosage(float dosage) = 0;
             virtual float getTargetDosage() const = 0;
+            virtual float getDosage() const = 0;
+            virtual DosageControllerMode getMode() const = 0;
     };
 
 } // namespace App::Interfaces

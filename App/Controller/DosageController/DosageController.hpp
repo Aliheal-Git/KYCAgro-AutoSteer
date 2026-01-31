@@ -11,20 +11,27 @@
 #include "IFlowmeter.hpp"
 #include "IValve.hpp"
 #include "SettingsCommon.hpp"
+#include "IButton.hpp"
 
 using namespace App::Interfaces;
 using namespace App::Domain;
 namespace App::Controller {
 
-class DosageController : public IDosageController {
+class DosageController : public IDosageController, public IButtonEventListener {
 	public:
 		DosageController(float P, float I, float D, Settings* Settings, IGPS* gpsDevice, IFlowmeter* flowmeterDevice, IValve* propValveDevice);
 		void init();
 		DosageControllerTaskResult tick() override;
 		void enable() override;
 		void disable() override;
-		void setTargetDosage(float dosage) override;
+		void setTargetDosage(float dosage);
+		
 		float getTargetDosage() const override { return targetDosage; }
+		float getDosage() const override { return currentDosage; }
+		DosageControllerMode getMode() const override {
+		    return mode;
+		}
+		void onButtonEvent(const ButtonQueueEvent& queueEvent) override;
 	private: 
 		PIDController<float> pidController;
 		Settings* settings;
@@ -34,6 +41,7 @@ class DosageController : public IDosageController {
 		float currentDosage = 0;
 		float targetDosage = 0;
 		bool enabled = false;
+		DosageControllerMode mode = DosageControllerMode::MANUAL;
 
 	    float calculateDosage();
 };
