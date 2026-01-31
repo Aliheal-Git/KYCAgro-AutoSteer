@@ -6,8 +6,8 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-using namespace App::Drivers::ButtonDriver;
-using namespace App::Services::ButtonService;
+using namespace App::Drivers;
+using namespace App::Services;
 /**
  * @brief Constructor for ButtonService class.
  * @details Initializes the button service, creates the button event queue, and starts the button event handler task.

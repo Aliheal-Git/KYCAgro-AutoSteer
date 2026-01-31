@@ -16,10 +16,10 @@
 
 #include "cmsis_os.h"
 
-using namespace App::Drivers::ButtonDriver;
-using namespace App::Interfaces::ButtonInterface;
+using namespace App::Drivers;
+using namespace App::Interfaces;
 
-namespace App::Services::ButtonService {
+namespace App::Services {
     
 /**
  * @brief ButtonService class handles button initialization and button events.
