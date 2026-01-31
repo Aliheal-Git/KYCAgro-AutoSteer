@@ -1,23 +1,19 @@
-/*
- * app.h
- *
- *  Created on: Aug 24, 2025
- *      Author: alica
- */
+// File: app.h
+// Path: App\inc\app.h
+// Created by Alican on 2026-01-31
 
-#ifndef INC_APP_H_
-#define INC_APP_H_
+#ifndef APP_INC_APP_H_
+#define APP_INC_APP_H_
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void app_init(void);
+void app_init();
 
 #ifdef __cplusplus
 }
 #endif
 
 
-
-#endif /* INC_APP_H_ */
+#endif // APP_INC_APP_H_
