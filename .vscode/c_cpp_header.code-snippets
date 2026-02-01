@@ -1,0 +1,18 @@
+{
+  "C/C++ header file (full-path guard)": {
+    "scope": "c,cpp,cppc",
+    "prefix": "hguard",
+    "body": [
+      "// File: ${TM_FILENAME}",
+      "// Path: ${RELATIVE_FILEPATH}",
+      "// Created by Alican on ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      "",
+      "#ifndef ${RELATIVE_FILEPATH/([^\\\\.]+)[\\\\.]?/${1:/upcase}_/g}",
+      "#define ${RELATIVE_FILEPATH/([^\\\\.]+)[\\\\.]?/${1:/upcase}_/g}",
+      "",
+      "",
+      "#endif // ${RELATIVE_FILEPATH/([^\\\\.]+)[\\\\.]?/${1:/upcase}_/g}"
+    ],
+    "description": "Insert header comment and header guard made from the workspace-relative file path (non-alphanumerics -> '_', then uppercased). If this transform isn't supported by your VS Code, use the 'hguard_simple' fallback."
+  }
+}
