@@ -1,8 +1,9 @@
 #include "Page.hpp"
-#include "WindowCommon.hpp"
+
 #include <cstdint>
 
-using namespace App::Domain::WindowCommon;
+using namespace App::Domain;
+using namespace App::Pages;
 
 PageFuncResult WelcomePage::render(){
 	constexpr uint8_t iterationCount = 8;

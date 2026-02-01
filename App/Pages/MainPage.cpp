@@ -1,14 +1,10 @@
-
-#include "ControllerCommon.hpp"
 #include "Page.hpp"
-#include "ValveCommon.hpp"
-#include "WindowCommon.hpp"
-#include "SettingsCommon.hpp"
 
 #include <cstdint>
 #include <cstdio>
 
 using namespace App::Domain;
+using namespace App::Pages;
 
 PageFuncResult MainPage::update(){
 	setUISpeed(gpsDevice->getSpeed());
