@@ -10,6 +10,11 @@
 
 namespace App::Domain {
 
+    #define FLASH_PAGE_SIZE                 0x00000800U
+    #define FLASH_BASE            (0x08000000UL)
+    #define FLASHPAGE 62
+    #define SETTINGSBANKADRES ((FLASH_BASE) + (FLASHPAGE)*FLASH_PAGE_SIZE)
+
     /**
      * @brief Enumeration for speed source options.
      * GPS: Speed is obtained from GPS data.
