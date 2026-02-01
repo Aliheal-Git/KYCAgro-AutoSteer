@@ -6,11 +6,11 @@
 #define APP_PAGES_PAGE_HPP_
 
 #include "IDosageController.hpp"
+#include "IFlowmeter.hpp"
 #include "IPage.hpp"
 #include "IFlash.hpp"
-#include "DosageController.hpp"
 #include "IValveController.hpp"
-#include "ValveController.hpp"
+#include "IGPS.hpp"
 
 
 #include "IWindow.hpp"
@@ -19,6 +19,8 @@
 
 using namespace App::Interfaces;
 using namespace App::Domain;
+
+namespace App::Pages {
 
 class WelcomePage : public IPage {
 	public:
@@ -72,12 +74,16 @@ class MainPage : public IPage {
 
 class SettingsPage : public IPage {
 	public:
-		SettingsPage(IWindow* win) : IPage(win) {}
+		SettingsPage(IWindow* win, Settings* settings, IFlowmeter* flowmeter, IFlash* flash) 
+			: IPage(win), settings(settings), flowmeter(flowmeter), flash(flash) {}
 
-		void render() override;
-		void handleButtonInput(ButtonQueueEvent event) override;
+		PageFuncResult render() override;
+		PageFuncResult handleButtonInput(ButtonQueueEvent event) override;
 
 	private:
+		Settings* settings;
+		IFlowmeter* flowmeter;
+		IFlash* flash;
 		uint8_t selectedItem = 0;
 		uint8_t rollOverCount = 0;
 		bool inSubMenu = false;
@@ -108,11 +114,13 @@ class SettingsPage : public IPage {
 
 class ProgramsPage : public IPage {
 	public:
-		ProgramsPage(IWindow* win) : IPage(win) {}
+		ProgramsPage(IWindow* win, Settings* settings, IFlash* flash) : IPage(win), settings(settings), flash(flash) {}
 
-		void render() override;
-		void handleButtonInput(ButtonQueueEvent event) override;
+		PageFuncResult render() override;
+		PageFuncResult handleButtonInput(ButtonQueueEvent event) override;
 	private:
+		Settings* settings;
+		IFlash* flash;
 		bool inSubMenu = false;
 		uint8_t selectedItem = 0;
 		uint8_t itemCount = 3;
@@ -125,18 +133,19 @@ class ProgramsPage : public IPage {
 		void subMenuPlus();
 };
 
-
 class InformationPage : public IPage {
 		public:
-		InformationPage(IWindow* win) : IPage(win) {}
+		InformationPage(IWindow* win, IFlowmeter* flowmeter) : IPage(win), flowmeter(flowmeter) {}
 
-		void render() override;
-		void handleButtonInput(ButtonQueueEvent event) override;
+		PageFuncResult render() override;
+		PageFuncResult handleButtonInput(ButtonQueueEvent event) override;
+		PageFuncResult update(void) override;
 	private:
-		bool task(void) override;
 		void updateCapacity();
 		void updateFlow();
+        IFlowmeter* flowmeter;
 };
 
+} // namespace App::Pages
 #endif // APP_PAGES_PAGE_HPP_
 
