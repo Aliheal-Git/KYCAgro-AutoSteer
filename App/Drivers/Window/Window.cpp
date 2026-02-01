@@ -143,3 +143,10 @@ void Window::writeString(const char* str, uint8_t row, uint8_t column){
 		sendData(static_cast<uint8_t>(*str++));
 	}
 }
+
+uint8_t Window::getColumnCount() const {
+	return columnCount;
+}
+uint8_t Window::getRowCount() const {
+	return rowCount;
+}
