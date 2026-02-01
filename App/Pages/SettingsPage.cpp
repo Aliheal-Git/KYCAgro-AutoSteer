@@ -1,39 +1,29 @@
-/*
- * SettingsPage.cpp
- *
- *  Created on: Sep 20, 2025
- *      Author: alica
- */
-
-#include "ButtonsGlobal.h"
 #include "Page.hpp"
-#include "Window.hpp"
-#include "Settings.hpp"
-#include "Flowmeter.hpp"
 
-#include "cmsis_os.h"
-#include "customchars.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdio>
 
-void SettingsPage::render() {
+using namespace App::Pages;
+
+PageFuncResult SettingsPage::render() {
     // Render the settings page UI
     parentWindow->hideWindow();
     parentWindow->clearWindow();
-    parentWindow->write(items[rollOverCount*maxVisibleItems], 0, 1);
-    parentWindow->write(items[rollOverCount*maxVisibleItems + 1], 1, 1);
-    parentWindow->write(items[rollOverCount*maxVisibleItems + 2], 2, 1); 
-    parentWindow->write(items[rollOverCount*maxVisibleItems + 3], 3, 1);
-    parentWindow->writeSpecial(customCharIndex::leftTriangleIndex, selectedItem%4, 0);
+    parentWindow->writeString(items[rollOverCount*maxVisibleItems], 0, 1);
+    parentWindow->writeString(items[rollOverCount*maxVisibleItems + 1], 1, 1);
+    parentWindow->writeString(items[rollOverCount*maxVisibleItems + 2], 2, 1); 
+    parentWindow->writeString(items[rollOverCount*maxVisibleItems + 3], 3, 1);
+    parentWindow->writeCustomCharacter(customCharIndex::leftTriangleIndex, selectedItem%4, 0);
     parentWindow->showWindow();
+    return PageFuncResult{PageNavRequest::NONE, 0};
 }
 
 void SettingsPage::updateSelectionIndicatorUp() {
     if (selectedItem <= 0) {
         return; // Out of bounds
     }
-    parentWindow->write(" ", selectedItem%maxVisibleItems, 0); // Clear previous indicator
+    parentWindow->writeString(" ", selectedItem%maxVisibleItems, 0); // Clear previous indicator
     selectedItem--;
     uint8_t temp = selectedItem / maxVisibleItems;
     if (rollOverCount != temp) {
@@ -41,14 +31,14 @@ void SettingsPage::updateSelectionIndicatorUp() {
         render(); // Re-render the page if we rolled over
         return;
     }
-    parentWindow->writeSpecial(customCharIndex::leftTriangleIndex, selectedItem%maxVisibleItems, 0);
+    parentWindow->writeCustomCharacter(customCharIndex::leftTriangleIndex, selectedItem%maxVisibleItems, 0);
 }
 
 void SettingsPage::updateSelectionIndicatorDown() {
     if (selectedItem == (itemCount-1)) {
         return; // Out of bounds
     }
-    parentWindow->write(" ", selectedItem%maxVisibleItems, 0); // Clear previous indicator
+    parentWindow->writeString(" ", selectedItem%maxVisibleItems, 0); // Clear previous indicator
     selectedItem++;
     uint8_t temp = selectedItem / maxVisibleItems;
     if (rollOverCount != temp) {
@@ -57,78 +47,78 @@ void SettingsPage::updateSelectionIndicatorDown() {
         return;
     }
     rollOverCount = selectedItem / maxVisibleItems;
-    parentWindow->writeSpecial(customCharIndex::leftTriangleIndex, selectedItem%maxVisibleItems, 0);
+    parentWindow->writeCustomCharacter(customCharIndex::leftTriangleIndex, selectedItem%maxVisibleItems, 0);
 }
 
 void SettingsPage::enterSetting() {
     // Logic to enter the selected setting
     parentWindow->hideWindow();
     parentWindow->clearWindow();
-    parentWindow->write(items[selectedItem], 1, (parentWindow->maxColumn-strlen(items[selectedItem]))/2);
+    parentWindow->writeString(items[selectedItem], 1, (parentWindow->getColumnCount()-strlen(items[selectedItem]))/2);
 
     switch (selectedItem) {
         char buf[20];
         case 0:
             // Enter setting 1
-            parentWindow->write("Turkce", 2, 2);
-            parentWindow->write("English", 2, 11);
+            parentWindow->writeString("Turkce", 2, 2);
+            parentWindow->writeString("English", 2, 11);
             break;
         case 1:
             // Enter setting 2
-        	parentWindow->write("<", 2, 8);
-        	snprintf(buf, sizeof(buf), "%d>", settings.getNozzleCount());
-        	parentWindow->write(buf, 2, 9);
+        	parentWindow->writeString("<", 2, 8);
+        	snprintf(buf, sizeof(buf), "%d>", settings->getNozzleCount());
+        	parentWindow->writeString(buf, 2, 9);
             break;
         case 2:
             // Enter setting 3
-            parentWindow->write("<", 2, 6);
-        	snprintf(buf, sizeof(buf), "%.1f> cm", settings.getNozzleDistance());
-        	parentWindow->write(buf, 2, 7);
+            parentWindow->writeString("<", 2, 6);
+        	snprintf(buf, sizeof(buf), "%.1f> cm", settings->getNozzleDistance());
+        	parentWindow->writeString(buf, 2, 7);
             break;
         case 3:
             // Enter setting 4
-            parentWindow->write("<", 2, 8);
-        	snprintf(buf, sizeof(buf), "%d>", settings.getFlowMeterCoefficient());
-        	parentWindow->write(buf, 2, 9);
+            parentWindow->writeString("<", 2, 8);
+        	snprintf(buf, sizeof(buf), "%d>", settings->getFlowMeterCoefficient());
+        	parentWindow->writeString(buf, 2, 9);
             break;
         case 4:
             // Enter setting 5
-            parentWindow->write("<", 2, 5);
-        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings.getMinDosage());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("<", 2, 5);
+        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings->getMinDosage());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         case 5:
             // Enter setting 6
-            parentWindow->write("<", 2, 5);
-        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings.getMaxDosage());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("<", 2, 5);
+        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings->getMaxDosage());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         case 6:
             // Enter setting 7
-            parentWindow->write("<", 2, 7);
-        	snprintf(buf, sizeof(buf), "%%%.1f>", settings.getMaxDosageVariationPercent());
-        	parentWindow->write(buf, 2, 8);
+            parentWindow->writeString("<", 2, 7);
+        	snprintf(buf, sizeof(buf), "%%%.1f>", settings->getMaxDosageVariationPercent());
+        	parentWindow->writeString(buf, 2, 8);
             break;
         case 7:
             // Enter setting 8
-            parentWindow->write("<", 2, 7);
-        	snprintf(buf, sizeof(buf), "%.1f> L", settings.getTankCapacity());
-        	parentWindow->write(buf, 2, 8);
+            parentWindow->writeString("<", 2, 7);
+        	snprintf(buf, sizeof(buf), "%.1f> L", settings->getTankCapacity());
+        	parentWindow->writeString(buf, 2, 8);
             break;
         case 8:
             // Enter setting 9
-            if(settings.getSpeedSource() == Settings::GPS)
-                parentWindow->write(">", 2, 2);
+            if(settings->getSpeedSource() == SPEED_SOURCE::GPS)
+                parentWindow->writeString(">", 2, 2);
             else
-                parentWindow->write(">", 2, 8);;
-            parentWindow->write("GPS", 2, 3);
-        	parentWindow->write("SIMULASYON", 2, 9);
+                parentWindow->writeString(">", 2, 8);;
+            parentWindow->writeString("GPS", 2, 3);
+        	parentWindow->writeString("SIMULASYON", 2, 9);
             break;
         case 9:
             // Enter setting 10
-            parentWindow->write("<", 2, 5);
-        	snprintf(buf, sizeof(buf), "%.1f km/h>", settings.getSimulationSpeed());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("<", 2, 5);
+        	snprintf(buf, sizeof(buf), "%.1f km/h>", settings->getSimulationSpeed());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         default:
             break;
@@ -137,7 +127,7 @@ void SettingsPage::enterSetting() {
 }
 
 
-void SettingsPage::handleButtonInput(ButtonQueueEvent event) {
+PageFuncResult SettingsPage::handleButtonInput(ButtonQueueEvent event) {
     // Handle button inputs specific to the settings page
     switch (event.buttonType) {
         case ButtonType::MENU:
@@ -148,7 +138,7 @@ void SettingsPage::handleButtonInput(ButtonQueueEvent event) {
                     if (inSubMenu) {
                         inSubMenu = false;
                         render();
-                        return;
+                        return PageFuncResult{PageNavRequest::NONE, 0};
                     }
                     inSubMenu = true;
                     enterSetting();
@@ -158,8 +148,8 @@ void SettingsPage::handleButtonInput(ButtonQueueEvent event) {
                     if (!inSubMenu){
                         selectedItem = 0;
                         rollOverCount = 0;
-                        settings.writePageFlash();
-                        parentWindow->prevPage();
+                        flash->writeData(SETTINGSBANKADRES, settings->getRawData(), sizeof(SettingsParameters));
+                        return PageFuncResult{PageNavRequest::MAIN, 0};
                     }
                     break;
                 default:
@@ -211,6 +201,7 @@ void SettingsPage::handleButtonInput(ButtonQueueEvent event) {
         default:
             break;
     }
+    return PageFuncResult{PageNavRequest::NONE, 0};
 }
 
 void SettingsPage::subMenuMinus(){
@@ -218,78 +209,78 @@ void SettingsPage::subMenuMinus(){
         char buf[20];
         case 0:
             // Enter setting 1
-            parentWindow->write("Turkce", 2, 2);
-            parentWindow->write("English", 2, 11);
+            parentWindow->writeString("Turkce", 2, 2);
+            parentWindow->writeString("English", 2, 11);
             break;
         case 1:
             // Enter setting 2
-            parentWindow->write("         ",  2, 8);
-            parentWindow->write("<", 2, 8);
-            settings.setNozzleCount(settings.getNozzleCount()-1);
-        	snprintf(buf, sizeof(buf), "%d>", settings.getNozzleCount());
-        	parentWindow->write(buf, 2, 9);
+            parentWindow->writeString("         ",  2, 8);
+            parentWindow->writeString("<", 2, 8);
+            settings->setNozzleCount(settings->getNozzleCount()-1);
+        	snprintf(buf, sizeof(buf), "%d>", settings->getNozzleCount());
+        	parentWindow->writeString(buf, 2, 9);
             break;
         case 2:
             // Enter setting 3
-            parentWindow->write("         ",  2, 6);
-            parentWindow->write("<", 2, 6);
-            settings.setNozzleDistance(settings.getNozzleDistance()-0.1f);
-        	snprintf(buf, sizeof(buf), "%.1f> cm", settings.getNozzleDistance());
-        	parentWindow->write(buf, 2, 7);
+            parentWindow->writeString("         ",  2, 6);
+            parentWindow->writeString("<", 2, 6);
+            settings->setNozzleDistance(settings->getNozzleDistance()-0.1f);
+        	snprintf(buf, sizeof(buf), "%.1f> cm", settings->getNozzleDistance());
+        	parentWindow->writeString(buf, 2, 7);
             break;
         case 3:
             // Enter setting 4
-            parentWindow->write("         ",  2, 8);
-            parentWindow->write("<", 2, 8);
-            settings.setFlowMeterCoefficient(settings.getFlowMeterCoefficient()-1);
-        	snprintf(buf, sizeof(buf), "%d>", settings.getFlowMeterCoefficient());
-        	parentWindow->write(buf, 2, 9);
+            parentWindow->writeString("         ",  2, 8);
+            parentWindow->writeString("<", 2, 8);
+            settings->setFlowMeterCoefficient(settings->getFlowMeterCoefficient()-1);
+        	snprintf(buf, sizeof(buf), "%d>", settings->getFlowMeterCoefficient());
+        	parentWindow->writeString(buf, 2, 9);
             break;
         case 4:
             // Enter setting 5
-            parentWindow->write("           ",  2, 5);
-            parentWindow->write("<", 2, 5);
-            settings.setMinDosage(settings.getMinDosage()-0.1);
-        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings.getMinDosage());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("           ",  2, 5);
+            parentWindow->writeString("<", 2, 5);
+            settings->setMinDosage(settings->getMinDosage()-0.1);
+        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings->getMinDosage());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         case 5:
             // Enter setting 6
-            parentWindow->write("           ",  2, 5);
-            parentWindow->write("<", 2, 5);
-            settings.setMaxDosage(settings.getMaxDosage()-0.1);
-        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings.getMaxDosage());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("           ",  2, 5);
+            parentWindow->writeString("<", 2, 5);
+            settings->setMaxDosage(settings->getMaxDosage()-0.1);
+        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings->getMaxDosage());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         case 6:
             // Enter setting 7
-            parentWindow->write("         ",  2, 7);
-            parentWindow->write("<", 2, 7);
-            settings.setMaxDosageVariationPercent(settings.getMaxDosageVariationPercent()-10.0);
-        	snprintf(buf, sizeof(buf), "%%%.1f>", settings.getMaxDosageVariationPercent());
-        	parentWindow->write(buf, 2, 8);
+            parentWindow->writeString("         ",  2, 7);
+            parentWindow->writeString("<", 2, 7);
+            settings->setMaxDosageVariationPercent(settings->getMaxDosageVariationPercent()-10.0);
+        	snprintf(buf, sizeof(buf), "%%%.1f>", settings->getMaxDosageVariationPercent());
+        	parentWindow->writeString(buf, 2, 8);
             break;
         case 7:
             // Enter setting 8
-            parentWindow->write("         ",  2, 7);
-            parentWindow->write("<", 2, 7);
-            settings.setTankCapacity(settings.getTankCapacity()-100.0);
-        	snprintf(buf, sizeof(buf), "%.1f> L", settings.getTankCapacity());
-        	parentWindow->write(buf, 2, 8);
+            parentWindow->writeString("         ",  2, 7);
+            parentWindow->writeString("<", 2, 7);
+            settings->setTankCapacity(settings->getTankCapacity()-100.0);
+        	snprintf(buf, sizeof(buf), "%.1f> L", settings->getTankCapacity());
+        	parentWindow->writeString(buf, 2, 8);
             break;
         case 8:
             // Enter setting 9
-            parentWindow->write(" ", 2, 8);
-            parentWindow->write(">", 2, 2);
-            settings.setSpeedSource(Settings::GPS);
+            parentWindow->writeString(" ", 2, 8);
+            parentWindow->writeString(">", 2, 2);
+            settings->setSpeedSource(SPEED_SOURCE::GPS);
             break;
         case 9:
             // Enter setting 10
-            parentWindow->write("         ",  2, 5);
-            parentWindow->write("<", 2, 5);
-            settings.setSimulationSpeed(settings.getSimulationSpeed()-0.1);
-        	snprintf(buf, sizeof(buf), "%.1f km/h>", settings.getSimulationSpeed());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("         ",  2, 5);
+            parentWindow->writeString("<", 2, 5);
+            settings->setSimulationSpeed(settings->getSimulationSpeed()-0.1);
+        	snprintf(buf, sizeof(buf), "%.1f km/h>", settings->getSimulationSpeed());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         default:
             break;
@@ -301,79 +292,79 @@ void SettingsPage::subMenuPlus(){
         char buf[20];
         case 0:
             // Enter setting 1
-            parentWindow->write("Turkce", 2, 2);
-            parentWindow->write("English", 2, 11);
+            parentWindow->writeString("Turkce", 2, 2);
+            parentWindow->writeString("English", 2, 11);
             break;
         case 1:
             // Enter setting 2
-            parentWindow->write("         ",  2, 8);
-            parentWindow->write("<", 2, 8);
-            settings.setNozzleCount(settings.getNozzleCount()+1);
-        	snprintf(buf, sizeof(buf), "%d>", settings.getNozzleCount());
-        	parentWindow->write(buf, 2, 9);
+            parentWindow->writeString("         ",  2, 8);
+            parentWindow->writeString("<", 2, 8);
+            settings->setNozzleCount(settings->getNozzleCount()+1);
+        	snprintf(buf, sizeof(buf), "%d>", settings->getNozzleCount());
+        	parentWindow->writeString(buf, 2, 9);
             break;
         case 2:
             // Enter setting 3
-            parentWindow->write("         ",  2, 6);
-            parentWindow->write("<", 2, 6);
-            settings.setNozzleDistance(settings.getNozzleDistance()+0.1f);
-        	snprintf(buf, sizeof(buf), "%.1f> cm", settings.getNozzleDistance());
-        	parentWindow->write(buf, 2, 7);
+            parentWindow->writeString("         ",  2, 6);
+            parentWindow->writeString("<", 2, 6);
+            settings->setNozzleDistance(settings->getNozzleDistance()+0.1f);
+        	snprintf(buf, sizeof(buf), "%.1f> cm", settings->getNozzleDistance());
+        	parentWindow->writeString(buf, 2, 7);
             break;
         case 3:
             // Enter setting 4
-            parentWindow->write("         ",  2, 8);
-            parentWindow->write("<", 2, 8);
-            settings.setFlowMeterCoefficient(settings.getFlowMeterCoefficient()+1);
-        	snprintf(buf, sizeof(buf), "%d>", settings.getFlowMeterCoefficient());
-        	parentWindow->write(buf, 2, 9);
+            parentWindow->writeString("         ",  2, 8);
+            parentWindow->writeString("<", 2, 8);
+            settings->setFlowMeterCoefficient(settings->getFlowMeterCoefficient()+1);
+        	snprintf(buf, sizeof(buf), "%d>", settings->getFlowMeterCoefficient());
+        	parentWindow->writeString(buf, 2, 9);
             break;
         case 4:
             // Enter setting 5
-            parentWindow->write("           ",  2, 5);
-            parentWindow->write("<", 2, 5);
-            settings.setMinDosage(settings.getMinDosage()+0.1);
-        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings.getMinDosage());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("           ",  2, 5);
+            parentWindow->writeString("<", 2, 5);
+            settings->setMinDosage(settings->getMinDosage()+0.1);
+        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings->getMinDosage());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         case 5:
             // Enter setting 6
-            parentWindow->write("           ",  2, 5);
-            parentWindow->write("<", 2, 5);
-            settings.setMaxDosage(settings.getMaxDosage()+0.1);
-        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings.getMaxDosage());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("           ",  2, 5);
+            parentWindow->writeString("<", 2, 5);
+            settings->setMaxDosage(settings->getMaxDosage()+0.1);
+        	snprintf(buf, sizeof(buf), "%.1f> L/dk", settings->getMaxDosage());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         case 6:
             // Enter setting 7
-            parentWindow->write("         ",  2, 7);
-            parentWindow->write("<", 2, 7);
-            settings.setMaxDosageVariationPercent(settings.getMaxDosageVariationPercent()+10.0);
-        	snprintf(buf, sizeof(buf), "%%%.1f>", settings.getMaxDosageVariationPercent());
-        	parentWindow->write(buf, 2, 8);
+            parentWindow->writeString("         ",  2, 7);
+            parentWindow->writeString("<", 2, 7);
+            settings->setMaxDosageVariationPercent(settings->getMaxDosageVariationPercent()+10.0);
+        	snprintf(buf, sizeof(buf), "%%%.1f>", settings->getMaxDosageVariationPercent());
+        	parentWindow->writeString(buf, 2, 8);
             break;
         case 7:
             // Enter setting 8
-            parentWindow->write("         ",  2, 7);
-            parentWindow->write("<", 2, 7);
-            settings.setTankCapacity(settings.getTankCapacity()+100.0);
-            flowmeter.setTotalVolume(settings.getTankCapacity());
-        	snprintf(buf, sizeof(buf), "%.1f> L", settings.getTankCapacity());
-        	parentWindow->write(buf, 2, 8);
+            parentWindow->writeString("         ",  2, 7);
+            parentWindow->writeString("<", 2, 7);
+            settings->setTankCapacity(settings->getTankCapacity()+100.0);
+            flowmeter->setTankCapacity(settings->getTankCapacity());
+        	snprintf(buf, sizeof(buf), "%.1f> L", settings->getTankCapacity());
+        	parentWindow->writeString(buf, 2, 8);
             break;
         case 8:
             // Enter setting 9
-            parentWindow->write(" ", 2, 2);
-            parentWindow->write(">", 2, 8);
-            settings.setSpeedSource(Settings::SIMULATION);
+            parentWindow->writeString(" ", 2, 2);
+            parentWindow->writeString(">", 2, 8);
+            settings->setSpeedSource(SPEED_SOURCE::SIMULATION);
             break;
         case 9:
             // Enter setting 10
-            parentWindow->write("            ",  2, 5);
-            parentWindow->write("<", 2, 5);
-            settings.setSimulationSpeed(settings.getSimulationSpeed()+0.1);
-        	snprintf(buf, sizeof(buf), "%.1f km/h>", settings.getSimulationSpeed());
-        	parentWindow->write(buf, 2, 6);
+            parentWindow->writeString("            ",  2, 5);
+            parentWindow->writeString("<", 2, 5);
+            settings->setSimulationSpeed(settings->getSimulationSpeed()+0.1);
+        	snprintf(buf, sizeof(buf), "%.1f km/h>", settings->getSimulationSpeed());
+        	parentWindow->writeString(buf, 2, 6);
             break;
         default:
             break;
