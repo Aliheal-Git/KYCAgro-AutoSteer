@@ -1,36 +1,34 @@
 #include "Page.hpp"
-#include "Window.hpp"
-#include "Flowmeter.hpp"
+
 #include "stdio.h"
 
-#include "cmsis_os.h"
+using namespace App::Pages;
 
-void InformationPage::render(){
+PageFuncResult InformationPage::render(){
     this->parentWindow->hideWindow();
-	osDelay(10);
 	this->parentWindow->clearWindow();
     this->parentWindow->writeString("Anlik debi", 0, 5);
     this->parentWindow->writeString("Kalan Tank hacmi", 2, 2);
     updateFlow();
     updateCapacity();
     this->parentWindow->showWindow();
+	return PageFuncResult{PageNavRequest::NONE, 0};
 }
 
-bool InformationPage::task(){
-    osDelay(100);
+PageFuncResult InformationPage::update(){
     updateFlow();
     updateCapacity();
-    return true;
+    return PageFuncResult{PageNavRequest::NONE, 200};
 }
 
-void InformationPage::handleButtonInput(ButtonQueueEvent event){
+PageFuncResult InformationPage::handleButtonInput(ButtonQueueEvent event){
     switch (event.buttonType) {
     	case (ButtonType::MENU):
 			switch(event.eventType){
 				case (ButtonEventType::PRESSED):
 					break;
 				case (ButtonEventType::RELEASED):
-					this->parentWindow->showPage(1);
+					return {PageNavRequest::MAIN, 0};
 					break;
 				case (ButtonEventType::HELD):
 					break;
@@ -41,27 +39,28 @@ void InformationPage::handleButtonInput(ButtonQueueEvent event){
 				case (ButtonEventType::PRESSED):
 					break;
 				case (ButtonEventType::RELEASED):
-					this->parentWindow->showPage(1);
+					return {PageNavRequest::MAIN, 0};
 					break;
 				case (ButtonEventType::HELD):
 					break;
 			}
 			break;
     }
+	return {PageNavRequest::NONE, 0};
 }
 
 void InformationPage::updateFlow() {
     char buf[20];
-    parentWindow->write("           ",  1, 11);
-    parentWindow->write("<", 1, 5);
-    snprintf(buf, sizeof(buf), "%.1f> L/dk", flowmeter.getFlowRate());
-    parentWindow->write(buf, 1, 6);
+    parentWindow->writeString("           ",  1, 11);
+    parentWindow->writeString("<", 1, 5);
+    snprintf(buf, sizeof(buf), "%.1f> L/dk", flowmeter->getFlowRate());
+    parentWindow->writeString(buf, 1, 6);
 }
 
 void InformationPage::updateCapacity() {
     char buf[20];
-    parentWindow->write("         ",  3, 11);
-    parentWindow->write("<", 3, 5);
-    snprintf(buf, sizeof(buf), "%.1f> L", flowmeter.getTotalVolume());
-    parentWindow->write(buf, 3, 6);
+    parentWindow->writeString("         ",  3, 11);
+    parentWindow->writeString("<", 3, 5);
+    snprintf(buf, sizeof(buf), "%.1f> L", flowmeter->getVolume());
+    parentWindow->writeString(buf, 3, 6);
 }  
