@@ -1,5 +1,6 @@
 #include "ValveController.hpp"
 #include "ButtonCommon.hpp"
+#include "ControllerCommon.hpp"
 #include "ValveCommon.hpp"
 
 using namespace App::Controller;
@@ -7,6 +8,8 @@ using namespace App::Controller;
 ValveController::ValveController() {
     // Constructor implementation (if needed)
 }
+
+ValveController::~ValveController() = default; 
 
 void ValveController::init(IValve* mainValvePtr, IValve* nozzleValvesArray[], uint8_t nozzleValveCnt) {
     mainValve = mainValvePtr;
@@ -108,4 +111,12 @@ void ValveController::onButtonEvent(const ButtonQueueEvent& queueEvent) {
             }
         }
     }
+}
+
+ValveControllerMode ValveController::getMode() const {
+    return mode;
+}
+
+ValveState ValveController::getValveState(uint8_t valveIndex) const {
+    return nozzleValves[valveIndex]->getStatus();
 }
