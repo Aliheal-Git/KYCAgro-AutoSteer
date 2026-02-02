@@ -15,10 +15,10 @@ namespace App::Interfaces {
 
     class IValveController {
         public:
-            virtual ~IValveController() {}
+            virtual ~IValveController() = default;
             virtual ValveState getValveState(uint8_t valveIndex) const = 0;
-            virtual void setNozzleValveCount(uint8_t count) = 0;
             virtual ValveControllerMode getMode() const = 0;
+            virtual void setNozzleValveCount(uint8_t count) = 0;
     };
 
 } // namespace App::Interfaces

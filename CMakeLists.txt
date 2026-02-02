@@ -90,11 +90,16 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Drivers/Window
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Controller/DosageController
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Controller/ValveController
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/Services/ButtonService
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/Services/ControllerService
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/Services/GPSService
+    ${CMAKE_CURRENT_SOURCE_DIR}/App/Services/PageManagerService
     ${CMAKE_CURRENT_SOURCE_DIR}/App/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Page
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Services
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Interfaces
     ${CMAKE_CURRENT_SOURCE_DIR}/App/Domain
+    ${CMAKE_CURRENT_SOURCE_DIR}/app/Pages
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE

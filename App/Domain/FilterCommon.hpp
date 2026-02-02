@@ -37,7 +37,7 @@ namespace App::Domain {
             sum = 0;
             count = 0;
         }
-    } oaFilter;
+    };
 
     /**
      * @brief Structure for Moving Average Filter.
@@ -56,7 +56,7 @@ namespace App::Domain {
                 index = 0;
             return sum / size;
         }
-    } maFilter; 
+    }; 
 
     /**
      * @brief Structure for Outlier Filter.

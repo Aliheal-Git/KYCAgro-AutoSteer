@@ -13,6 +13,11 @@ namespace App::Interfaces {
 class IFlowmeter {
 public:
     /**
+     * @brief Sets the total tank capacity
+     * @param capacity The tank capacity in liters
+     */
+    virtual void setTankCapacity(float capacity) = 0;
+    /**
      * @brief Returns flow rate in liters per minute    
      */
     virtual float getFlowRate() const = 0; // Returns flow rate in liters per minute

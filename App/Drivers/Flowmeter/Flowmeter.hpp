@@ -15,6 +15,7 @@ namespace App::Drivers {
 class Flowmeter : public IFlowmeter {
 public:
     Flowmeter(uint16_t flowmeterFactor, float tankCapacity, float outlierFilterAlpha, float kalmanR, float kalmanP, float kalmanQ);
+    void setTankCapacity(float capacity) override;
     float getFlowRate() const override;
     float getVolume() const override; 
     void onTimerOverflow() override;

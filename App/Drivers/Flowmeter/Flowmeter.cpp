@@ -78,3 +78,8 @@ void Flowmeter::calculateFlow(){
     flowrate = kalmanFilter.filter(rawFlowrate);
     volume -= 10.0f / flowmeterK;
 }
+
+void Flowmeter::setTankCapacity(float capacity){
+    volume += (capacity - tankCapacity);
+    tankCapacity = capacity;
+}

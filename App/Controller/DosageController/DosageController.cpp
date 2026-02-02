@@ -82,3 +82,7 @@ float DosageController::calculateDosage(){
         currentDosage = temp / gps->getSpeed();
     return currentDosage;
 }
+
+void DosageController::onButtonEvent(const ButtonQueueEvent& queueEvent) {
+    // Handle button events if necessary
+}

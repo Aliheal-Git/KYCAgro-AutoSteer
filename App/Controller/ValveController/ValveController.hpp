@@ -24,15 +24,14 @@ namespace App::Controller {
     class ValveController : public IButtonEventListener, public IValveController {
         public:
             ValveController();
+            virtual ~ValveController();
             void init(IValve* mainValvePtr, IValve* nozzleValvesArray[], uint8_t nozzleValveCnt);
             void enable();
             void disable();
 
             void setMode(ValveControllerMode newMode);
-            ValveControllerMode getMode() const override {
-                return mode;
-            }
             ValveState getValveState(uint8_t valveIndex) const override;
+            ValveControllerMode getMode() const override;
             void setNozzleValveCount(uint8_t count) override;
 
             ValveControllerTaskResult task();

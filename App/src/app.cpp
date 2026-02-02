@@ -1,24 +1,26 @@
 #include "app.h"
-#include "tim.h"
 #include "main.h"
 
+#include "Page.hpp"
 #include "Flowmeter.hpp"
 #include "GPS.hpp"
 #include "Flash.hpp"
 #include "Valve.hpp"
 #include "Window.hpp"
 #include "Button.h"
-
-#include "ButtonService.hpp"
-
 #include "ValveController.hpp"
 #include "DosageController.hpp"
+#include "ButtonService.hpp"
+
 
 
 volatile uint8_t flowmeterPulseCounter = 0;
 
 using namespace App::Drivers;
 using namespace App::Services;
+using namespace App::Pages;
+using namespace App::Controller;
+
 namespace App {
 	//Services
 	ButtonService buttonService;
@@ -28,6 +30,7 @@ namespace App {
 	GPS gps;
 	Window window(&hi2c1, 0x27 << 1, 2, 16);
 	Flash flash;
+	Settings settings;
 
 	// Buttons
 	// To act like switch increase limit of pressDurationMs
@@ -64,7 +67,18 @@ namespace App {
 		new Valve(VALF8_ON_GPIO_Port, VALF8_ON_Pin, VALF8_OFF_GPIO_Port, VALF8_OFF_Pin),
 	};
 	
+	// Controllers
+	ValveController valveController;
+	DosageController dosageController(0.5, 0.008, 15.0, 
+			&settings, &gps, &flowmeter, proportionalValve);
 
+	// Pages
+	WelcomePage welcomePage(&window);
+	SettingsPage settingsPage(&window, &settings, &flowmeter, &flash);
+	MainPage mainPage(&window, settings, &flash, 
+		&dosageController, &valveController);
+	InformationPage informationPage(&window, &flowmeter);
+	ProgramsPage programsPage(&window, &settings, &flash);
 
 
 	void app_init(){
@@ -91,13 +105,13 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
     if (htim->Instance == TIM3 && htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2) {
     	flowmeterPulseCounter++;
     	if (flowmeterPulseCounter >= PUSLECOUNTPERDURATION){
-    		App::flowmeter.calculateFrequency(HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2));
+			App::flowmeter.onPulse(HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_2));
     		flowmeterPulseCounter = 0;
     	}
     }
 }
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+void TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM7)
   {
